@@ -1,7 +1,6 @@
-#summary Last news of the project
+#summary Latest news of the project
 #labels news
-
-= Last news =
+= Latest news =
 
 ==21-02-2009: <font color="#336699">HORRO</font><font color="#ff9900">Rss</font> 1.4 is now LGPL ==
 Since this version (1.4) HORRORss changes its license to LGPL. This release includes  the following new features:
