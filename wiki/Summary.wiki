@@ -4,11 +4,9 @@
 [FAQ FAQ]<br>
 [Download Download]<br>
 <br>
-<br>
 *Documentation*<br>
 [API API]<br>
 [SampleCode Sample Code]<br>
-<br>
 <br>
 *Useful links*<br>
 [http://sparta-xml.sourceforge.net/ Sparta-XML]<br>
