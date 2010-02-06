@@ -1,4 +1,3 @@
-#summary Latest news of the project
 #labels news
 = Latest news =
 
