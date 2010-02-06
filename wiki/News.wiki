@@ -33,5 +33,5 @@ The first version of the parser includes the followin features:
   * RSS 0.9x compatible
   * RSS 1.0 compatible
   * RSS 2.0 compatible
-  * GNU Classpath compatible
+  * Compatibility with GNU Classpath
   * Easy to use
