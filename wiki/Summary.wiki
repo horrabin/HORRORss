@@ -2,4 +2,3 @@
 
   * [News News]
   * [SampleCode Sample Code]
-  * SampleCode
