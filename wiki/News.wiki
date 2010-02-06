@@ -1,6 +1,4 @@
-#summary One-sentence summary of this page.
 #labels news
-
 = Last news =
 
 ==21-02-2009: *<font color="#336699">HORRO</font><font color="#ff9900">Rss</font>* 1.4 is now LGPL ==
@@ -9,5 +7,3 @@ Since this version (1.4) HORRORss changes its license to LGPL. This release incl
   * Exception control improved.
   * A charset problem with parsing from a file was fixed
   * Support for ATOM 1.0 dates was added
-
-
