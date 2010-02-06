@@ -1,0 +1,15 @@
+#labels code,sample,examples
+Use *<font color="#336699">HORRO</font><font color="#ff9900">Rss</font>* in your project is so easy as you can see. Only need to create a new class RssParser with the file or the URL where the content is.
+{{{
+    RssParser rss = new RssParser("http://code.google.com/feeds/p/horrorss/updates/basic");
+    try{
+       rss.parse();
+       RssChannelBean channel = rss.getChannel(); //Obtain the channel element
+       RssImageBean image = rss.getImage(); //Obtain the image element
+       Vector items = rss.getItems(); //Obtenemos un Vector de elementos item (RssItemBean)
+    }catch(Exception e){
+       //Treat the exception as you want
+    }
+}}}
+
+That's it! 
