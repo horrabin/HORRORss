@@ -1,2 +1,2 @@
-  * [News]
-  * [Sample Code]
+  * [News Latest news]
+  * [SampleCode Sample Code]
