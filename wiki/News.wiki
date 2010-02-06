@@ -7,3 +7,6 @@ Since this version (1.4) HORRORss changes its license to LGPL. This release incl
   * Exception control improved.
   * A charset problem with parsing from a file was fixed
   * Support for ATOM 1.0 dates was added
+
+==16-12-2006: <font color="#336699">HORRO</font><font color="#ff9900">Rss</font> 1.3 incluye sistema de caché==
+This new version includes a cache system and the ability to define the charset (default UTF-8. Also it fixes an error using the method _parse(String file)_.
