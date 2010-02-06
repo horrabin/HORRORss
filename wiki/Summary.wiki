@@ -1,16 +1,16 @@
 *The Project*
-  * [Introduction Introduction]
-  * [News Latest news]
-  * [FAQ FAQ]
-  * [Download Download]
+[Introduction Introduction]
+[News Latest news]
+[FAQ FAQ]
+[Download Download]
 
 *Documentation*
-  * [API API]
-  * [SampleCode Sample Code]
+[API API]
+[SampleCode Sample Code]
 
 *Useful links*
-  * [http://sparta-xml.sourceforge.net/ Sparta-XML]
-  * [http://web.resource.org/rss/1.0/spec RSS 1.0]
-  * [http://blogs.law.harvard.edu/tech/rss RSS 2.0]
-  * [http://www.w3.org/RDF RDF]
-  * [http://www.atomenabled.org/ Atom]
+[http://sparta-xml.sourceforge.net/ Sparta-XML]
+[http://web.resource.org/rss/1.0/spec RSS 1.0]
+[http://blogs.law.harvard.edu/tech/rss RSS 2.0]
+[http://www.w3.org/RDF RDF]
+[http://www.atomenabled.org/ Atom]
