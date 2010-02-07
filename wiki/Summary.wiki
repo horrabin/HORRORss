@@ -1,7 +1,7 @@
-*The Project*<br>
-[Introduction Introduction]<br>
-[News Latest news]<br>
-[FAQ FAQ]<br>
+  * *The Project*
+  * [Introduction Introduction]
+  * [News Latest news]
+  * [FAQ FAQ]
 [Download Download]<br>
 <br>
 *Documentation*<br>
