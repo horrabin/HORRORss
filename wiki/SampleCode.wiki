@@ -1,4 +1,6 @@
 #labels code,sample,examples
+=Sample Code=
+
 Using *<font color="#336699">HORRO</font><font color="#ff9900">Rss</font>* in your project is so easy as you can see below. You only need to create a new class *RssParser* with the file or the URL where the content is and _parse_ it.
 {{{
     RssParser rss = new RssParser("http://code.google.com/feeds/p/horrorss/updates/basic");
