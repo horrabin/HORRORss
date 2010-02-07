@@ -3,11 +3,10 @@
     * [News Latest news]
     * [FAQ FAQ]
     * [Download Download]
-
   * *Documentation*
     * [http://horrorss.googlecode.com/svn/trunk/docs/api/index.html API]
     * [SampleCode Sample Code]
-  * *Useful links*<br>
+  * *Useful links*
     * [http://sparta-xml.sourceforge.net/ Sparta-XML]
     * [http://web.resource.org/rss/1.0/spec RSS 1.0]
     * [http://blogs.law.harvard.edu/tech/rss RSS 2.0]
