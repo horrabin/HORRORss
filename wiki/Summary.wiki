@@ -5,7 +5,7 @@
 [Download Download]<br>
 <br>
 *Documentation*<br>
-[API API]<br>
+[http://horrorss.googlecode.com/svn/trunk/docs/api/index.html API]<br>
 [SampleCode Sample Code]<br>
 <br>
 *Useful links*<br>
