@@ -1,31 +1,26 @@
 #labels news
 =Latest News=
-*21-02-2009: <font color="#336699">HORRO</font><font color="#ff9900">Rss</font> 1.4 is now LGPL*
-
+*21-02-2009: <font color="#336699">HORRO</font><font color="#ff9900">Rss</font> 1.4 is now LGPL*<br>
 Since this version (1.4) HORRORss changes its license to LGPL. This release includes  the following new features:
 
   * Exception control improved.
   * A charset problem with parsing from a file was fixed
   * Support for ATOM 1.0 dates was added
+<br>
 
-
-*16-12-2006: <font color="#336699">HORRO</font><font color="#ff9900">Rss</font> 1.3 includes a caching system*
-
+*16-12-2006: <font color="#336699">HORRO</font><font color="#ff9900">Rss</font> 1.3 includes a caching system*<br>
 This new version includes a caching system and the ability to define the charset (default UTF-8). It also fixes an error using the method _parse(String file)_.
+<br><br>
 
-
-*20-02-2006: <font color="#336699">HORRO</font><font color="#ff9900">Rss</font> 1.2 adds Atom support*
-
+*20-02-2006: <font color="#336699">HORRO</font><font color="#ff9900">Rss</font> 1.2 adds Atom support*<br>
 This release fixes some bugs when parsing RDF modules and allows support for Atom feeds. It is not fully compliant with the Atom specification, but it works with the basic feed elements: title, link, author, and description
+<br><br>
 
-
-*15-09-2005: <font color="#336699">HORRO</font><font color="#ff9900">Rss</font> 1.1 available*
-
+*15-09-2005: <font color="#336699">HORRO</font><font color="#ff9900">Rss</font> 1.1 available*<br>
 This version of HORRORss now works with the "enclosure" elements of RSS 2.0, which is very useful for podcasting.
+<br><br>
 
-
-*30-09-2004: First release of <font color="#336699">HORRO</font><font color="#ff9900">Rss</font> published*
-
+*30-09-2004: First release of <font color="#336699">HORRO</font><font color="#ff9900">Rss</font> published*<br>
 The first version of the parser includes the followin features:
 
   * RSS 0.9x compatible
