@@ -2,7 +2,7 @@
 [Introduction Introduction]<br>
 [News Latest news]<br>
 [FAQ FAQ]<br>
-[Download Download]<br>
+[http://code.google.com/p/horrorss/downloads/list Downloads]<br>
 <br>
 *Documentation*<br>
 [http://horrorss.googlecode.com/svn/trunk/docs/api/index.html API]<br>
