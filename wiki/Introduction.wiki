@@ -8,6 +8,6 @@ The first aim of *<font color="#336699">HORRO</font><font color="#ff9900">Rss</f
 <br><br>
 
 ==Easy to use==
-The second aim was to be easy to use. *<font color="#336699">HORRO</font><font color="#ff9900">Rss</font>* transforms the [http://en.wikipedia.org/wiki/Rss RSS] files into Java objects to make easier the manipulation. This feature can be easily done with the excellent project [http://xstream.codehaus.org/ XStream] but then we would introduce a lot of dependencies, turning heavier the project. *<font color="#336699">HORRO</font><font color="#ff9900">Rss</font>* only have one dependency, the [http://sparta-xml.sourceforge.net/ Sparta-XML] parser wich is also compatible with [http://www.gnu.org/software/classpath/ GNU Classpath].
+The second aim was to be easy to use. *<font color="#336699">HORRO</font><font color="#ff9900">Rss</font>* transforms the [http://en.wikipedia.org/wiki/Rss RSS] files into Java objects to make easier the manipulation. This feature could han been made easily with the excellent project [http://xstream.codehaus.org/ XStream] but then we would introduce a lot of dependencies, turning heavier the project. *<font color="#336699">HORRO</font><font color="#ff9900">Rss</font>* only have one dependency, the [http://sparta-xml.sourceforge.net/ Sparta-XML] parser wich is also compatible with [http://www.gnu.org/software/classpath/ GNU Classpath].
 
 So, if you are looking for an RSS parser with these features, *<font color="#336699">HORRO</font><font color="#ff9900">Rss</font>* is your project!
