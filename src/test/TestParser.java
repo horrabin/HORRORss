@@ -30,18 +30,18 @@ public class TestParser extends TestCase {
 		assertEquals(21,this.items.size());
 
 		RssItemBean item = (RssItemBean)this.items.elementAt(0);
-		assertEquals("La niñez de Luke Skywalker", item.getTitle());
+		assertEquals("La niÃ±ez de Luke Skywalker", item.getTitle());
 
 		item = (RssItemBean)this.items.elementAt(20);
 		assertEquals("Y con este sencillo acto...", item.getTitle());
 	}
 
 	public void testUTF8URLParse(){
-		this.fileParse("http://localhost/horrorsstest/rss-utf8.xml", "utf-8");
+		this.fileParse("http://horrorss.googlecode.com/svn/trunk/src/test/data/rss-utf8.xml", "utf-8");
 		assertEquals(21,this.items.size());
 
 		RssItemBean item = (RssItemBean)this.items.elementAt(0);
-		assertEquals("La niñez de Luke Skywalker", item.getTitle());
+		assertEquals("La niÃ±ez de Luke Skywalker", item.getTitle());
 
 		item = (RssItemBean)this.items.elementAt(20);
 		assertEquals("Y con este sencillo acto...", item.getTitle());
@@ -52,18 +52,18 @@ public class TestParser extends TestCase {
 		assertEquals(21,this.items.size());
 
 		RssItemBean item = (RssItemBean)this.items.elementAt(0);
-		assertEquals("La niñez de Luke Skywalker", item.getTitle());
+		assertEquals("La niÃ±ez de Luke Skywalker", item.getTitle());
 
 		item = (RssItemBean)this.items.elementAt(20);
 		assertEquals("Y con este sencillo acto...", item.getTitle());
 	}
 
 	public void testISO88591URLParse(){
-		this.fileParse("http://localhost/horrorsstest/rss-iso-8859-1.xml", "iso-8859-1");
+		this.fileParse("http://horrorss.googlecode.com/svn/trunk/src/test/data/rss-iso-8859-1.xml", "iso-8859-1");
 		assertEquals(21,this.items.size());
 
 		RssItemBean item = (RssItemBean)this.items.elementAt(0);
-		assertEquals("La niñez de Luke Skywalker", item.getTitle());
+		assertEquals("La niÃ±ez de Luke Skywalker", item.getTitle());
 
 		item = (RssItemBean)this.items.elementAt(20);
 		assertEquals("Y con este sencillo acto...", item.getTitle());
@@ -76,7 +76,7 @@ public class TestParser extends TestCase {
 		assertEquals("El blog horroroso de Horrabin", this.channel.getTitle());
 
 		RssItemBean item = (RssItemBean)this.items.elementAt(0);
-		assertEquals("La niñez de Luke Skywalker", item.getTitle());
+		assertEquals("La niÃ±ez de Luke Skywalker", item.getTitle());
 
 		item = (RssItemBean)this.items.elementAt(20);
 		assertEquals("Y con este sencillo acto...", item.getTitle());
@@ -92,7 +92,7 @@ public class TestParser extends TestCase {
 		assertEquals("10 increibles aplicaciones Java", item.getTitle());
 
 		item = (RssItemBean)this.items.elementAt(9);
-		assertEquals("Versión alpha del framework de la JavaCup 2009", item.getTitle());
+		assertEquals("VersiÃ³n alpha del framework de la JavaCup 2009", item.getTitle());
 	}
 
 	public void testFileParse(){
@@ -100,18 +100,18 @@ public class TestParser extends TestCase {
 		assertEquals(21,this.items.size());
 
 		RssItemBean item = (RssItemBean)this.items.elementAt(0);
-		assertEquals("La niñez de Luke Skywalker", item.getTitle());
+		assertEquals("La niÃ±ez de Luke Skywalker", item.getTitle());
 
 		item = (RssItemBean)this.items.elementAt(20);
 		assertEquals("Y con este sencillo acto...", item.getTitle());
 	}
 
 	public void testURLParse(){
-		this.fileParse("http://localhost/horrorsstest/rss-utf8.xml");
+		this.fileParse("http://horrorss.googlecode.com/svn/trunk/src/test/data/rss-utf8.xml");
 		assertEquals(21,this.items.size());
 
 		RssItemBean item = (RssItemBean)this.items.elementAt(0);
-		assertEquals("La niñez de Luke Skywalker", item.getTitle());
+		assertEquals("La niÃ±ez de Luke Skywalker", item.getTitle());
 
 		item = (RssItemBean)this.items.elementAt(20);
 		assertEquals("Y con este sencillo acto...", item.getTitle());

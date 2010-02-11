@@ -7,12 +7,12 @@
  * February 21, 2009
  *
  * Copyright (C) 2009 Fernando Fornieles
- * e-mail: horrabin@usuarios.javahispano.net
+ * e-mail: nandofm@gmail.com
  *
- * This file is part og HORRORss
+ * This file is part of HORRORss
  *
  * HORRORss is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
+ * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
@@ -21,15 +21,15 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
+ * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package org.horrabin.horrorss;
 
 /**
-* POJO que representa un modulo <i>Dublin Core</i> de un fichero RSS. Valido para las especificiones
-* RDF.
+* The RssDublinCoreModuleBean object represents the <i>Dublin Core</i> module in a RSS feed. Valid for RDF specifications.
+* 
 * @author Fernando Fornieles
 */ 
 public class RssDublinCoreModuleBean {
@@ -50,7 +50,7 @@ public class RssDublinCoreModuleBean {
   private String rights;
 
   /**
-   * Crea un nuevo RssDublinCoreModuleBean
+   * Create a new RssDublinCoreModuleBean object
    */
   public RssDublinCoreModuleBean(){
     title = "";
@@ -71,8 +71,8 @@ public class RssDublinCoreModuleBean {
   }
 
   /**
-   * Asigna el título del modulo
-   * @param title Titulo del modulo
+   * Sets the title of the module
+   * @param title Module title
    */
   public void setTitle(String title){
 	 this.title = title;
@@ -87,160 +87,160 @@ public class RssDublinCoreModuleBean {
   }
 
   /**
-   * Asigna el asunto del modulo
-   * @param subject Asunto del modulo
+   * Sets the subject of the module
+   * @param subject Subject of the module
    */  
   public void setSubject(String subject){
 	 this.subject = subject;
   }
 
   /**
-   * Asigna la descripcion del modulo
-   * @param description Descripcion del modulo
+   * Sets the description of the module
+   * @param description Description of the module
    */  
   public void setDescription(String description){
 	 this.description = description;
   }
 
   /**
-   * Asigna el editor del modulo
-   * @param publisher Editor del modulo
+   * Sets the publisher
+   * @param publisher The publisher
    */  
   public void setPublisher(String publisher){
 	 this.publisher = publisher;
   }
 
   /**
-   * Asigna el participante? del modulo
-   * @param contributor Participante? del modulo
+   * Sets the contributor
+   * @param contributor The contributor
    */  
   public void setContributor(String contributor){
 	 this.contributor = contributor;
   }
 
   /**
-   * Asigna la fecha del modulo
-   * @param date FEcha del modulo
+   * Sets the date
+   * @param date The date
    */  
   public void setDate(String date){
 	 this.date = date;
   }
 
   /**
-   * Asigna el tipo del modulo
-   * @param type Tipo del modulo
+   * Sets the type of the module
+   * @param type type of the module
    */  
   public void setType(String type){
 	 this.type = type;
   }
 
   /**
-   * Asigna el formato del modulo
-   * @param format Formato del modulo
+   * Sets the format of the module
+   * @param format Format of the module
    */  
   public void setFormat(String format){
 	 this.format = format;
   }
 
   /**
-   * Asigna el identificador del modulo
-   * @param identifier Identificador del modulo
+   * Sets the identifier of the module
+   * @param identifier Identifier of the module
    */  
   public void setIdentifier(String identifier){
 	 this.identifier = identifier;
   }
 
   /**
-   * Asigna la fuente del modulo
-   * @param source Fuente del modulo
+   * Sets the source
+   * @param source The source
    */  
   public void setSource(String source){
 	 this.source = source;
   }
 
   /**
-   * Asigna el idioma del modulo
-   * @param language Idioma del modulo
+   * Sets the language
+   * @param language The language
    */  
   public void setLanguage(String language){
 	 this.language = language;
   }
 
   /**
-   * Asigna la relacion del modulo
-   * @param relation Relacion del modulo
+   * Sets the relation
+   * @param relation Relation
    */  
   public void setRelation(String relation){
 	 this.relation = relation;
   }
 
   /**
-   * Asigna el "coverage" del modulo
-   * @param coverage "Coverage" del modulo
+   * Sets the coverage
+   * @param coverage The coverage
    */  
   public void setCoverage(String coverage){
 	 this.coverage = coverage;
   }
 
   /**
-   * Asigna los derechos del modulo
-   * @param rights Rights del modulo
+   * Sets the rights
+   * @param rights The rights
    */  
   public void setRights(String rights){
 	 this.rights = rights;
   }
 
   /**
-   * Retorna el título del modulo
-   * @return Titulo del modulo
+   * Returns the title of the module
+   * @return Title of the module
    */  
   public String getTitle(){
 	 return title;
   }
   
   /**
-   * Retorna el creador del modulo
-   * @return Creador del modulo
+   * Returns the creator of the module
+   * @return Creator of the module
    */  
   public String getCreator(){
 	 return creator;
   }
 
   /**
-   * Retorna el asunto del modulo
-   * @return Asunto del modulo
+   * Returns the subject of the module
+   * @return Subject of the module
    */    
   public String getSubject(){
 	 return subject;
   }
 
   /**
-   * Retorna la descripcion del modulo
-   * @return Descripcion del modulo
+   * Returns the description of the module
+   * @return Description of the module
    */    
   public String getDescription(){
 	 return description;
   }
 
   /**
-   * Retorna el editor del modulo
-   * @return Editor del modulo
+   * Returns the publisher
+   * @return The publisher
    */    
   public String getPublisher(){
 	 return publisher;
   }
 
   /**
-   * Retorna el participante? del modulo
-   * @return Participante? del modulo
+   * Returns the contributor
+   * @return The contributor
    */    
   public String getContributor(){
 	 return contributor;
   }
 
   /**
-   * Retorna la fecha del modulo
-   * @return Fecha del modulo
+   * Returns the date
+   * @return The date
    */    
   public String getDate(){
 	 return date;
@@ -255,56 +255,56 @@ public class RssDublinCoreModuleBean {
   }
 
   /**
-   * Retorna el formato del modulo
-   * @return Formato del modulo
+   * Returns the type of the module
+   * @return Type of the module
    */    
   public String getFormat(){
 	 return format;
   }
 
   /**
-   * Retorna el identificador del modulo
-   * @return Identificador del modulo
+   * Returns the identifier
+   * @return Tthe identifier
    */    
   public String getIdentifier(){
 	 return identifier;
   }
 
   /**
-   * Retorna la fuente del modulo
-   * @return Fuente del modulo
+   * Returns the source
+   * @return The source
    */    
   public String getSource(){
 	 return source;
   }
 
   /**
-   * Retorna el idioma del modulo
-   * @return Idioma del modulo
+   * Returns the language
+   * @return The language
    */    
   public String getLanguage(){
 	 return language;
   }
 
   /**
-   * Retorna la relacion del modulo
-   * @return Relacion del modulo
+   * Returns the relation
+   * @return The relation
    */    
   public String getRelation(){
 	 return relation;
   }
 
   /**
-   * Retorna el "coverage" del modulo
-   * @return "Coverage" del modulo
+   * Returns the coverage
+   * @return The coverage
    */    
   public String getCoverage(){
 	 return coverage;
   }
 
   /**
-   * Retorna los derehos del modulo
-   * @return Derechos del modulo
+   * Returns the rights
+   * @return The rights
    */    
   public String getRights(){
 	 return rights;

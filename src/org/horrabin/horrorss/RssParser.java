@@ -7,19 +7,19 @@
  * February 21, 2009
  *
  * Copyright (C) 2009 Fernando Fornieles
- * e-mail: horrabin@usuarios.javahispano.net
+ * e-mail: nandofm@gmail.com
  *
  * HORRORss is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
+ * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
  * HORRORss is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * GNU Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
+ * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
@@ -42,7 +42,7 @@ import org.horrabin.horrorss.RssSyndicationModuleBean;
 import org.horrabin.horrorss.RssEnclosureBean;
 
 /**
-* Parser de ficheros RSS compatible con las especificaciones RSS 2.0 y RDF.
+* RSS file parser compatible with all RSS, RDF & Atom specifications.
 * @author Fernando Fornieles
 */
 public class RssParser {
@@ -60,22 +60,22 @@ public class RssParser {
 
 
  /**
-  * Crea un nuevo parser de RSS.
+  * Create a new RSS parser.
   */
   public RssParser(){
        this.filename = "";
   }
 
  /**
-  * Crea un nuevo parser de RSS.
-  * @param filename String que puede ser un fichero o una url
+  * Create a new RSS file parser.
+  * @param filename String it can be a filename or an URL
   */
   public RssParser(String filename){
        this.filename = filename;
   }
 
   /**
-   * Parsea el fichero RSS
+   * Parses the RSS file
    */
   public void parse() throws Exception {
        if (this.filename.startsWith("http://")) this.parseFromURL();
@@ -83,8 +83,8 @@ public class RssParser {
   }
 
   /**
-   * Parsea el fichero RSS
-   * @param filename String que puede ser un fichero o una url
+   * Parses the RSS file
+   * @param filename String it can be a filename or an URL
    */
   public void parse(String filename) throws Exception{
 	   this.filename = filename;
@@ -92,17 +92,17 @@ public class RssParser {
   }
 
   /**
-   * Define el charset a utilizar. Por defecto UTF-8.
-   * @param charset String con el charset a utilizar.
+   * Tells the parser what charset must use. Default UTF-8.
+   * @param charset String the charset (iso-8859-1, utf-8,...).
    */
   public void setCharset(String charset){
 	  this.charset = charset;
   }
 
   /**
-   * Habilita la caché.
-   * @param cacheDir String que define el directorio usará la caché
-   * @param cacheLifeTime long tiempo de vida de la caché en milisegundos. Si cacheLifeTime=0 la deshabilitamos.
+   * Enables the caching system.
+   * @param cacheDir String the directory the cache will use to store the contents.
+   * @param cacheLifeTime long Cache lifetime in milliseconds. If cacheLifeTime=0 it will be disabled.
    */
   public void enableCache(String cacheDir, long cacheLifeTime){
 	  this.cacheDir = cacheDir;
@@ -110,7 +110,7 @@ public class RssParser {
   }
 
   /**
-   * Retorna un RssChannelBean que representa el <i>canal</i> de un <i>feed</i>
+   * Returns a RssChannelBean which represents the element <i>channel</i> in a <i>feed</i>
    * @see RssChannelBean
    * @return RssChannelBean
    */
@@ -120,7 +120,7 @@ public class RssParser {
   }
 
   /**
-   * Retorna un RssChannelBean que representa el elemento <i>title</i> de un fichero ATOM
+   * Returns a RssChannelBean which represents the element <i>channel</i> in an Atom feed
    * @see RssChannelBean
    * @return RssChannelBean
    */
@@ -161,7 +161,7 @@ public class RssParser {
    }
 
   /**
-  * Retorna un RssChannelBean que representa el elemento <i>channel</i> de un fichero RSS
+  * Returns a RssChannelBean which represents the element <i>channel</i> in an RSS feed
   * @see RssChannelBean
   * @return RssChannelBean
   */
@@ -201,7 +201,7 @@ public class RssParser {
   }
 
   /**
-   * Retorna un RssImageBean que representa el elemento <i>image</i> de un fichero RSS
+   * Returns a RssImageBean which represents the element <i>image</i> in a feed
    * @see RssImageBean
    * @return RssImageBean
    */
@@ -211,7 +211,7 @@ public class RssParser {
    }
 
   /**
-  * Retorna un RssImageBean que representa el elemento <i>image</i> de un fichero RSS
+  * Returns a RssImageBean which represents the element <i>image</i> in a RSS feed
   * @see RssImageBean
   * @return RssImageBean
   */
@@ -234,7 +234,7 @@ public class RssParser {
   }
 
   /**
-   * Retorna un Vector de RssItemBean con todas entradas de un <i>feed</i>
+   * Returns a Vector of RssItemBean with all the entries of a <i>feed</i>
    * @see RssItemBean
    * @return java.util.Vector
    */
@@ -244,7 +244,7 @@ public class RssParser {
    }
 
    /**
-    * Retorna un Vector de RssItemBean con todos los elementos <i>entry</i> de un fichero ATOM
+    * Returns a Vector of RssItemBean with all the entries of an ATOM <i>feed</i>
     * @see RssItemBean
     * @return java.util.Vector
     */
@@ -267,7 +267,7 @@ public class RssParser {
 
 
   /**
-  * Retorna un Vector de RssItemBean con todos los elementos <i>item</i> de un fichero RSS
+  * Returns a Vector of RssItemBean with all the entries of a RSS feed
   * @see RssItemBean
   * @return java.util.Vector
   */
@@ -289,9 +289,9 @@ public class RssParser {
   }
 
   /**
-   * Retorna un RssItemBean que representa el elemento <i>entry</i> de un fichero ATOM.
-   * El parametro indica el elemento a retornar.
-   * @param index Indice del elemento a retornar
+   * Returns a RssItemBean which represents the element <i>entry</i> in an ATOM feed.
+   * 
+   * @param index Index of the element to be returned.
    * @see RssItemBean
    * @return RssItemBean
    */
@@ -300,35 +300,35 @@ public class RssParser {
 
  	 try{
  	   Element e;
- 	   //Recogemos el título
+ 	   //Gets the title
  	   Enumeration list = doc.xpathSelectElements("feed/entry[" + index + "]/title");
  	   if (list.hasMoreElements()){
  	     e = (Element)list.nextElement();
  	     res.setTitle(e.toString());
  	   }
 
- 	   //Recogemos el enlace
+ 	   //Gets the link
  	   list = doc.xpathSelectElements("feed/entry[" + index + "]/link");
  	   while (list.hasMoreElements()){
  	     e = (Element)list.nextElement();
  	     if (e.getAttribute("type").equals("text/html")) res.setLink(e.getAttribute("href"));
  	   }
 
- 	   //Recogemos la descripcion/contenido
+ 	   //Gets the description/content
  	   list = doc.xpathSelectElements("feed/entry[" + index + "]/content");
  	   if (list.hasMoreElements()){
 	     e = (Element)list.nextElement();
 	     res.setDescription(e.toString());
 	   }
 
- 	   //Recogemos el autor
+ 	   //Gets the author
  	   list = doc.xpathSelectElements("feed/entry[" + index + "]/author/name");
  	   if (list.hasMoreElements()){
 	     e = (Element)list.nextElement();
 	     res.setAuthor(e.toString());
 	   }
 
- 	   //Recogemos la fecha de creación
+ 	   //Gets the creation date
  	   list = doc.xpathSelectElements("feed/entry[" + index + "]/created");
        String datePublish = "";
  	   if (list.hasMoreElements()){
@@ -337,7 +337,7 @@ public class RssParser {
 	     res.setPubDate(datePublish);
 	   }
 
-       //Si es Atom 1.0 la fecha está en published
+       //If it is Atom 1.0 the creation date is in "published"
  	   if ((datePublish==null) || (datePublish.equals(""))){
            list = doc.xpathSelectElements("feed/entry[" + index + "]/published");
            if (list.hasMoreElements()){
@@ -348,16 +348,16 @@ public class RssParser {
        }
  	 }
  	 catch (Exception e){
- 	   throw new Exception("Error obteniendo elemento entru de la posicion " + index + " de " + filename, e);
+ 	   throw new Exception("Error obtaining the entry at position " + index + " of " + filename, e);
  	 }
 
  	 return res;
    }
 
   /**
-  * Retorna un RssItemBean que representa el elemento <i>item</i> de un fichero RSS. El
-  * parametro indica el elemento a retornar.
-  * @param index Indice del elemento a retornar
+  * Returns a RssItemBean which represents an element <i>item</i> in a RSS feed. 
+  * 
+  * @param index Index of the element to be returned
   * @see RssItemBean
   * @return RssItemBean
   */
@@ -385,7 +385,7 @@ public class RssParser {
 	   }
 	 }
 	 catch (Exception e){
-	   throw new Exception("Error obteniendo elemento item de la posicion " + index + " de " + filename, e);
+	   throw new Exception("Error obtaining the entry at position " + index + " of " + filename, e);
 	 }
      res.setEnclosure(enclosureBean);
 	 res.setDublinCoreModule(dcBean);
@@ -444,7 +444,7 @@ public class RssParser {
 	        doc = Parser.parse(xml);
 	    }catch(Exception e){
 	        doc = new Document();
-	        throw new Exception("Error leyendo el fichero " + filename, e);	        
+	        throw new Exception("Error reading the file " + filename, e);	        
 	    }
 	    this.setChannelXPath();
   }
@@ -454,7 +454,7 @@ public class RssParser {
          File xmlFile = new File(filename);
          doc = Parser.parse( xmlFile );
        }catch (Exception e){
-         System.out.println("Error leyendo el fichero " + filename);
+         System.out.println("Error reading the file " + filename);
          System.out.println("RssParser:parseFromFile() ERROR: " + e.getMessage() );
          doc = new Document();
        }
@@ -506,7 +506,7 @@ public class RssParser {
           writer.close();
           res = true;
         }catch (IOException e){
-          throw new IOException("Error al escribir el archivo " + path + "/" + filename);
+          throw new IOException("Error writing the file " + path + "/" + filename);
         }
      }
      return res;
@@ -526,7 +526,7 @@ public class RssParser {
 		  return buffer;
 		}
 		catch (IOException e){
-		  throw new IOException("Error obteniendo lector de " + filename);
+		  throw new IOException("Error obtaining the reader from " + filename);
 		}
 
   }
@@ -541,7 +541,7 @@ public class RssParser {
 	  return buffer;
 	}
 	catch (IOException e){
-	  throw new IOException("Error obteniendo lector de " + url);
+	  throw new IOException("Error obtaining the reader from " + url);
 	}
   }
 
@@ -556,7 +556,7 @@ public class RssParser {
 	       		else xPath = "atom";
 	       }
 	   }catch (Exception e){
-	     throw new Exception("Error obteniendo XPath raiz del fichero " + filename, e);
+	     throw new Exception("Error obtaining the file XPath root [" + filename + "]", e);
 	   }
 	   return xPath;
   }
