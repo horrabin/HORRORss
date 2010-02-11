@@ -1,5 +1,9 @@
 #labels news
 =Latest News=
+*12-02-2010: <font color="#336699">HORRO</font><font color="#ff9900">Rss</font> translated into English*<br>
+As well as the project translation into English, the project has moved to GoogleCode.
+<br>
+
 *21-02-2009: <font color="#336699">HORRO</font><font color="#ff9900">Rss</font> 1.4 is now LGPL*<br>
 Since this version (1.4) HORRORss changes its license to LGPL. This release includes  the following new features:
 
