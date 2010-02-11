@@ -9,10 +9,10 @@
  * Copyright (C) 2009 Fernando Fornieles
  * e-mail: horrabin@usuarios.javahispano.net
  *
- * This file is part og HORRORss
+ * This file is part of HORRORss
  *
  * HORRORss is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
+ * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
@@ -21,15 +21,15 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
+ * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package org.horrabin.horrorss;
 
 /**
-* POJO que representa un modulo <i>Syndication</i> de un fichero RSS. Valido para las especificaciones 
-* RDF 
+* The RssSyndicationModuleBean object represents the <i>Syndication</i> module of an RSS feed. 
+* Valid for RDF specification.  
 * @author Fernando Fornieles
 */ 
 public class RssSyndicationModuleBean {
@@ -38,7 +38,7 @@ public class RssSyndicationModuleBean {
   private String updateBase;
 
   /**
-   * Crea un nuevo modulo Syndication
+   * Create a new Syndication module
    */
   public RssSyndicationModuleBean(){
      updatePeriod = "";
@@ -47,10 +47,10 @@ public class RssSyndicationModuleBean {
   }
 
   /**
-   * Crea un nuevo modulo Syndication
-   * @param updatePeriod Periodo de actualizacion
-   * @param updateFrequency Frecuencia de actualizacion
-   * @param updateBase Base de actualizacion
+   * Create a new Syndication module
+   * @param updatePeriod Sets the update period
+   * @param updateFrequency Sets the update frequency
+   * @param updateBase Sets the update base
    */  
   public RssSyndicationModuleBean(String updatePeriod, int updateFrequency, String updateBase){
 	 this.updatePeriod = updatePeriod;
@@ -59,48 +59,48 @@ public class RssSyndicationModuleBean {
   }
 
   /**
-   * Asigna el periodo de actualizacion
-   * @param updatePeriod Periodo de actualizacion
+   * Sets the update period
+   * @param updatePeriod Update period
    */
   public void setPeriod(String updatePeriod){
 	 this.updatePeriod = updatePeriod;
   }
 
   /**
-   * Asigna la frecuencia de actualizacion
-   * @param updateFrequency Frecuencia de actualizacion
+   * Sets the update frequency
+   * @param updateFrequency Update frequency
    */  
   public void setFrequency(int updateFrequency){
 	 this.updateFrequency = updateFrequency;
   }
 
   /**
-   * Asigna la base de actualizacion
-   * @param updateBase Base de actualizacion
+   * Sets the update base
+   * @param updateBase Update base
    */  
   public void setBase(String updateBase){
 	 this.updateBase = updateBase;
   }
 
   /**
-   * Retorna el periodo de actualizacion
-   * @return Periodo de actualizacion
+   * Returns the update period
+   * @return Update period
    */  
   public String getPeriod(){
 	 return updatePeriod;
   }
 
   /**
-   * Retorna la frecuencia de actualizacion
-   * @return Frecuencia de actualizacion
+   * Returns the update frequency
+   * @return Update frequency
    */    
   public int getFrequency(){
 	 return updateFrequency;
   }
 
   /**
-   * Retorna la base de actualizacion
-   * @return Base de actualizacion
+   * Returns the update base
+   * @return Update base
    */    
   public String getBase(){
 	 return updateBase;

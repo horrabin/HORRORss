@@ -7,12 +7,12 @@
  * February 21, 2009
  *
  * Copyright (C) 2009 Fernando Fornieles
- * e-mail: horrabin@usuarios.javahispano.net
+ * e-mail: nandofm@gmail.com
  *
- * This file is part og HORRORss
+ * This file is part of HORRORss
  *
  * HORRORss is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
+ * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
@@ -21,7 +21,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
+ * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
@@ -31,40 +31,42 @@ import org.horrabin.horrorss.RssDublinCoreModuleBean;
 import org.horrabin.horrorss.RssSlashModuleBean;
 
 /**
-* POJO que representa un elemento <i>item</i> de un fichero RSS. Valido para las especificaciones 
-* RSS 2.0, RDF y ATOM 0.3 
+* The RssItemBean object represents the element <i>item</i> in an RSS feed. 
+* Valid for the RSS 2.0, RDF and ATOM specifications 
 * @author Fernando Fornieles
 */ 
 public class RssItemBean {
   private RssDublinCoreModuleBean dcBean;
   private RssSlashModuleBean slashBean;  
 
-  //Para RDF, RSS 2.0 y ATOM
+  //For all specifications
   private String title;
   private String link;
   private String description;  
   private String author;
   private String pubDate;  
 
-  //Solo para RSS 2.0
+  //Only for RSS 2.0
   private String category;
   private String comments;
   private RssEnclosureBean enclosure;
   private String guid;
   private String source;
 
-  //Control de tipo
+  //Type control
   private final int TYPE_RDF = 0;
   private final int TYPE_RSS = 1;
   private final int TYPE_ATOM = 2;
   private int rssType;
 
    /** 
-   * Crea un nuevo RssItemBean.<br>
-   * <li>Si rssType=0 indicamos que se trata de un RDF</li>
-   * <li>Si rssType=1 indicamos que se trata de un RSS 2.0 </li>
-   * <li>Si rssType=2 indicamos que se trata de un ATOM </li>
-   * @param rssType indica el tipo de especificación (RSS 2.0, RDF o ATOM)
+   * Create a new RssItemBean.<br>
+   * <ul>
+   * <li>If rssType=0 the feed is RDF</li>
+   * <li>If rssType=1 the feed is RSS 2.0 </li>
+   * <li>If rssType=2 the feed is ATOM </li>
+   * </ul>
+   * @param rssType Sets the specification type (RSS 2.0, RDF or ATOM)
    */   
   public RssItemBean(int rssType){
      title = "";
@@ -83,14 +85,16 @@ public class RssItemBean {
   }
 
    /** 
-   * Crea un nuevo RssItemBean.<br>
-   * <li>Si rssType=0 indicamos que se trata de un RDF</li>
-   * <li>Si rssType=1 indicamos que se trata de un RSS 2.0 </li>
-   * <li>Si rssType=2 indicamos que se trata de un ATOM </li>
-   * @param title Titulo del canal
-   * @param link Enlace a la pagina web del canal
-   * @param description Descripcion del canal
-   * @param rssType indica el tipo de especificación (RSS 2.0, RDF o ATOM)
+   * Create a new RssItemBean.<br>
+   * <ul>
+   * <li>If rssType=0 the feed is RDF</li>
+   * <li>If rssType=1 the feed is RSS 2.0 </li>
+   * <li>If rssType=2 the feed is ATOM </li>
+   * </ul>
+   * @param title Title of the item
+   * @param link The link of the item
+   * @param description Description of the item
+   * @param rssType Sets the specification type (RSS 2.0, RDF or ATOM)
    */   
   public RssItemBean(String title, String link, String description, int rssType){
      this.title = title;
@@ -109,50 +113,50 @@ public class RssItemBean {
   }
 
   /**
-   * Asigna el titulo del item
-   * @param title Titulo del item
+   * Sets the title of the item
+   * @param title Title of the item
    */
   public void setTitle(String title){
 	 this.title = title;
   }
 
   /**
-   * Asigna el enlace del item
-   * @param link Enlace del item
+   * Sets the link of the item
+   * @param link Link of the item
    */  
   public void setLink(String link){
 	 this.link = link;
   }
 
   /**
-   * Asigna la descripcion del item
-   * @param description Descripcion del item
+   * Sets the description of the item
+   * @param description Description of the item
    */  
   public void setDescription(String description){
 	 this.description = description;
   }
 
   /**
-   * Asigna un modulo <i>Dublin Core</i> al item
+   * Sets the <i>Dublin Core</i> module of the item
    * @see RssDublinCoreModuleBean
-   * @param dcBean Modulo Dublin Core
+   * @param dcBean Dublin Core module of the item
    */  
   public void setDublinCoreModule(RssDublinCoreModuleBean dcBean){
 	 this.dcBean = dcBean;
   }
 
   /**
-   * Asigna un modulo <i>Slash</i> al item
+   * Sets the <i>Slash</i> module of the item
    * @see RssSlashModuleBean
-   * @param slashBean Modulo Slash
+   * @param slashBean Slash module of the item
    */    
   public void setSlashModule(RssSlashModuleBean slashBean){
 	 this.slashBean = slashBean;
   }
 
   /**
-   * Asigna el autor del item
-   * @param author Autor del item
+   * Sets the author of the item
+   * @param author Author of the item
    */    
   public void setAuthor(String author){
   	 switch (rssType){
@@ -163,8 +167,8 @@ public class RssItemBean {
   }
 
   /**
-   * Asigna la fecha de publicacion del item
-   * @param pubDate fecha de publicacion del item
+   * Sets the publication date of the item
+   * @param pubDate Publication date of the item
    */      
   public void setPubDate(String pubDate){
   	 switch (rssType){
@@ -175,90 +179,90 @@ public class RssItemBean {
   }
 
   /**
-   * Asigna la categoria del item
-   * @param category Categoria del item
+   * Sets the category of the item
+   * @param category Category of the item
    */      
   public void setCategory(String category){
 	 this.category = category;
   }
 
   /**
-   * Asigna los comentarios del item
-   * @param comments Comentarios del item
+   * Sets the comments of the item
+   * @param comments Comments of the item
    */      
   public void setComments(String comments){
 	 this.comments = comments;
   }
 
   /**
-   * Asigna el recurso multimedia adjunto del item
-   * @param enclosure Recurso multimedia adjunto del item
+   * Sets the attached resources of the item
+   * @param enclosure Attached resources of the item
    */      
   public void setEnclosure(RssEnclosureBean enclosure){
 	 this.enclosure = enclosure;
   }
 
   /**
-   * Asigna el Guid del item
-   * @param guid Guid del item
+   * Sets the Guid of the item
+   * @param guid Guid of the item
    */      
   public void setGuid(String guid){
 	 this.guid = guid;
   }
 
   /**
-   * Asigna la fuetne del item
-   * @param source Fuente del item
+   * Sets the source of the item
+   * @param source Source of the item
    */      
   public void setSource(String source){
 	 this.source = source;
   }
 
   /**
-   * Retorna el titulo del item
-   * @return Titulo del item
+   * Returns the title of the item
+   * @return Title of the item
    */      
   public String getTitle(){
 	 return title;
   }
 
   /**
-   * Retorna el enlace del item
-   * @return Enlace del item
+   * Returns the link of the item
+   * @return Source Link of the item
    */        
   public String getLink(){
 	 return link;
   }
 
   /**
-   * Retorna la descripcion del item
-   * @return Descripcion del item
+   * Returns the description of the item
+   * @return Description of the item
    */        
   public String getDescription(){
 	 return description;
   }
 
   /**
-   * Retorna el modulo Dublin Core del item
+   * Returns the Dublin Core module of the item
    * @see RssDublinCoreModuleBean
-   * @return Modulo Dublin Core
+   * @return Dublin Core module of the item
    */        
   public RssDublinCoreModuleBean getDublinCoreModule(){
 	 return dcBean;
   }
 
   /**
-   * Retorna el modulo Slash del item
+   * Returns the Slash module of the item
    * @see RssSlashModuleBean
-   * @return ModuloSlash
+   * @return Slash module of the item
    */          
   public RssSlashModuleBean getSlashModule(){
 	 return slashBean;
   }
 
   /**
-   * Retorna el autor del item
-   * @return Autor del item
+   * Returns the author of the item
+   * @return Author of the item
    */          
   public String getAuthor(){
   	 String res = "";
@@ -271,8 +275,8 @@ public class RssItemBean {
   }
 
   /**
-   * Retorna la fecha de publicacion del item
-   * @return Fecha de publicacion del item
+   * Returns the publication date of the item
+   * @return Publication date of the item
    */
   public String getPubDate(){
   	 String res = "";
@@ -285,40 +289,40 @@ public class RssItemBean {
   }
 
   /**
-   * Retorna la categoria del item
-   * @return Categoria del item
+   * Returns the category of the item
+   * @return Category of the item
    */            
   public String getCategory(){
 	 return category;
   }
 
   /**
-   * Retorna los comentarios del item
-   * @return Comentarios del item
+   * Returns the comments of the item
+   * @return Comments of the item
    */            
   public String getComments(){
 	 return comments;
   }
 
   /**
-   * Retorna el recurso multimedia adjunto del item
-   * @return Recurso multimedia adjunto del item
+   * Returns the attached resources of the item
+   * @return Attached resources of the item
    */            
   public RssEnclosureBean getEnclosure(){
 	 return enclosure;
   }
 
   /**
-   * Retorna el Guid del item
-   * @return Guid del item
+   * Returns the Guid of the item
+   * @return Guid of the item
    */            
   public String getGuid(){
 	 return guid;
   }
 
   /**
-   * Retorna la fuente del item
-   * @return Fuente del item
+   * Returns the source of the item
+   * @return Source of the item
    */            
   public String getSource(){
 	 return source;

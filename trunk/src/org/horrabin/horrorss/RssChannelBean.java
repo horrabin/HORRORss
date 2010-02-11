@@ -7,12 +7,12 @@
  * February 21, 2009
  *
  * Copyright (C) 2009 Fernando Fornieles
- * e-mail: horrabin@usuarios.javahispano.net
+ * e-mail: nandofm@gmail.com
  *
- * This file is part og HORRORss
+ * This file is part of HORRORss
  *
  * HORRORss is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
+ * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
@@ -21,7 +21,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
+ * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
@@ -31,24 +31,25 @@ import org.horrabin.horrorss.RssDublinCoreModuleBean;
 import org.horrabin.horrorss.RssSyndicationModuleBean;
 
 /**
-* POJO que representa un elemento <i>channel</i> de un fichero RSS. Valido para las especificaciones
-* RSS 2.0, RDF y ATOM 0.3 
+* The RssChannelBean object represents the element <i>channel</i> in a RSS feed. 
+* Compatible with RSS 2.0, RDF and ATOM 0.3
+*  
 * @author Fernando Fornieles 
 */
 public class RssChannelBean {
-  //Para RSS 2.0, RDF y ATOM
+  //For RSS 2.0, RDF y ATOM
   private String title;
   private String link;
   private String description;
   private String language;
   private String pubDate;
   
- //Para RSS 2.0 y RDF
+ //For RSS 2.0 y RDF
   private String copyright;
   private String managingEditor;
   private String webMaster;
   
-  //Solo para RSS 2.0
+  //Only for RSS 2.0
   private String lastBuildDate;
   private String category;
   private String generator;
@@ -57,7 +58,7 @@ public class RssChannelBean {
   private String ttl;
   private String rating;
   
-  //Control de tipo
+  //Type control
   private final int TYPE_RDF = 0;
   private final int TYPE_RSS = 1;
   private final int TYPE_ATOM = 2;
@@ -67,11 +68,14 @@ public class RssChannelBean {
   private RssSyndicationModuleBean syBean;
 
    /** 
-   * Crea un nuevo RssChannelBean.<br>
-   * <li>Si rssType=0 indicamos que se trata de un RDF</li>
-   * <li>Si rssType=1 indicamos que se trata de un RSS 2.0 </li>
-   * <li>Si rssType=2 indicamos que se trata de un ATOM 0.3 </li>
-   * @param rssType indica el tipo de especificación (RSS 2.0, RDF o ATOM)
+   * Create a new RssChannelBean.The rssType parameter tells to the parser the specification of the feed<br>
+   * <ul>
+   * <li>If rssType=0 the feed is RDF</li>
+   * <li>If rssType=1 the feed is RSS 2.0 </li>
+   * <li>If rssType=2 the feed is ATOM 0.3 </li>
+   * </ul>
+   * 
+   * @param rssType tells the parser which specification must use (RSS 2.0, RDF o ATOM)
    */
   public RssChannelBean(int rssType){
      title = "";
@@ -95,14 +99,17 @@ public class RssChannelBean {
   }
 
    /** 
-   * Crea un nuevo RssChannelBean.<br>
-   * <li>Si rssType=0 indicamos que se trata de un RDF</li>
-   * <li>Si rssType=1 indicamos que se trata de un RSS 2.0 </li>
-   * <li>Si rssType=2 indicamos que se trata de un ATOM 0.3 </li>
-   * @param title Titulo del canal
-   * @param link Enlace a la pagina web del canal
-   * @param description Descripcion del canal
-   * @param rssType indica el tipo de especificación (RSS 2.0, RDF o ATOM)
+   * Create a new RssChannelBean. The rssType parameter tells to the parser the specification of the feed<br>
+   * <ul>
+   * <li>If rssType=0 the feed is RDF</li>
+   * <li>If rssType=1 the feed is RSS 2.0</li>
+   * <li>If rssType=2 the feed is ATOM</li>
+   * </ul>
+   * 
+   * @param title the title of the channel
+   * @param link the link channel's web page
+   * @param description the description of the channel 
+   * @param rssType the type of the feed.
    */ 
   public RssChannelBean(String title, String link, String description, int rssType){
      this.title = title;
@@ -126,50 +133,50 @@ public class RssChannelBean {
   }
 
   /**   
-  * Asigna el titulo del canal 
-  * @param title Titulo del canal
+  * Sets the channel title to the specified string
+  * @param title the title of the channel
   */
   public void setTitle(String title){
      this.title = title;
   }
 
   /** 
-  * Asigna la descripcion del canal 
-  * @param description Descripcion del canal
+  * Sets the channel description 
+  * @param description Channel description
   */
   public void setDescription(String description){
      this.description = description;
   }
 
   /** 
-  * Asigna la URL del canal 
-  * @param link URL del canal
+  * Sets the URL of the feed
+  * @param link Channel URL
   */
   public void setLink(String link){
      this.link = link;
   }
 
   /** 
-   * Asigna un modulo Dublin Core
+   * Sets the Dublin Core module
    * @see RssDublinCoreModuleBean
-   * @param dcBean Modulo Dublin Core 
+   * @param dcBean Dublin Core Module 
    */
   public void setDublinCoreModule(RssDublinCoreModuleBean dcBean){
      this.dcBean = dcBean;
   }
 
   /** 
-   * Asigna un modulo Syndication
+   * Sets de Syndication module
    * @see RssSyndicationModuleBean
-   * @param syBean Modulo Syndication
+   * @param syBean Syndication Module
    */  
   public void setSyndicationModule(RssSyndicationModuleBean syBean){
      this.syBean = syBean;
   }
 
   /** 
-   * Asigna el idioma del canal   
-   * @param language Idioma del canal
+   * Sets the language of the feed   
+   * @param language the language of the feed
    */    
   public void setLanguage(String language){
   	 switch(rssType){
@@ -180,8 +187,8 @@ public class RssChannelBean {
   }
 
   /** 
-   * Asigna el propietario del copyright del canal
-   * @param copyright Propietario del copyright del canal
+   * Sets the copyright owner of the feed
+   * @param copyright the copyright owner of the feed
    */    
   public void setCopyright(String copyright){
      if(rssType==TYPE_RSS) this.copyright = copyright;
@@ -189,8 +196,8 @@ public class RssChannelBean {
   }
 
   /** 
-   * Asigna el editor del canal
-   * @param managingEditor Editor del canal
+   * Sets the publisher of the feed
+   * @param managingEditor the publisher of the feed
    */    
   public void setPublisher(String managingEditor){
      if(rssType==TYPE_RSS) this.managingEditor = managingEditor;
@@ -198,8 +205,8 @@ public class RssChannelBean {
   }
 
   /** 
-   * Asigna el creador del canal
-   * @param webMaster creador del canal
+   * Sets the creator of the feed
+   * @param webMaster the creator of the feed
    */    
   public void setCreator(String webMaster){
      if(rssType==TYPE_RSS) this.webMaster = webMaster;
@@ -207,8 +214,8 @@ public class RssChannelBean {
   }
 
   /** 
-   * Asigna la fecha de publicacion
-   * @param pubDate fecha de publicación
+   * Sets the publication date of the feed
+   * @param pubDate the publication date of the feed
    */      
   public void setPubDate(String pubDate){
   	 switch(rssType){
@@ -219,115 +226,121 @@ public class RssChannelBean {
   }
 
   /** 
-   * Asigna la fecha de última publicacion
-   * @param lastBuildDate la fecha de ultima publicacion
+   * Sets the last build date of the feed
+   * @param lastBuildDate last build date of the feed
    */    
   public void setLastBuildDate(String lastBuildDate){
      this.lastBuildDate = lastBuildDate;
   }
 
   /** 
-   * Asigna la categoria del canal
-   * @param category Categoria del canal
+   * Sets the category of the feed
+   * @param category the category of the feed
    */    
   public void setCategory(String category){
      this.category = category;
   }
 
   /** 
-   * Asigna el generador del canal
-   * @param generator Generador del canal
+   * Sets the generator of the feed
+   * @param generator the generator of the feed
    */    
   public void setGenerator(String generator){
      this.generator = generator;
   }
 
   /** 
-   * Asigna documentos del canal
-   * @param docs Documentos del canal
+   * Sets the documents of the feed
+   * @param docs the documents of the feed
    */    
   public void setDocs(String docs){
      this.docs = docs;
   }
 
   /** 
-   * Asigna el "cloud" al canal ¿¿¿??? 
-   * Quien sepa que es esto que me lo explique... :-(
-   * @param cloud "Cloud del canal" ¿¿?? 
+   * Sets the cloud ??? 
+   * <strong>Anybody know what's this?</strong> ... :-(
+   * @param cloud cloud of the feed 
    */    
   public void setCloud(String cloud){
      this.cloud = cloud;
   }
 
   /** 
-   * Asigna el TTL al canal
-   * @param ttl TTL del canal
+   * Sets the TTL of the feed
+   * @param ttl the TTL of the feed
    */    
   public void setTtl(String ttl){
      this.ttl = ttl;
   }
 
   /** 
-   * Asigna putuacion al canal
-   * @param rating Puntuacion del canal
+   * Sets the rating of the feed
+   * @param rating the rating of the feed
    */    
   public void setRating(String rating){
      this.rating = rating;
   }
 
   /** 
-   * Asigna el tipo de RSS del canal
-   * @param rssType Tipo de RSS
+   * Sets the RSS specification of the feed.<br>
+   * <ul>
+   * <li>If rssType=0 the feed is RDF</li>
+   * <li>If rssType=1 the feed is RSS 2.0 </li>
+   * <li>If rssType=2 the feed is ATOM 0.3 </li>
+   * </ul>
+   * 
+   * @param rssType the RSS type of the feed
    */    
   public void setRssType(int rssType){
      this.rssType = rssType;
   }
 
   /** 
-   * Retorna el titulo del canal
-   * @return Titulo del canal
+   * Returns the title of the feed
+   * @return Title of the feed
    */    
   public String getTitle(){
      return title;
   }
 
   /** 
-   * Retorna la descripcion del canal
-   * @return Descripcion del canal
+   * Returns the description of the feed
+   * @return Description of the feed
    */    
   public String getDescription(){
      return description;
   }
 
   /** 
-   * Retorna la URL del canal
-   * @return URL del canal
+   * Returns the URL of the feed
+   * @return URL of the feed
    */   
   public String getLink(){
      return link;
   }
 
   /** 
-   * Retorna el modulo Dublin Core del canal
+   * Returns the Dublin Core Module of the feed
    * @see RssDublinCoreModuleBean
-   * @return RssDublinCoreModuleBean
+   * @return Dublin Core Module of the feed
    */   
   public RssDublinCoreModuleBean getDublinCoreModule(){
      return dcBean;
   }
 
   /** 
-   * Retorna el modulo Syndication del canal
+   * Returns the Syndication module of the feed
    * @see RssSyndicationModuleBean
-   * @return RssSyndicationModuleBean
+   * @return Syndication module of the feed
    */   
   public RssSyndicationModuleBean getSyndicationModule(){
      return syBean;
   }
 
   /** 
-   * Retorna el idioma del canal
-   * @return Idioma del canal
+   * Returns the language of the feed
+   * @return Language of the feed
    */   
   public String getLanguage(){
   	 String res = null;
@@ -340,8 +353,8 @@ public class RssChannelBean {
   }
 
   /** 
-   * Retorna el propietario del copyright del canal
-   * @return Propietario del copyright del canal
+   * Returns the copyright owner of the feed
+   * @return The copyright owner of the feed
    */     
   public String getCopyright(){
      if(rssType==TYPE_RSS) return copyright;
@@ -349,8 +362,8 @@ public class RssChannelBean {
   }
 
   /** 
-   * Retorna el editor del canal
-   * @return Editor del canal
+   * Returns the publisher of the feed
+   * @return Publisher of the feed
    */     
   public String getPublisher(){
      if(rssType==TYPE_RSS) return managingEditor;
@@ -358,8 +371,8 @@ public class RssChannelBean {
   }
 
   /** 
-   * Retorna el creador del canal
-   * @return Creador del canal
+   * Returns the creator of the feed
+   * @return Creator of the feed
    */     
   public String getCreator(){
      if(rssType==TYPE_RSS) return webMaster;
@@ -367,8 +380,8 @@ public class RssChannelBean {
   }
 
   /** 
-   * Retorna la fecha de publicacion
-   * @return Fecha de publicacion
+   * Returns the publication date of the feed
+   * @return Publication date of the feed
    */     
   public String getPubDate(){
   	 String res = null;
@@ -381,64 +394,70 @@ public class RssChannelBean {
   }
 
   /** 
-   * Retorna la ultima fecha de creacion
-   * @return La ultima fecha de creacion
+   * Returns the last build date of the feed
+   * @return Last build date of the feed
    */     
   public String getLastBuildDate(){
      return lastBuildDate;
   }
 
   /** 
-   * Retorna la categoria del canal
-   * @return Categoria del canal
+   * Returns the category of the feed
+   * @return Category of the feed
    */     
   public String getCategory(){
      return category;
   }
 
   /** 
-   * Retorna el generador del canal
-   * @return Generador del canal
+   * Returns the generator of the feed
+   * @return Generator of the feed
    */     
   public String getGenerator(){
      return generator;
   }
 
   /** 
-   * Retorna documentos del canal
-   * @return Documentos del canal
+   * Returns the documents of the feed
+   * @return Documents of the feed
    */     
   public String getDocs(){
      return docs;
   }
 
   /** 
-   * Retorna el "cloud" del canal
-   * @return "cloud" del canal :-(
+   * Returns the cloud of the feed... <strong>What's this</strong> :-(
+   * @return Cloud of the feed
    */     
   public String getCloud(){
      return cloud;
   }
 
   /** 
-   * Retorna el TTL del canal
-   * @return TTL del canal
+   * Returns the TTL of the feed
+   * @return TTL of the feed
    */     
   public String getTtl(){
      return ttl;
   }
 
   /** 
-   * Retorna la puntuación del canal
-   * @return Puntuacion del canal
+   * Returns the rating of the feed
+   * @return Rating of the feed
    */     
   public String getRating(){
      return rating;
   }
 
   /** 
-   * Retorna el tipo RSS del canal
-   * @return Tipo de RSS
+   * Returns the RSS feed specification<br>
+   * <ul>
+   * <li>If rssType=0 the feed is RDF</li>
+   * <li>If rssType=1 the feed is RSS 2.0 </li>
+   * <li>If rssType=2 the feed is ATOM 0.3 </li>
+   * </ul>
+   * 
+   * @return RSS feed specification
    */     
   public int getRssType(){
      return rssType;
