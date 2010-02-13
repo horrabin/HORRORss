@@ -1,8 +1,7 @@
- *The Project*<br>
-[Introduction Introduction]<br>
-[News Latest news]<br>
-[FAQ FAQ]<br>
-[http://code.google.com/p/horrorss/downloads/list Downloads]<br>
+  * *The Project*
+  * [Introduction Introduction]
+  * [News Latest news]
+  * [http://code.google.com/p/horrorss/downloads/list Downloads]
 <br>
 *Documentation*<br>
 [http://horrorss.googlecode.com/svn/trunk/docs/api/index.html API]<br>
