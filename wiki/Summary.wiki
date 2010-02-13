@@ -2,14 +2,14 @@
   * [Introduction Introduction]
   * [News Latest news]
   * [http://code.google.com/p/horrorss/downloads/list Downloads]
-<br>
-*Documentation*<br>
-[http://horrorss.googlecode.com/svn/trunk/docs/api/index.html API]<br>
-[SampleCode Sample Code]<br>
-<br>
-*Useful links*<br>
-[http://sparta-xml.sourceforge.net/ Sparta-XML]<br>
-[http://web.resource.org/rss/1.0/spec RSS 1.0]<br>
-[http://blogs.law.harvard.edu/tech/rss RSS 2.0]<br>
-[http://www.w3.org/RDF RDF]<br>
-[http://www.atomenabled.org/ Atom]<br>
+
+  * *Documentation*
+  * [http://horrorss.googlecode.com/svn/trunk/docs/api/index.html API]
+  * [SampleCode Sample Code]
+
+  * *Useful links*
+  * [http://sparta-xml.sourceforge.net/ Sparta-XML]
+  * [http://web.resource.org/rss/1.0/spec RSS 1.0]
+  * [http://blogs.law.harvard.edu/tech/rss RSS 2.0]
+  * [http://www.w3.org/RDF RDF]
+  * [http://www.atomenabled.org/ Atom]
