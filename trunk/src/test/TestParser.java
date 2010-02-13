@@ -18,10 +18,10 @@ public class TestParser extends TestCase {
 		if (charset!=null) rss.setCharset(charset);
 		try {
 			rss.parse();
-			this.channel = rss.getChannel(); //Obtenemos el element channel
-			this.items = rss.getItems(); //Obtenemos un Vector de elementos item (RssItemBean)
+			this.channel = rss.getChannel(); //Gets the channel element
+			this.items = rss.getItems(); //Gets a Vector of items (RssItemBean)
 		}catch(Exception e){
-			System.out.println("ERROR parsing RSS");
+			e.printStackTrace();
 		}				
 	}
 
@@ -105,7 +105,7 @@ public class TestParser extends TestCase {
 		item = (RssItemBean)this.items.elementAt(20);
 		assertEquals("Y con este sencillo acto...", item.getTitle());
 	}
-
+			
 	public void testURLParse(){
 		this.fileParse("http://horrorss.googlecode.com/svn/trunk/src/test/data/rss-utf8.xml");
 		assertEquals(21,this.items.size());
