@@ -141,7 +141,7 @@ public class RssParser {
 		   list = doc.xpathSelectElements("feed/link");
 		   while (list.hasMoreElements()){
 		     e = (Element)list.nextElement();
-		     if (e.getAttribute("type").equals("text/html")) res.setLink(e.getAttribute("href"));
+		     if ((e.getAttribute("type")!=null) && (e.getAttribute("type").equals("text/html"))) res.setLink(e.getAttribute("href"));
 		   }
 		   list = doc.xpathSelectElements("feed/modified");
 		   if (list.hasMoreElements()){
