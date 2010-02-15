@@ -1,6 +1,7 @@
   * *The Project*
     * [Introduction Introduction]
     * [News Latest news]
+    * [ChangeLog Change Log]
     * [http://code.google.com/p/horrorss/downloads/list Downloads]
   * *Documentation*
     * [http://horrorss.googlecode.com/svn/trunk/docs/api/index.html API]
