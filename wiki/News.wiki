@@ -1,7 +1,7 @@
 #labels news
 =Latest News=
-*12-02-2010: <font color="#336699">HORRO</font><font color="#ff9900">Rss</font> translated into English*<br>
-The project has been translated into English and moved from Javahispano to moved to GoogleCode. Also, an error when parsing the channel element of Atom feeds has been fixed.
+*12-02-2010: <font color="#336699">HORRO</font><font color="#ff9900">Rss</font> 1.4.1 translated into English*<br>
+The project has been translated into English and moved from Javahispano to GoogleCode. Also, an error when parsing the channel element of Atom feeds has been fixed.
 <br><br>
 
 *21-02-2009: <font color="#336699">HORRO</font><font color="#ff9900">Rss</font> 1.4 is now LGPL*<br>
