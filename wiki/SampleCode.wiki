@@ -8,7 +8,7 @@ Using *<font color="#336699">HORRO</font><font color="#ff9900">Rss</font>* in yo
        rss.parse();
        RssChannelBean channel = rss.getChannel(); //Obtain the channel element
        RssImageBean image = rss.getImage(); //Obtain the image element
-       Vector items = rss.getItems(); //Obtain a Vector of items (RssItemBean)
+       Vector items = rss.getItems(); //Obtain a Vector of item elements (RssItemBean)
     }catch(Exception e){
        //Treat the exception as you want
     }
