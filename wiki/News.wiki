@@ -1,5 +1,9 @@
 #labels news
 =Latest News=
+*04-03-2011: <font color="#336699">HORRO</font><font color="#ff9900">Rss</font> 1.4.2 available*<br>
+Now is possible to parse feeds from https. Added the ability to get the description from "feed/entry/summary" if "feed/entry/content" is void in Atom feeds.
+<br><br>
+
 *12-02-2010: <font color="#336699">HORRO</font><font color="#ff9900">Rss</font> 1.4.1 translated into English*<br>
 The project has been translated into English and moved from Javahispano to GoogleCode. Also, an error when parsing the channel element of Atom feeds has been fixed.
 <br><br>
