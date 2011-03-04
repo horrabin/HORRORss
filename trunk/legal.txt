@@ -1,8 +1,8 @@
 HORRORss version 1.4
 
 Copyright 2009
-by Fernando Fornieles e-mail: horrabin@usuarios.javahispano.net
-http://horrorss.javahispano.net
+by Fernando Fornieles e-mail: nandofm AT gmail.com
+http://horrorss.googlecode.com
 
 Copyright Notice:
 

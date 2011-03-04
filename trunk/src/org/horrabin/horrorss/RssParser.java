@@ -78,7 +78,8 @@ public class RssParser {
    * Parses the RSS file
    */
   public void parse() throws Exception {
-       if (this.filename.startsWith("http://")) this.parseFromURL();
+       if ((this.filename.startsWith("http://")) || 
+    	   (this.filename.startsWith("https://"))) this.parseFromURL();
          else this.parseFromReader(this.getReaderFromFile(this.filename));
   }
 
@@ -319,6 +320,12 @@ public class RssParser {
  	   if (list.hasMoreElements()){
 	     e = (Element)list.nextElement();
 	     res.setDescription(e.toString());
+	   }else{
+		   list = doc.xpathSelectElements("feed/entry[" + index + "]/summary");
+	 	   if (list.hasMoreElements()){
+	 		     e = (Element)list.nextElement();
+	 		     res.setDescription(e.toString());
+	 	   }		   
 	   }
 
  	   //Gets the author

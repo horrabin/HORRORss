@@ -37,7 +37,7 @@ public class TestParser extends TestCase {
 	}
 
 	public void testUTF8URLParse(){
-		this.fileParse("http://horrorss.googlecode.com/svn/trunk/src/test/data/rss-utf8.xml", "utf-8");
+		this.fileParse("https://horrorss.googlecode.com/svn/trunk/src/test/data/rss-utf8.xml", "utf-8");
 		assertEquals(21,this.items.size());
 
 		RssItemBean item = (RssItemBean)this.items.elementAt(0);
