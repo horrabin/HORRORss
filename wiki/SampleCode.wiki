@@ -9,6 +9,16 @@ Using *<font color="#336699">HORRO</font><font color="#ff9900">Rss</font>* in yo
        RssChannelBean channel = rss.getChannel(); //Obtain the channel element
        RssImageBean image = rss.getImage(); //Obtain the image element
        Vector items = rss.getItems(); //Obtain a Vector of item elements (RssItemBean)
+
+       // Iterate the items from the list
+       for (int i=0; i<items.size(); i++){
+              RssItemBean item = (RssItemBean)items.elementAt(i); //Cast the Object from the list to RssItemBean
+              System.out.println("Title: " + item.getTitle());
+              System.out.println("Link : " + item.getLink());
+              System.out.println("Desc.: " + item.getDescription());
+        }
+
+
     }catch(Exception e){
        //Treat the exception as you want
     }
