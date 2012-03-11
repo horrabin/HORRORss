@@ -1,12 +1,12 @@
 /**
  * RssItemBean.java 
  *
- * HORRORss Package, Version 1.4
- * Simple RSS parser fully GNU-Classpath compatible.
+ * HORRORss Package, Version 2.0
+ * Simple RSS parser
  *
- * February 21, 2009
+ * March 3, 2012
  *
- * Copyright (C) 2009 Fernando Fornieles
+ * Copyright (C) 2012 Fernando Fornieles
  * e-mail: nandofm@gmail.com
  *
  * This file is part of HORRORss
@@ -27,89 +27,48 @@
 
 package org.horrabin.horrorss;
 
-import org.horrabin.horrorss.RssDublinCoreModuleBean;
-import org.horrabin.horrorss.RssSlashModuleBean;
+import java.util.Date;
 
 /**
-* The RssItemBean object represents the element <i>item</i> in an RSS feed. 
-* Valid for the RSS 2.0, RDF and ATOM specifications 
+* The RssItemBean object maps the element <i>item</i> of an RSS feed. 
 * @author Fernando Fornieles
 */ 
 public class RssItemBean {
-  private RssDublinCoreModuleBean dcBean;
-  private RssSlashModuleBean slashBean;  
-
   //For all specifications
   private String title;
   private String link;
   private String description;  
   private String author;
-  private String pubDate;  
+  private Date pubDate;  
 
   //Only for RSS 2.0
   private String category;
-  private String comments;
-  private RssEnclosureBean enclosure;
-  private String guid;
-  private String source;
-
-  //Type control
-  private final int TYPE_RDF = 0;
-  private final int TYPE_RSS = 1;
-  private final int TYPE_ATOM = 2;
-  private int rssType;
 
    /** 
-   * Create a new RssItemBean.<br>
-   * <ul>
-   * <li>If rssType=0 the feed is RDF</li>
-   * <li>If rssType=1 the feed is RSS 2.0 </li>
-   * <li>If rssType=2 the feed is ATOM </li>
-   * </ul>
-   * @param rssType Sets the specification type (RSS 2.0, RDF or ATOM)
+   * Create a new RssItemBean.
    */   
-  public RssItemBean(int rssType){
+  public RssItemBean(){
      title = "";
      link = "";
      description = "";
-     this.rssType = rssType;
      author = "";
      category = "";
-     pubDate = "";
-     comments = "";
-     enclosure = new RssEnclosureBean();
-     guid = "";
-     source = "";
-     dcBean = new RssDublinCoreModuleBean();
-     slashBean = new RssSlashModuleBean();
+     pubDate = new Date();
   }
 
    /** 
-   * Create a new RssItemBean.<br>
-   * <ul>
-   * <li>If rssType=0 the feed is RDF</li>
-   * <li>If rssType=1 the feed is RSS 2.0 </li>
-   * <li>If rssType=2 the feed is ATOM </li>
-   * </ul>
+   * Create a new RssItemBean.
    * @param title Title of the item
    * @param link The link of the item
    * @param description Description of the item
-   * @param rssType Sets the specification type (RSS 2.0, RDF or ATOM)
    */   
-  public RssItemBean(String title, String link, String description, int rssType){
+  public RssItemBean(String title, String link, String description){
      this.title = title;
      this.link = link;
      this.description = description;
-     this.rssType = rssType;
      author = "";
      category = "";
-     pubDate = "";
-     comments = "";
-     enclosure = new RssEnclosureBean();
-     guid = "";
-     source = "";
-     dcBean = new RssDublinCoreModuleBean();
-     slashBean = new RssSlashModuleBean();
+     pubDate = new Date();
   }
 
   /**
@@ -137,45 +96,19 @@ public class RssItemBean {
   }
 
   /**
-   * Sets the <i>Dublin Core</i> module of the item
-   * @see RssDublinCoreModuleBean
-   * @param dcBean Dublin Core module of the item
-   */  
-  public void setDublinCoreModule(RssDublinCoreModuleBean dcBean){
-	 this.dcBean = dcBean;
-  }
-
-  /**
-   * Sets the <i>Slash</i> module of the item
-   * @see RssSlashModuleBean
-   * @param slashBean Slash module of the item
-   */    
-  public void setSlashModule(RssSlashModuleBean slashBean){
-	 this.slashBean = slashBean;
-  }
-
-  /**
    * Sets the author of the item
    * @param author Author of the item
    */    
   public void setAuthor(String author){
-  	 switch (rssType){
-  	 	case TYPE_RSS: this.author = author;break;
-  	 	case TYPE_RDF: dcBean.setCreator(author);break;
-  	 	case TYPE_ATOM: this.author = author;break;
-  	 }	  
+	  this.author = author;
   }
 
   /**
    * Sets the publication date of the item
    * @param pubDate Publication date of the item
    */      
-  public void setPubDate(String pubDate){
-  	 switch (rssType){
-  	 	case TYPE_RSS: this.pubDate = pubDate;break;
-  	 	case TYPE_RDF: dcBean.setDate(pubDate);
-  	 	case TYPE_ATOM: this.pubDate = pubDate;break;
-  	 }
+  public void setPubDate(Date pubDate){  	 
+	  this.pubDate = pubDate;
   }
 
   /**
@@ -184,38 +117,6 @@ public class RssItemBean {
    */      
   public void setCategory(String category){
 	 this.category = category;
-  }
-
-  /**
-   * Sets the comments of the item
-   * @param comments Comments of the item
-   */      
-  public void setComments(String comments){
-	 this.comments = comments;
-  }
-
-  /**
-   * Sets the attached resources of the item
-   * @param enclosure Attached resources of the item
-   */      
-  public void setEnclosure(RssEnclosureBean enclosure){
-	 this.enclosure = enclosure;
-  }
-
-  /**
-   * Sets the Guid of the item
-   * @param guid Guid of the item
-   */      
-  public void setGuid(String guid){
-	 this.guid = guid;
-  }
-
-  /**
-   * Sets the source of the item
-   * @param source Source of the item
-   */      
-  public void setSource(String source){
-	 this.source = source;
   }
 
   /**
@@ -228,7 +129,7 @@ public class RssItemBean {
 
   /**
    * Returns the link of the item
-   * @return Source Link of the item
+   * @return Link of the item
    */        
   public String getLink(){
 	 return link;
@@ -243,49 +144,19 @@ public class RssItemBean {
   }
 
   /**
-   * Returns the Dublin Core module of the item
-   * @see RssDublinCoreModuleBean
-   * @return Dublin Core module of the item
-   */        
-  public RssDublinCoreModuleBean getDublinCoreModule(){
-	 return dcBean;
-  }
-
-  /**
-   * Returns the Slash module of the item
-   * @see RssSlashModuleBean
-   * @return Slash module of the item
-   */          
-  public RssSlashModuleBean getSlashModule(){
-	 return slashBean;
-  }
-
-  /**
    * Returns the author of the item
    * @return Author of the item
    */          
   public String getAuthor(){
-  	 String res = "";
-  	 switch (rssType){
-  	 	case TYPE_RSS: res = this.author;break;
-  	 	case TYPE_RDF: res = dcBean.getCreator();break;
-  	 	case TYPE_ATOM: res = this.author;break;
-  	 }
-  	 return res;
+  	 return this.author;
   }
 
   /**
    * Returns the publication date of the item
    * @return Publication date of the item
    */
-  public String getPubDate(){
-  	 String res = "";
-  	 switch (rssType){
-  	 	case TYPE_RSS: res = this.pubDate;break;
-  	 	case TYPE_RDF: res = dcBean.getDate();;break;
-  	 	case TYPE_ATOM: res = this.pubDate;break;
-  	 }
-  	 return res;
+  public Date getPubDate(){
+  	 return this.pubDate;
   }
 
   /**
@@ -296,35 +167,4 @@ public class RssItemBean {
 	 return category;
   }
 
-  /**
-   * Returns the comments of the item
-   * @return Comments of the item
-   */            
-  public String getComments(){
-	 return comments;
-  }
-
-  /**
-   * Returns the attached resources of the item
-   * @return Attached resources of the item
-   */            
-  public RssEnclosureBean getEnclosure(){
-	 return enclosure;
-  }
-
-  /**
-   * Returns the Guid of the item
-   * @return Guid of the item
-   */            
-  public String getGuid(){
-	 return guid;
-  }
-
-  /**
-   * Returns the source of the item
-   * @return Source of the item
-   */            
-  public String getSource(){
-	 return source;
-  }
 }
