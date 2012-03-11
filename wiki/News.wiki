@@ -1,5 +1,9 @@
 #labels news
 =Latest News=
+*11-03-2012: <font color="#336699">HORRO</font><font color="#ff9900">Rss</font> 2.0.0 available*<br>
+The code has been completely rebuild. API simplified removing unused classes and methods. Now HORRORss becames more simple!
+<br><br>
+
 *04-03-2011: <font color="#336699">HORRO</font><font color="#ff9900">Rss</font> 1.4.2 available*<br>
 Now is possible to parse feeds from https. Added the ability to get the description from "feed/entry/summary" if "feed/entry/content" is void in Atom feeds.
 <br><br>
