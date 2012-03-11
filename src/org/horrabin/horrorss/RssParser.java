@@ -1,12 +1,12 @@
 /**
  * RssParser.java
  *
- * HORRORss Package, Version 1.4
- * Simple RSS parser fully GNU-Classpath compatible.
+ * HORRORss Package, Version 2.0
+ * Simple RSS parser
  *
- * February 21, 2009
+ * March 3, 2012
  *
- * Copyright (C) 2009 Fernando Fornieles
+ * Copyright (C) 2012 Fernando Fornieles
  * e-mail: nandofm@gmail.com
  *
  * HORRORss is free software: you can redistribute it and/or modify
@@ -26,38 +26,44 @@
 
 package org.horrabin.horrorss;
 
-import com.hp.hpl.sparta.*;
-import java.util.Enumeration;
-import java.util.Vector;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Enumeration;
+import java.util.List;
+import java.util.Locale;
 
-import org.horrabin.horrorss.RssChannelBean;
-import org.horrabin.horrorss.RssImageBean;
-import org.horrabin.horrorss.RssDublinCoreModuleBean;
-import org.horrabin.horrorss.RssSlashModuleBean;
-import org.horrabin.horrorss.RssSyndicationModuleBean;
-import org.horrabin.horrorss.RssEnclosureBean;
+import com.hp.hpl.sparta.Document;
+import com.hp.hpl.sparta.Parser;
 
 /**
 * RSS file parser compatible with all RSS, RDF & Atom specifications.
 * @author Fernando Fornieles
 */
 public class RssParser {
-  private Document doc;
-  private String filename;
-  private String xPath;
-  private String channelXPath;
-  private final int TYPE_RDF = 0;
-  private final int TYPE_RSS = 1;
-  private final int TYPE_ATOM = 2;
-  private int rssType;
-  private String charset = "utf8";
-  private String cacheDir;
-  private long cacheLifeTime = 0;
-
+	private static final int TYPE_RDF = 0;
+	private static final int TYPE_RSS = 1;
+	private static final int TYPE_ATOM = 2;
+	
+	private Document doc;
+	private String filename;
+	private String xPath;
+	private int rssType;
+	private String charset = "utf8";
+	private String cacheDir;
+	private long cacheLifeTime = 0;
+	  
 
  /**
   * Create a new RSS parser.
@@ -75,26 +81,74 @@ public class RssParser {
   }
 
   /**
-   * Parses the RSS file
+   * Parses the RSS source defined in the constructor and load its content into an RssFeed object
+   * @return RSS mapped into an RssFeed object
+   * @throws Exception
    */
-  public void parse() throws Exception {
+  public RssFeed load() throws Exception {
        if ((this.filename.startsWith("http://")) || 
     	   (this.filename.startsWith("https://"))) this.parseFromURL();
          else this.parseFromReader(this.getReaderFromFile(this.filename));
+       
+       return this.getRssFeed();
   }
 
   /**
-   * Parses the RSS file
-   * @param filename String it can be a filename or an URL
+   * Parses an RSS string and load its content into an RssFeed object
+   * @param xml An XML string 
+   * @return RSS mapped into an RssFeed object
+   * @throws Exception
    */
-  public void parse(String filename) throws Exception{
-	   this.filename = filename;
-       this.parse();
+  public RssFeed loadString(String xml) throws Exception{
+	    try {
+	        doc = Parser.parse(xml);
+	    }catch(Exception e){
+	        doc = new Document();
+	        throw new Exception("Error reading the file " + filename, e);	        
+	    }
+	    this.setChannelXPath();
+	    
+	    return this.getRssFeed();
+  }
+  
+  /**
+   * Parses an RSS source and load its content into an RssFeed object
+   * @param filename It can be a filename or an URL
+   * @return RSS mapped into an RssFeed object
+   * @throws Exception
+   */
+  public RssFeed load(String filename) throws Exception{
+	  this.filename = filename;
+	  this.load();
+	  return this.getRssFeed();
+  }   
+  
+  /**
+   * Parses an RSS file and load its content into an RssFeed object
+   * @param file An RSS file 
+   * @return RSS mapped into an RssFeed object
+   * @throws Exception
+   */
+  public RssFeed load(File file) throws Exception{
+	  InputStream input = new FileInputStream(file);
+	  this.parseFromReader(this.getReaderFromInputStream(input));
+	  return this.getRssFeed();
+  }  
+
+  /**
+   * Parses an RSS from an input stream
+   * @param input InputStream an input stream
+   * @return RSS mapped into an RssFeed object
+   * @throws Exception
+   */
+  public RssFeed load(InputStream input) throws Exception{
+	  this.parseFromReader(this.getReaderFromInputStream(input));
+	  return this.getRssFeed();
   }
 
   /**
    * Tells the parser what charset must use. Default UTF-8.
-   * @param charset String the charset (iso-8859-1, utf-8,...).
+   * @param charset Charset name (iso-8859-1, utf-8,...).
    */
   public void setCharset(String charset){
 	  this.charset = charset;
@@ -102,7 +156,7 @@ public class RssParser {
 
   /**
    * Enables the caching system.
-   * @param cacheDir String the directory the cache will use to store the contents.
+   * @param cacheDir The directory where the contents will be stored by the cache system
    * @param cacheLifeTime long Cache lifetime in milliseconds. If cacheLifeTime=0 it will be disabled.
    */
   public void enableCache(String cacheDir, long cacheLifeTime){
@@ -110,122 +164,74 @@ public class RssParser {
 	  this.cacheLifeTime = cacheLifeTime;
   }
 
-  /**
-   * Returns a RssChannelBean which represents the element <i>channel</i> in a <i>feed</i>
-   * @see RssChannelBean
-   * @return RssChannelBean
-   */
-  public RssChannelBean getChannel() throws Exception {
+  private RssChannelBean getChannel() throws Exception {
   	 if (rssType!=TYPE_ATOM) return this.getChannelRss();
   	 	else return this.getChannelAtom();
   }
 
-  /**
-   * Returns a RssChannelBean which represents the element <i>channel</i> in an Atom feed
-   * @see RssChannelBean
-   * @return RssChannelBean
-   */
-   private RssChannelBean getChannelAtom() throws Exception {
-   	 RssChannelBean res = new RssChannelBean(rssType);
+  private RssChannelBean getChannelAtom() throws Exception {
+   	 RssChannelBean res = new RssChannelBean();
+   	 String pubDate;
+   	 
 	 try{
-		   Enumeration list = doc.xpathSelectElements("feed/title");
-		   Element e;
-		   if (list.hasMoreElements()){
-		   	 e = (Element)list.nextElement();
-		   	 res.setTitle(e.toString());
-		   }
-		   list = doc.xpathSelectElements("feed/tagline");
-		   if (list.hasMoreElements()){
-		   	 e = (Element)list.nextElement();
-		   	 res.setDescription(e.toString());
-		   }
-		   list = doc.xpathSelectElements("feed/link");
-		   while (list.hasMoreElements()){
-		     e = (Element)list.nextElement();
-		     if ((e.getAttribute("type")!=null) && (e.getAttribute("type").equals("text/html"))) res.setLink(e.getAttribute("href"));
-		   }
-		   list = doc.xpathSelectElements("feed/modified");
-		   if (list.hasMoreElements()){
-		   	 e = (Element)list.nextElement();
-		   	 res.setPubDate(e.toString());
-		   }
-		   list = doc.xpathSelectElements("feed");
-		   if (list.hasMoreElements()){
-		   	 e = (Element)list.nextElement();
-		   	 res.setLanguage(e.getAttribute("xml:lang"));
-		   }
-
+		 res.setTitle(doc.xpathSelectString("/feed/title/text()"));		 
+		 res.setDescription(doc.xpathSelectString("/feed/tagline/text()"));
+		 res.setLink(doc.xpathSelectString("/feed/link/@href"));		 
+		 pubDate =  doc.xpathSelectString("/feed/modified/text()");
+		 if (pubDate!=null) res.setPubDate(this.getDate(pubDate, TYPE_ATOM));
 	 }catch(Exception e){
 		   throw new Exception("Error obteniendo elemento canal de " + filename, e);
 	 }
    	 return res;
-   }
+  }
 
-  /**
-  * Returns a RssChannelBean which represents the element <i>channel</i> in an RSS feed
-  * @see RssChannelBean
-  * @return RssChannelBean
-  */
   private RssChannelBean getChannelRss() throws Exception {
-	 RssChannelBean res = new RssChannelBean(rssType);
-	 RssDublinCoreModuleBean dcBean = new RssDublinCoreModuleBean();
-	 RssSyndicationModuleBean syBean = new RssSyndicationModuleBean();
-	 try{
-	   Enumeration list = doc.xpathSelectElements(channelXPath);
-	   while (list.hasMoreElements()){
-	     Element e = (Element)list.nextElement();
-		 if(e.getTagName().equals("title")) res.setTitle(e.toString());
-		   else if(e.getTagName().equals("link")) res.setLink(e.toString());
-		   else if(e.getTagName().equals("description")) res.setDescription(e.toString());
-		   else if (e.getTagName().indexOf("dc:")>=0) dcBean = setDublinCoreElement(e, dcBean);
-		   else if (e.getTagName().indexOf("syn:")>=0) syBean = setSyndicationElement(e, syBean);
-		   else if (e.getTagName().indexOf("language")>=0) res.setLanguage(e.toString());
-		   else if (e.getTagName().indexOf("copyright")>=0) res.setCopyright(e.toString());
-		   else if (e.getTagName().indexOf("managingEditor")>=0) res.setPublisher(e.toString());
-		   else if (e.getTagName().indexOf("webMaster")>=0) res.setCreator(e.toString());
-		   else if (e.getTagName().indexOf("pubDate")>=0) res.setPubDate(e.toString());
-		   else if (e.getTagName().indexOf("lastBuildDate")>=0) res.setLastBuildDate(e.toString());
-		   else if (e.getTagName().indexOf("category")>=0) res.setCategory(e.toString());
-		   else if (e.getTagName().indexOf("generator")>=0) res.setGenerator(e.toString());
-		   else if (e.getTagName().indexOf("docs")>=0) res.setDocs(e.toString());
-		   else if (e.getTagName().indexOf("cloud")>=0) res.setCloud(e.toString());
-		   else if (e.getTagName().indexOf("ttl")>=0) res.setTtl(e.toString());
-		   else if (e.getTagName().indexOf("rating")>=0) res.setRating(e.toString());
+	 RssChannelBean res = new RssChannelBean();
+	 String datePublish;
+	 
+	 try{	   
+	   if (this.rssType==TYPE_RDF){		   		   
+		   res.setTitle(doc.xpathSelectString(this.xPath + "/channel/title/text()"));
+		   res.setLink(doc.xpathSelectString(this.xPath + "/channel/link/text()"));
+		   res.setDescription(doc.xpathSelectString(this.xPath + "/channel/description/text()"));	
+		   datePublish = doc.xpathSelectString(this.xPath + "/channel/dc:date/text()");
+	   }else {
+		   res.setTitle(doc.xpathSelectString(this.xPath + "/title/text()"));
+		   res.setLink(doc.xpathSelectString(this.xPath + "/link/text()"));
+		   res.setDescription(doc.xpathSelectString(this.xPath + "/description/text()"));		   
+		   datePublish = doc.xpathSelectString(this.xPath + "/pubDate/text()");
 	   }
+	   
+	   if (datePublish!=null) res.setPubDate(this.getDate(datePublish, this.rssType));
 	 }
 	 catch (Exception e){
-	   throw new Exception("Error obteniendo elemento canal de " + filename, e);
+	   throw new Exception("Error reading element channel from " + filename, e);
 	 }
-	 res.setDublinCoreModule(dcBean);
-	 res.setSyndicationModule(syBean);
+
 	 return res;
   }
 
-  /**
-   * Returns a RssImageBean which represents the element <i>image</i> in a feed
-   * @see RssImageBean
-   * @return RssImageBean
-   */
-   public RssImageBean getImage() throws Exception {
+  private RssImageBean getImage() throws Exception {
    	 if (rssType!=TYPE_ATOM) return this.getImageRss();
    	 	else return new RssImageBean();
-   }
+  }
 
-  /**
-  * Returns a RssImageBean which represents the element <i>image</i> in a RSS feed
-  * @see RssImageBean
-  * @return RssImageBean
-  */
   private RssImageBean getImageRss() throws Exception {
      RssImageBean res = new RssImageBean();
+     String title;
      try{
-       Enumeration list = doc.xpathSelectElements(xPath + "/image/*");
-       if (!list.hasMoreElements()) list = doc.xpathSelectElements(xPath + "/channel/image/*");
-       while (list.hasMoreElements()){
-         Element e = (Element)list.nextElement();
-         if(e.getTagName().equals("title")) res.setTitle(e.toString());
-           else if(e.getTagName().equals("url")) res.setUrl(e.toString());
-           else if(e.getTagName().equals("link")) res.setLink(e.toString());
+       title = doc.xpathSelectString(this.xPath + "/image/title/text()");
+       if (title!=null){
+    	   res.setTitle(title);
+    	   res.setLink(doc.xpathSelectString(this.xPath + "/image/link/text()"));
+    	   res.setUrl(doc.xpathSelectString(this.xPath + "/image/url/text()"));
+       }else{
+    	   title = doc.xpathSelectString(this.xPath + "/channel/image/title/text()");
+    	   if (title!=null){
+    		   res.setTitle(title);
+    		   res.setLink(doc.xpathSelectString(this.xPath + "/channel/image/link/text()"));
+    		   res.setUrl(doc.xpathSelectString(this.xPath + "/channel/image/url/text()"));
+    	   }
        }
      }catch (Exception e){
        throw new Exception("Error obteniendo elemento imagen de " + filename, e);
@@ -234,23 +240,13 @@ public class RssParser {
      return res;
   }
 
-  /**
-   * Returns a Vector of RssItemBean with all the entries of a <i>feed</i>
-   * @see RssItemBean
-   * @return java.util.Vector
-   */
-   public Vector getItems() throws Exception {
+  private List<RssItemBean> getItems() throws Exception {
    	  if (rssType!=TYPE_ATOM) return this.getItemsRss();
    	  	else return this.getItemsAtom();
-   }
+  }
 
-   /**
-    * Returns a Vector of RssItemBean with all the entries of an ATOM <i>feed</i>
-    * @see RssItemBean
-    * @return java.util.Vector
-    */
-    private Vector getItemsAtom() throws Exception {
-  	 Vector res = new Vector();
+  private List<RssItemBean> getItemsAtom() throws Exception {
+     List<RssItemBean> res = new ArrayList<RssItemBean>();
   	 try{
   	   Enumeration list = doc.xpathSelectElements("feed/entry");
   	   int i=1;
@@ -264,16 +260,10 @@ public class RssParser {
   	   throw new Exception("Error el Vector de elementos entry de " + filename ,e);
   	 }
   	 return res;
-    }
+  }
 
-
-  /**
-  * Returns a Vector of RssItemBean with all the entries of a RSS feed
-  * @see RssItemBean
-  * @return java.util.Vector
-  */
-  private Vector getItemsRss() throws Exception {
-	 Vector res = new Vector();
+  private List<RssItemBean> getItemsRss() throws Exception {
+	 List<RssItemBean> res = new ArrayList<RssItemBean>();
 	 try{
 	   Enumeration list = doc.xpathSelectElements(xPath + "/item");
 	   int i=1;
@@ -289,159 +279,61 @@ public class RssParser {
 	 return res;
   }
 
-  /**
-   * Returns a RssItemBean which represents the element <i>entry</i> in an ATOM feed.
-   * 
-   * @param index Index of the element to be returned.
-   * @see RssItemBean
-   * @return RssItemBean
-   */
-   private RssItemBean getItemAtom(int index) throws Exception{
- 	 RssItemBean res = new RssItemBean(rssType);
-
+  private RssItemBean getItemAtom(int index) throws Exception{
+ 	 RssItemBean res = new RssItemBean();
+ 	 String description;
+ 	 String datePublish;
+ 	 
  	 try{
- 	   Element e;
- 	   //Gets the title
- 	   Enumeration list = doc.xpathSelectElements("feed/entry[" + index + "]/title");
- 	   if (list.hasMoreElements()){
- 	     e = (Element)list.nextElement();
- 	     res.setTitle(e.toString());
- 	   }
-
- 	   //Gets the link
- 	   list = doc.xpathSelectElements("feed/entry[" + index + "]/link");
- 	   while (list.hasMoreElements()){
- 	     e = (Element)list.nextElement();
- 	     if (e.getAttribute("type").equals("text/html")) res.setLink(e.getAttribute("href"));
- 	   }
-
- 	   //Gets the description/content
- 	   list = doc.xpathSelectElements("feed/entry[" + index + "]/content");
- 	   if (list.hasMoreElements()){
-	     e = (Element)list.nextElement();
-	     res.setDescription(e.toString());
-	   }else{
-		   list = doc.xpathSelectElements("feed/entry[" + index + "]/summary");
-	 	   if (list.hasMoreElements()){
-	 		     e = (Element)list.nextElement();
-	 		     res.setDescription(e.toString());
-	 	   }		   
+	   res.setTitle(doc.xpathSelectString("feed/entry[" + index + "]/title/text()"));
+	   res.setLink(doc.xpathSelectString("feed/entry[" + index + "]/link/text()"));
+	   
+	   description = doc.xpathSelectString("feed/entry[" + index + "]/content/text()");
+	   if (description!=null){
+		   description = doc.xpathSelectString("feed/entry[" + index + "]/summary/text()");
 	   }
+	   res.setDescription(description);
+	   res.setAuthor(doc.xpathSelectString("feed/entry[" + index + "]/author/name/text()"));
 
- 	   //Gets the author
- 	   list = doc.xpathSelectElements("feed/entry[" + index + "]/author/name");
- 	   if (list.hasMoreElements()){
-	     e = (Element)list.nextElement();
-	     res.setAuthor(e.toString());
-	   }
-
- 	   //Gets the creation date
- 	   list = doc.xpathSelectElements("feed/entry[" + index + "]/created");
-       String datePublish = "";
- 	   if (list.hasMoreElements()){
-	     e = (Element)list.nextElement();
-         datePublish = e.toString();
-	     res.setPubDate(datePublish);
-	   }
-
+	   datePublish = doc.xpathSelectString("feed/entry[" + index + "]/created/text()");
        //If it is Atom 1.0 the creation date is in "published"
  	   if ((datePublish==null) || (datePublish.equals(""))){
-           list = doc.xpathSelectElements("feed/entry[" + index + "]/published");
-           if (list.hasMoreElements()){
-             e = (Element)list.nextElement();
-             datePublish = e.toString();
-             res.setPubDate(datePublish);
-           }
+ 		   datePublish = doc.xpathSelectString("feed/entry[" + index + "]/published/text()");
        }
+ 	   
+ 	   res.setPubDate(this.getDate(datePublish, TYPE_ATOM));
  	 }
  	 catch (Exception e){
  	   throw new Exception("Error obtaining the entry at position " + index + " of " + filename, e);
  	 }
 
  	 return res;
-   }
+  }
 
-  /**
-  * Returns a RssItemBean which represents an element <i>item</i> in a RSS feed. 
-  * 
-  * @param index Index of the element to be returned
-  * @see RssItemBean
-  * @return RssItemBean
-  */
   private RssItemBean getItemRss(int index) throws Exception{
-	 RssItemBean res = new RssItemBean(rssType);
-	 RssDublinCoreModuleBean dcBean = new RssDublinCoreModuleBean();
-	 RssSlashModuleBean slashBean = new RssSlashModuleBean();
-     RssEnclosureBean enclosureBean = new RssEnclosureBean();
+	 RssItemBean res = new RssItemBean();
+	 String datePublish;
+
 	 try{
-	   Enumeration list = doc.xpathSelectElements(xPath + "/item[" + index + "]/*");
-	   while (list.hasMoreElements()){
-	     Element e = (Element)list.nextElement();
-		 if(e.getTagName().equals("title")) res.setTitle(e.toString());
-		   else if(e.getTagName().equals("link")) res.setLink(e.toString());
-		   else if(e.getTagName().equals("description")) res.setDescription(e.toString());
-		   else if (e.getTagName().indexOf("dc:")>=0) dcBean = setDublinCoreElement(e, dcBean);
-		   else if (e.getTagName().indexOf("slash:")>=0) slashBean = setSlashElement(e, slashBean);
-		   else if (e.getTagName().indexOf("author")>=0) res.setAuthor(e.toString());
-		   else if (e.getTagName().indexOf("pubDate")>=0) res.setPubDate(e.toString());
-		   else if (e.getTagName().indexOf("category")>=0) res.setCategory(e.toString());
-		   else if (e.getTagName().indexOf("comments")>=0) res.setComments(e.toString());
-		   else if (e.getTagName().indexOf("enclosure")>=0) enclosureBean = setEnclosure(e);
-		   else if (e.getTagName().indexOf("guid")>=0) res.setGuid(e.toString());
-		   else if (e.getTagName().indexOf("source")>=0) res.setSource(e.toString());
+	   res.setTitle(doc.xpathSelectString(xPath + "/item[" + index + "]/title/text()"));
+	   res.setLink(doc.xpathSelectString(xPath + "/item[" + index + "]/link/text()"));
+	   res.setDescription(doc.xpathSelectString(xPath + "/item[" + index + "]/description/text()"));
+	   if (this.rssType==TYPE_RDF){
+		   res.setAuthor(doc.xpathSelectString(xPath + "/item[" + index + "]/dc:creator/text()"));
+		   datePublish = doc.xpathSelectString(xPath + "/item[" + index + "]/dc:date/text()");		   
+	   }else{
+		   res.setAuthor(doc.xpathSelectString(xPath + "/item[" + index + "]/author/text()"));
+		   datePublish = doc.xpathSelectString(xPath + "/item[" + index + "]/pubDate/text()");
 	   }
+	   res.setPubDate(this.getDate(datePublish, this.rssType));
 	 }
 	 catch (Exception e){
 	   throw new Exception("Error obtaining the entry at position " + index + " of " + filename, e);
 	 }
-     res.setEnclosure(enclosureBean);
-	 res.setDublinCoreModule(dcBean);
-	 res.setSlashModule(slashBean);
+
 	 return res;
   }
-
-  private RssDublinCoreModuleBean setDublinCoreElement(Element e, RssDublinCoreModuleBean dcBean){
-      if(e.getTagName().equals("dc:title")) dcBean.setTitle(e.toString());
-        else if(e.getTagName().equals("dc:creator")) dcBean.setCreator(e.toString());
-        else if(e.getTagName().equals("dc:subject")) dcBean.setSubject(e.toString());
-        else if(e.getTagName().equals("dc:description")) dcBean.setDescription(e.toString());
-        else if(e.getTagName().equals("dc:publisher")) dcBean.setPublisher(e.toString());
-        else if(e.getTagName().equals("dc:contributor")) dcBean.setContributor(e.toString());
-        else if(e.getTagName().equals("dc:date")) dcBean.setDate(e.toString());
-        else if(e.getTagName().equals("dc:type")) dcBean.setType(e.toString());
-        else if(e.getTagName().equals("dc:format")) dcBean.setFormat(e.toString());
-        else if(e.getTagName().equals("dc:indentifier")) dcBean.setIdentifier(e.toString());
-        else if(e.getTagName().equals("dc:source")) dcBean.setSource(e.toString());
-        else if(e.getTagName().equals("dc:language")) dcBean.setLanguage(e.toString());
-        else if(e.getTagName().equals("dc:relation")) dcBean.setRelation(e.toString());
-        else if(e.getTagName().equals("dc:coverage")) dcBean.setCoverage(e.toString());
-        else if(e.getTagName().equals("dc:rights")) dcBean.setRights(e.toString());
-      return dcBean;
-  }
-
-  private RssSlashModuleBean setSlashElement(Element e, RssSlashModuleBean slashBean){
-      if(e.getTagName().equals("slash:section")) slashBean.setSection(e.toString());
-        else if(e.getTagName().equals("slash:department")) slashBean.setDepartment(e.toString());
-        else if(e.getTagName().equals("slash:comments")) slashBean.setComments(new Integer(e.toString()).intValue());
-        else if(e.getTagName().equals("slash:hit_parade")) slashBean.setHitParade(e.toString());
-      return slashBean;
-  }
-
-  private RssSyndicationModuleBean setSyndicationElement(Element e, RssSyndicationModuleBean syBean){
-      if(e.getTagName().equals("syn:updatePeriod")) syBean.setPeriod(e.toString());
-        else if(e.getTagName().equals("syn:updateFrequency")) syBean.setFrequency(new Integer(e.toString()).intValue());
-        else if(e.getTagName().equals("syn:updateBase")) syBean.setBase(e.toString());
-      return syBean;
-  }
-
-  private RssEnclosureBean setEnclosure(Element e){
-      RssEnclosureBean enclosure = new RssEnclosureBean();
-      enclosure.setURL(e.getAttribute("url"));
-      enclosure.setLength(e.getAttribute("length"));
-      enclosure.setType(e.getAttribute("type"));
-      return enclosure;
-  }
-
+  
   private void parseFromReader(BufferedReader buffer) throws Exception{
 	    //BufferedReader buffer = this.getReader(filename);
 	    String line;
@@ -452,6 +344,8 @@ public class RssParser {
 	    }catch(Exception e){
 	        doc = new Document();
 	        throw new Exception("Error reading the file " + filename, e);	        
+	    }finally{
+	    	buffer.close();
 	    }
 	    this.setChannelXPath();
   }
@@ -477,7 +371,7 @@ public class RssParser {
   }
 
   private void parseFromCache() throws Exception{
-	  String encFilename = this.encode(this.filename);
+	  String encFilename = this.encode(this.filename);	  
 	  if (this.cacheExpired()){
 		  this.saveURL(this.filename, this.cacheDir, encFilename);
 	  }
@@ -485,7 +379,7 @@ public class RssParser {
 	  this.parseFromFile();
   }
 
-  private boolean cacheExpired(){
+  private boolean cacheExpired() throws Exception {
 	  boolean res = false;
 	  String filename = this.encode(this.filename);
 	  File file = new File(this.cacheDir + "/" + filename);
@@ -537,6 +431,13 @@ public class RssParser {
 		}
 
   }
+  
+  private BufferedReader getReaderFromInputStream(InputStream inputStream) throws IOException {
+	  BufferedReader buffer = null;
+	  InputStreamReader input = new InputStreamReader(inputStream, this.charset);
+	  buffer = new BufferedReader(input);
+	  return buffer;
+  }
 
   private BufferedReader getReaderFromUrl(String url) throws IOException{
     BufferedReader buffer = null;
@@ -554,7 +455,7 @@ public class RssParser {
 
   private String getRootXPath() throws Exception {
 	   String xPath = null;
-	   try{
+	   try{		 
 	     Enumeration list = doc.xpathSelectElements("rdf:RDF");
 	     if (list.hasMoreElements()) xPath = "rdf:RDF";
 	       else {
@@ -571,19 +472,55 @@ public class RssParser {
   private void setChannelXPath() throws Exception {
        xPath = getRootXPath();
        if (xPath.equals("rdf:RDF")) {
-             channelXPath = xPath + "/channel/*";
              rssType = TYPE_RDF;
        }
        else if (xPath.equals("rss/channel")){
-             channelXPath = xPath + "/*";
              rssType = TYPE_RSS;
        }else {
        		 rssType = TYPE_ATOM;
        }
   }
 
-  private String encode(String filename){
-	  String res =  URLEncoder.encode(filename) + ".cache";
+  private String encode(String filename) throws Exception{
+	  String res =  URLEncoder.encode(filename, this.charset) + ".cache";
+	  return res;
+  }
+  
+  private RssFeed getRssFeed() throws Exception{
+      RssFeed rss = new RssFeed();
+      rss.setChannel(this.getChannel());
+      rss.setImage(this.getImage());
+      rss.setItems(this.getItems());
+      return rss;	  
+  }
+  
+  private Date getDate(String date, int rssType) throws java.text.ParseException {
+	  Date res = null;
+	  String pattern = null;
+		
+	  switch (rssType){
+	  	case TYPE_RDF: {
+	  		pattern = "yyyy-MM-dd'T'HH:mm:ss+HH:mm";
+	  		break;
+	  	}
+		case TYPE_RSS: {
+			pattern = "EEE, dd MMM yyyy HH:mm:ss Z";
+			break;
+		}
+		case TYPE_ATOM: {
+			pattern = "yyyy-MM-dd'T'HH:mm:ss";
+			break;				
+		}
+	  }
+	  
+	  try {
+		  SimpleDateFormat sd = new SimpleDateFormat(pattern, Locale.ENGLISH);
+		  res = sd.parse(date);
+	  } catch (java.text.ParseException e) {
+		  System.out.println("Error parsing date: " + date + " [Type: " + rssType + "] --" + e.toString());
+		  //throw e;
+	  }	  
+	  
 	  return res;
   }
 }

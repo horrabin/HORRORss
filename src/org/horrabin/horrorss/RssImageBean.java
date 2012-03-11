@@ -1,12 +1,12 @@
 /**
  * RssImageBean.java 
  *
- * HORRORss Package, Version 1.4
- * Simple RSS parser fully GNU-Classpath compatible.
+ * HORRORss Package, Version 2.0
+ * Simple RSS parser
  *
- * February 21, 2009
+ * March 3, 2012
  *
- * Copyright (C) 2009 Fernando Fornieles
+ * Copyright (C) 2012 Fernando Fornieles
  * e-mail: nandofm@gmail.com
  *
  * This file is part of HORRORss
@@ -28,8 +28,7 @@
 package org.horrabin.horrorss;
 
 /**
-* The RssImageBean object represents the element <i>image</i> in an RSS feed. 
-* Valid for the RSS 2.0 and RDF specifications 
+* The RssImageBean object maps the element <i>image</i> of an RSS feed. 
 * @author Fernando Fornieles
 */ 
 public class RssImageBean {
@@ -50,7 +49,7 @@ public class RssImageBean {
    * Create a new RssImageBean
    * @param title Title of the image
    * @param url URL of the image
-   * @param link URL where the image links
+   * @param link The URL to the feed web page
    */
   public RssImageBean(String title, String url, String link){
 	 this.title = title;
@@ -59,15 +58,15 @@ public class RssImageBean {
   }
 
   /**
-   * Sets the title of the image
-   * @param title Title of the image
+   * Sets the title of the image element
+   * @param title Title of the image element
    */
   public void setTitle(String title){
 	 this.title = title;
   }
 
   /**
-   * Sets the URL of the image
+   * Sets the URL of the image 
    * @param url URL of the image
    */  
   public void setUrl(String url){
@@ -75,8 +74,8 @@ public class RssImageBean {
   }
 
   /**
-   * Sets the URL where the image links
-   * @param link URL where the image links
+   * Sets the URL to the feed web page
+   * @param link the URL to the feed web page
    */  
   public void setLink(String link){
 	 this.link = link;
