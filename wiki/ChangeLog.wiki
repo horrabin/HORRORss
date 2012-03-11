@@ -1,5 +1,13 @@
 =Change Log=
 
+== HORRORss - V 2.0.0 ==
+ * Code completely rebuild
+ * API simplified removing unused objects and methods
+ * Get dates as Date object instead of String
+ * Added the ability to parse from an InputStream and a XML String
+ * Fixed bug when getting items from Atom feeds
+<br>
+
 == HORRORss - V 1.4.2 ==
  * Now is possible to parse feeds from https
  * Added the ability to get the description from "feed/entry/summary" if "feed/entry/content" is void in Atom feeds
