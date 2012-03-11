@@ -1,9 +1,8 @@
 #labels Phase-Design,Featured
 =Introduction=
 *<font color="#336699">HORRO</font><font color="#ff9900">Rss</font>* is a set of Java classes to parse RSS files. It works with simple objects (POJOs) which represents the main items of RSS files like "channel", "image", and "item". 
-<br><br>
-
-When I started, the first aim was to be a parser as free as possible: free software and free of the propietary Java Sun's platform. In 2004 the only way to make a real free development with this language was with the [http://www.gnu.org/software/classpath/ GNU Classpath] project. Nowadays, after Sun opened Java with [http://openjdk.java.net/ OpenJDK], this only have sense if you want to compile to native code.
+<br>
+At the beginning, the first aim was to be a parser as free as possible: free software and free of the propietary Java Sun's platform. In 2004 the only way to make a real free development with this language was with the [http://www.gnu.org/software/classpath/ GNU Classpath] project. Nowadays, after Sun opened Java with [http://openjdk.java.net/ OpenJDK], this only have sense if you want to compile to native code.
 <br><br>
 
 ==Easy to use==
