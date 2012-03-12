@@ -1,0 +1,173 @@
+body
+{
+	background: #333 url("img/bg.gif") repeat-x;
+	color: #333;
+	margin: 0;
+	padding: 54px 0 0 0;
+	font-family: Verdana, serif;
+	font-size: 11px;
+	text-align: center;
+}
+
+#container
+{
+
+	text-align: left;
+	margin-left: auto;
+	margin-right: auto;
+	width: 720px;
+}
+
+#header
+{
+	font-family: Verdana, sans-serif;
+	padding: 60px 0 46px 54px;	
+}
+
+#top
+{
+	background: url("img/top.png") no-repeat;
+	height: 212px;
+}
+
+#menu
+{
+	color: #fff;
+	line-height: 42px;
+	height: 42px;
+}
+
+#menu a
+{
+	color: #fff;
+	font-weight: bold;
+	display: block;
+	border-right: 1px solid #3d6eaf;
+	float: left;
+	padding: 0 20px;
+	text-decoration: none;
+}
+
+#menu a:hover
+{
+	text-decoration: underline;
+}
+
+h1
+{
+	font-family: "Verdana", sans-serif;
+	font-size: 18px;
+	color: #d82f4d;
+	margin: 0.2em 0;
+}
+
+p
+{
+	margin: 0 0 5px 0;
+	padding: 0;
+}
+
+.post
+{
+	padding: 0 10px 10px 10px;
+}
+
+.red
+{
+	font-size: 42px;
+	color: #d82f4d;
+	font-weight: bold;
+}
+
+.blue
+{
+	font-size: 42px;
+	color: #3d6eaf;
+}
+
+.subHeader
+{
+	font-size: 10px;	
+	font-family: "Tahoma", "Verdana", sans-serif;
+	margin-left: 8px;
+}
+
+#body
+{
+	float: left;
+	background: #fff url("img/body.gif") repeat-y;
+	width: 720px;
+}
+
+
+li
+{
+	
+}
+
+ul
+{
+
+}
+
+.postInfo
+{
+	margin-top: 10px;
+	font-family: "Tahoma", "Verdana", sans-serif;
+	font-size: 10px;
+}
+
+.right
+{
+	float: right;
+}
+
+blockquote
+{
+	border: 1px #d82f4d solid;
+	border-left: 5px #d82f4d solid;
+	background: #fff;
+	margin: 10px 0;
+	padding: 10px;
+}
+
+code
+{
+	border: 1px #d82f4d solid;
+	border-left: 5px #d82f4d solid;
+	background: #fff;
+	margin: 10px 0;
+	padding: 10px;
+	display: block;
+	white-space: pre;
+}
+
+a
+{
+	font-weight: bold;
+	color: #a9253c;
+	text-decoration: none;
+}
+
+a:hover
+{
+	color: #da4c66;
+	text-decoration: underline;
+}
+
+#footer
+{
+	clear: both;
+	height: 42px;
+	color: #fff;
+	background: url("img/footer.png") no-repeat;
+	font-weight: bold;
+	padding: 0 10px;
+	line-height: 42px;
+	margin-bottom: 54px;
+}
+
+#footer a
+{
+	color: #fff;
+}
