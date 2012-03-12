@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>TestParser.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">TestParser (02-mar-2012 21:20:35)</a> &gt; <a href="../../index.html" class="el_group">horrorss</a> &gt; <a href="../index.html" class="el_bundle">java</a> &gt; <a href="index.html" class="el_package">test</a> &gt; <span class="el_source">TestParser.java</span></div><h1>TestParser.java</h1><pre class="source lang-java linenums">package test;
+
+import java.io.File;
+import java.util.List;
+
+import junit.framework.TestCase;
+
+import org.horrabin.horrorss.RssChannelBean;
+import org.horrabin.horrorss.RssFeed;
+import org.horrabin.horrorss.RssImageBean;
+import org.horrabin.horrorss.RssItemBean;
+import org.horrabin.horrorss.RssParser;
+
+<span class="fc" id="L14">public class TestParser extends TestCase {</span>
+
+	private RssChannelBean channel;
+	private RssImageBean image;
+	private List&lt;RssItemBean&gt; items;
+
+	public void fileParse(String filename){
+<span class="fc" id="L21">		this.fileParse(filename, null);</span>
+<span class="fc" id="L22">	}</span>
+
+	public void fileParse(String filename, String charset){
+<span class="fc" id="L25">		RssParser rss = new RssParser(filename);</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">		if (charset!=null) rss.setCharset(charset);</span>
+		try {
+<span class="fc" id="L28">			RssFeed obj = rss.load();</span>
+<span class="fc" id="L29">			this.channel = obj.getChannel(); //Gets the channel element</span>
+<span class="fc" id="L30">			this.items = obj.getItems(); //Gets a List of RssItemBean</span>
+<span class="fc" id="L31">			this.image = obj.getImage(); //Gets the image element</span>
+<span class="nc" id="L32">		}catch(Exception e){</span>
+<span class="nc" id="L33">			e.printStackTrace();</span>
+		}				
+<span class="fc" id="L35">	}</span>
+	
+	public void testCache(){
+<span class="fc" id="L38">		RssParser rss = new RssParser();</span>
+<span class="fc" id="L39">		rss.enableCache(&quot;java/test/data/&quot;, 1000);</span>
+		
+<span class="fc" id="L41">		File file = new File(&quot;java/test/data/https%3A%2F%2Fhorrorss.googlecode.com%2Fsvn%2Ftrunk%2Fsrc%2Ftest%2Fdata%2Frss-utf8.xml.cache&quot;);</span>
+<span class="fc" id="L42">		assertEquals(false, file.exists());</span>
+		
+		try {
+<span class="fc" id="L45">			rss.load(&quot;https://horrorss.googlecode.com/svn/trunk/src/test/data/rss-utf8.xml&quot;);</span>
+<span class="fc" id="L46">			assertEquals(true, file.exists());</span>
+<span class="fc" id="L47">			file.delete();</span>
+<span class="nc" id="L48">		}catch(Exception e){</span>
+<span class="nc" id="L49">			System.out.println(&quot;ERROR testing the cache system&quot;);</span>
+		}
+<span class="fc" id="L51">	}</span>
+
+	public void testUTF8FileParse(){
+<span class="fc" id="L54">		this.fileParse(&quot;java/test/data/rss-utf8.xml&quot;, &quot;utf-8&quot;);</span>
+<span class="fc" id="L55">		assertEquals(21,this.items.size());</span>
+
+<span class="fc" id="L57">		RssItemBean item = this.items.get(0);</span>
+<span class="fc" id="L58">		assertEquals(&quot;La niñez de Luke Skywalker&quot;, item.getTitle());</span>
+
+<span class="fc" id="L60">		item = this.items.get(20);</span>
+<span class="fc" id="L61">		assertEquals(&quot;Y con este sencillo acto...&quot;, item.getTitle());</span>
+<span class="fc" id="L62">		assertEquals(&quot;Sun Jul 27 13:50:00 CEST 2008&quot;, item.getPubDate().toString());	</span>
+<span class="fc" id="L63">	}</span>
+
+	public void testUTF8URLParse(){
+<span class="fc" id="L66">		this.fileParse(&quot;https://horrorss.googlecode.com/svn/trunk/src/test/data/rss-utf8.xml&quot;, &quot;utf-8&quot;);</span>
+<span class="fc" id="L67">		assertEquals(21,this.items.size());</span>
+
+<span class="fc" id="L69">		RssItemBean item = this.items.get(0);</span>
+<span class="fc" id="L70">		assertEquals(&quot;La niñez de Luke Skywalker&quot;, item.getTitle());</span>
+
+<span class="fc" id="L72">		item = this.items.get(20);</span>
+<span class="fc" id="L73">		assertEquals(&quot;Y con este sencillo acto...&quot;, item.getTitle());</span>
+<span class="fc" id="L74">		assertEquals(&quot;Sun Jul 27 13:50:00 CEST 2008&quot;, item.getPubDate().toString());</span>
+<span class="fc" id="L75">	}</span>
+
+	public void testISO88591FileParse(){
+<span class="fc" id="L78">		this.fileParse(&quot;java/test/data/rss-iso-8859-1.xml&quot;, &quot;iso-8859-1&quot;);</span>
+<span class="fc" id="L79">		assertEquals(21,this.items.size());</span>
+
+<span class="fc" id="L81">		RssItemBean item = this.items.get(0);</span>
+<span class="fc" id="L82">		assertEquals(&quot;La niñez de Luke Skywalker&quot;, item.getTitle());</span>
+
+<span class="fc" id="L84">		item = this.items.get(20);</span>
+<span class="fc" id="L85">		assertEquals(&quot;Y con este sencillo acto...&quot;, item.getTitle());</span>
+<span class="fc" id="L86">		assertEquals(&quot;Sun Jul 27 13:50:00 CEST 2008&quot;, item.getPubDate().toString());		</span>
+<span class="fc" id="L87">	}</span>
+
+	public void testISO88591URLParse(){
+<span class="fc" id="L90">		this.fileParse(&quot;http://horrorss.googlecode.com/svn/trunk/src/test/data/rss-iso-8859-1.xml&quot;, &quot;iso-8859-1&quot;);</span>
+<span class="fc" id="L91">		assertEquals(21,this.items.size());</span>
+
+<span class="fc" id="L93">		RssItemBean item = this.items.get(0);</span>
+<span class="fc" id="L94">		assertEquals(&quot;La niñez de Luke Skywalker&quot;, item.getTitle());</span>
+
+<span class="fc" id="L96">		item = this.items.get(20);</span>
+<span class="fc" id="L97">		assertEquals(&quot;Y con este sencillo acto...&quot;, item.getTitle());</span>
+<span class="fc" id="L98">		assertEquals(&quot;Sun Jul 27 13:50:00 CEST 2008&quot;, item.getPubDate().toString());		</span>
+<span class="fc" id="L99">	}</span>
+
+	public void testAtomParse(){
+<span class="fc" id="L102">		this.fileParse(&quot;java/test/data/rss-atom.xml&quot;);</span>
+<span class="fc" id="L103">		assertEquals(21,this.items.size());</span>
+
+<span class="fc" id="L105">		assertEquals(&quot;El blog horroroso de Horrabin&quot;, this.channel.getTitle());</span>
+
+<span class="fc" id="L107">		RssItemBean item = this.items.get(0);</span>
+<span class="fc" id="L108">		assertEquals(&quot;La niñez de Luke Skywalker&quot;, item.getTitle());</span>
+
+<span class="fc" id="L110">		item = this.items.get(20);</span>
+<span class="fc" id="L111">		assertEquals(&quot;Y con este sencillo acto...&quot;, item.getTitle());</span>
+<span class="fc" id="L112">		assertEquals(&quot;Sun Jul 27 13:50:00 CEST 2008&quot;, item.getPubDate().toString());</span>
+		
+<span class="fc" id="L114">		assertEquals(&quot;&quot;, this.image.getUrl());</span>
+<span class="fc" id="L115">	}</span>
+	
+	public void testRSSParse(){
+<span class="fc" id="L118">		this.fileParse(&quot;java/test/data/rss20.xml&quot;);</span>
+<span class="fc" id="L119">		assertEquals(12,this.items.size());</span>
+
+<span class="fc" id="L121">		assertEquals(&quot;JRMora, humor gráfico&quot;, this.channel.getTitle());</span>
+
+<span class="fc" id="L123">		RssItemBean item = this.items.get(0);</span>
+<span class="fc" id="L124">		assertEquals(&quot;Activismo de clic&quot;, item.getTitle());</span>
+
+<span class="fc" id="L126">		item = this.items.get(11);</span>
+<span class="fc" id="L127">		assertEquals(&quot;Emprendedores&quot;, item.getTitle());</span>
+<span class="fc" id="L128">		assertEquals(&quot;Thu Jan 12 15:45:45 CET 2012&quot;, item.getPubDate().toString());</span>
+		
+<span class="fc" id="L130">		assertEquals(&quot;http://www.jrmora.com/jr_bocata.jpg&quot;, this.image.getUrl());</span>
+<span class="fc" id="L131">	}	</span>
+
+	public void testRDFParse(){
+<span class="fc" id="L134">		this.fileParse(&quot;java/test/data/rss-rdf.xml&quot;);</span>
+<span class="fc" id="L135">		assertEquals(10,this.items.size());</span>
+
+<span class="fc" id="L137">		assertEquals(&quot;Barrapunto&quot;, this.channel.getTitle());</span>
+
+<span class="fc" id="L139">		RssItemBean item = this.items.get(0);</span>
+<span class="fc" id="L140">		assertEquals(&quot;Bloomberg abre su API de datos&quot;, item.getTitle());</span>
+
+<span class="fc" id="L142">		item = this.items.get(9);</span>
+<span class="fc" id="L143">		assertEquals(&quot;Los mejores inicios de novela&quot;, item.getTitle());</span>
+<span class="fc" id="L144">		assertEquals(&quot;Tue Jan 31 00:00:00 CET 2012&quot;, item.getPubDate().toString());</span>
+		
+<span class="fc" id="L146">		assertEquals(&quot;http://barrapunto.com/images/topics/topicbarrapunto.png&quot;, this.image.getUrl());</span>
+<span class="fc" id="L147">	}</span>
+
+	public void testFileParse(){
+<span class="fc" id="L150">		this.fileParse(&quot;java/test/data/rss-utf8.xml&quot;);</span>
+<span class="fc" id="L151">		assertEquals(21,this.items.size());</span>
+
+<span class="fc" id="L153">		RssItemBean item = this.items.get(0);</span>
+<span class="fc" id="L154">		assertEquals(&quot;La niñez de Luke Skywalker&quot;, item.getTitle());</span>
+
+<span class="fc" id="L156">		item = this.items.get(20);</span>
+<span class="fc" id="L157">		assertEquals(&quot;Y con este sencillo acto...&quot;, item.getTitle());</span>
+<span class="fc" id="L158">	}</span>
+			
+	public void testURLParse(){
+<span class="fc" id="L161">		this.fileParse(&quot;http://horrorss.googlecode.com/svn/trunk/src/test/data/rss-utf8.xml&quot;);		</span>
+		
+<span class="fc" id="L163">		assertEquals(21,this.items.size());</span>
+
+<span class="fc" id="L165">		RssItemBean item = this.items.get(0);</span>
+<span class="fc" id="L166">		assertEquals(&quot;La niñez de Luke Skywalker&quot;, item.getTitle());</span>
+
+<span class="fc" id="L168">		item = this.items.get(20);</span>
+<span class="fc" id="L169">		assertEquals(&quot;Y con este sencillo acto...&quot;, item.getTitle());</span>
+<span class="fc" id="L170">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.5.6.201201232323</span>TestParser (02-mar-2012 21:20:35)</div></body></html>
