@@ -1,5 +1,9 @@
 #labels news
 =Latest News=
+*31-05-2012: <font color="#336699">HORRO</font><font color="#ff9900">Rss</font> 2.0.1 available*<br>
+Solved a problem when parsing this date pattern yyyy-MM-dd'T'HH:mm:ss-HH:mm
+<br><br>
+
 *11-03-2012: <font color="#336699">HORRO</font><font color="#ff9900">Rss</font> 2.0.0 available*<br>
 The code has been completely rebuild. API simplified removing unused classes and methods. Now HORRORss becames more simple!
 <br><br>
