@@ -1,4 +1,7 @@
 =Change Log=
+== HORRORss - V 2.0.0 ==
+ * Solved a problem when parsing this date pattern yyyy-MM-dd'T'HH:mm:ss-HH:mm
+<br>
 
 == HORRORss - V 2.0.0 ==
  * Code completely rebuild
