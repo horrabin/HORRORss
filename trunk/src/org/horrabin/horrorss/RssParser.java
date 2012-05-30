@@ -500,7 +500,9 @@ public class RssParser {
 		
 	  switch (rssType){
 	  	case TYPE_RDF: {
-	  		pattern = "yyyy-MM-dd'T'HH:mm:ss+HH:mm";
+	  		if (date.indexOf("+")>=0)
+	  			pattern = "yyyy-MM-dd'T'HH:mm:ss+HH:mm";
+	  		else pattern = "yyyy-MM-dd'T'HH:mm:ss-HH:mm";
 	  		break;
 	  	}
 		case TYPE_RSS: {
