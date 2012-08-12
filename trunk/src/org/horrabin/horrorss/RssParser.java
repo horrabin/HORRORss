@@ -335,12 +335,16 @@ public class RssParser {
   }
   
   private void parseFromReader(BufferedReader buffer) throws Exception{
-	    //BufferedReader buffer = this.getReader(filename);
 	    String line;
-	    String xml = "";
+	    StringBuffer xml = new StringBuffer();
 	    try {
-	        while ((line = buffer.readLine()) != null) xml = xml + line;
-	        doc = Parser.parse(xml);
+	        while ((line = buffer.readLine()) != null) {
+	        	xml.append(line);
+	        }
+	        
+	        if (xml.charAt(0)=='\uFEFF') xml.setCharAt(0, '\n');
+	        
+	        doc = Parser.parse(xml.toString());
 	    }catch(Exception e){
 	        doc = new Document();
 	        throw new Exception("Error reading the file " + filename, e);	        
