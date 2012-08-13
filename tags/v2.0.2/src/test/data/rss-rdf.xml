@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<rdf:RDF
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns="http://purl.org/rss/1.0/"
+ xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+ xmlns:taxo="http://purl.org/rss/1.0/modules/taxonomy/"
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+ xmlns:syn="http://purl.org/rss/1.0/modules/syndication/"
+ xmlns:admin="http://webns.net/mvcb/"
+>
+
+<channel rdf:about="http://barrapunto.com/">
+<title>Barrapunto</title>
+<link>http://barrapunto.com/</link>
+<description>La informaci&#243;n que te interesa</description>
+<dc:language>EN</dc:language>
+<dc:rights>Copyleft 1999-2006, Barrapunto</dc:rights>
+<dc:date>2012-02-01T21:40:12+00:00</dc:date>
+<dc:publisher>Barrapunto S.L.</dc:publisher>
+
+<dc:creator>webmaster@barrapunto.com</dc:creator>
+<dc:subject>Tecnolog&#237;a, Software libre</dc:subject>
+<syn:updatePeriod>hourly</syn:updatePeriod>
+<syn:updateFrequency>1</syn:updateFrequency>
+<syn:updateBase>1970-01-01T00:00+00:00</syn:updateBase>
+<items>
+ <rdf:Seq>
+  <rdf:li rdf:resource="http://barrapunto.com/article.pl?sid=12/02/01/2136250&amp;from=rss" />
+  <rdf:li rdf:resource="http://americas.barrapunto.com/article.pl?sid=12/02/01/132228&amp;from=rss" />
+  <rdf:li rdf:resource="http://barrapunto.com/article.pl?sid=12/02/01/0916209&amp;from=rss" />
+  <rdf:li rdf:resource="http://barrapunto.com/article.pl?sid=12/01/31/1953200&amp;from=rss" />
+  <rdf:li rdf:resource="http://barrapunto.com/article.pl?sid=12/01/31/1758216&amp;from=rss" />
+  <rdf:li rdf:resource="http://espana.barrapunto.com/article.pl?sid=12/01/31/1020237&amp;from=rss" />
+  <rdf:li rdf:resource="http://ciberderechos.barrapunto.com/article.pl?sid=12/01/31/2337222&amp;from=rss" />
+  <rdf:li rdf:resource="http://barrapunto.com/article.pl?sid=12/01/31/1250243&amp;from=rss" />
+  <rdf:li rdf:resource="http://softlibre.barrapunto.com/article.pl?sid=12/01/30/2228238&amp;from=rss" />
+  <rdf:li rdf:resource="http://barrapunto.com/article.pl?sid=12/01/30/216220&amp;from=rss" />
+ </rdf:Seq>
+
+</items>
+<image rdf:resource="http://barrapunto.com/images/topics/topicbarrapunto.png" />
+<textinput rdf:resource="http://barrapunto.com/search.pl" />
+</channel>
+
+<image rdf:about="http://barrapunto.com/images/topics/topicbarrapunto.png">
+<title>Barrapunto</title>
+<url>http://barrapunto.com/images/topics/topicbarrapunto.png</url>
+<link>http://barrapunto.com/</link>
+</image>
+
+<item rdf:about="http://barrapunto.com/article.pl?sid=12/02/01/2136250&amp;from=rss">
+<title>Bloomberg abre su API de datos</title>
+<link>http://barrapunto.com/article.pl?sid=12/02/01/2136250&amp;from=rss</link>
+
+<description>La multinacional estadounidense Bloomberg, especializada en informaci&amp;#243;n sobre finanzas, ha publicado un conjunto de librer&amp;#237;as para acceder a su API de datos. Se proporciona un SDK multiplataforma para Windows, Linux, Solaris, y gen&amp;#233;rico (mediante una librer&amp;#237;a escrita en Perl). Para los casos de Windows, Linux, y Solaris, adem&amp;#225;s del soporte gen&amp;#233;rico en Perl, se incluyen librer&amp;#237;as binarias con interfaces para distintos lenguajes: para C++ mediante clases definidas en ficheros de cabecera (.h) que encapsulan el acceso a librer&amp;#237;as binarias est&amp;#225;ticas y din&amp;#225;micas en C (pues el C++ no tiene compatibilidad a nivel de ABI), y para Java mediante .jar binarios. De esta manera, aplicaciones de terceros podr&amp;#225;n acceder a los servicios de datos de Bloomberg, tanto a los p&amp;#250;blicos como a los privados (de pago). Esto permitir&amp;#225; a las aplicaciones de terceros poder usar los datos p&amp;#250;blicos directamente (para los servicios de pago s&amp;#237; se proporcionaban librer&amp;#237;as similares con anterioridad), sin necesidad de hacer ingenier&amp;#237;a inversa, y asegurando un correcto funcionamiento en el largo plazo, al estar definida la API de antemano. Fuente: Bloomberg. Repercusiones: Computerworld UK, Hacker News,</description>
+
+<dc:creator>faragon</dc:creator>
+<dc:date>2012-02-01T20:20:00+00:00</dc:date>
+<dc:subject>datamining</dc:subject>
+<slash:department>datos-para-robots</slash:department>
+<slash:section>mainpage</slash:section>
+<slash:hit_parade>0,0,0,0,0,0,0</slash:hit_parade>
+</item>
+
+<item rdf:about="http://americas.barrapunto.com/article.pl?sid=12/02/01/132228&amp;from=rss">
+<title>Anonymous vincula a Ron Paul con un partido racista</title>
+
+<link>http://americas.barrapunto.com/article.pl?sid=12/02/01/132228&amp;from=rss</link>
+<description>Como parte de la Operaci&amp;#243;n Blitzkrieg, dirigida a exponer a organizaciones neonazis, Anonymous ha reventado la web del partido American3rdPosition. Se trata de un partido nacionalista blanco. En la jugada han tomado, seg&amp;#250;n cuentan, una buena cantidad de datos, incluyendo direcciones, tel&amp;#233;fonos y mensajes de correo personales, que mostrar&amp;#237;an una cara interna del partido mucho m&amp;#225;s dura y encendida que la que muestran al exterior. Lo m&amp;#225;s impactante es que afirman haber encontrado la conexi&amp;#243;n de muchos de los miembros del partido con Ron Paul, presidente del Partido Liberal y aspirante a candidato del Partido Republicano.</description>
+<dc:creator>Mu</dc:creator>
+<dc:date>2012-02-01T15:16:00+00:00</dc:date>
+<dc:subject>crackers</dc:subject>
+
+<slash:department>american-history-x</slash:department>
+<slash:section>americas</slash:section>
+<slash:comments>25</slash:comments>
+<slash:hit_parade>25,25,10,7,1,0,0</slash:hit_parade>
+</item>
+
+<item rdf:about="http://barrapunto.com/article.pl?sid=12/02/01/0916209&amp;from=rss">
+<title>The Humble Bundle para Android</title>
+<link>http://barrapunto.com/article.pl?sid=12/02/01/0916209&amp;from=rss</link>
+<description>Leo en Muy Linux que sale una nueva edici&amp;#243;n de The Humble Bundle para Android. The Humble Bundle es una recopilaci&amp;#243;n de juegos de desarrolladores independientes con la particularidad de que el comprador es qui&amp;#233;n decide cu&amp;#225;nto quiere pagar por el pack y hasta c&amp;#243;mo se repartir&amp;#225; ese dinero entre la plataforma, los desarrolladores y asociaciones ben&amp;#233;ficas. Adem&amp;#225;s, todos los juegos son multiplataforma y libres de DRM (aunque no libres). El modelo no debe irles mal porque llevan ya bastantes ediciones. &amp;#191;Qu&amp;#233; os parece todo este sistema? &amp;#191;Hay negocio sostenible alrededor de esto? &amp;#191;Cu&amp;#225;nto pagar&amp;#237;as por el pack? &amp;#191;Has comprado alguna vez los juegos y puedes contar tu experiencia?</description>
+
+<dc:creator>Mu</dc:creator>
+<dc:date>2012-02-01T13:14:00+00:00</dc:date>
+<dc:subject>Android</dc:subject>
+<slash:department>la-volunt&amp;#225;</slash:department>
+<slash:section>mainpage</slash:section>
+<slash:comments>10</slash:comments>
+<slash:hit_parade>10,9,6,2,0,0,0</slash:hit_parade>
+</item>
+
+<item rdf:about="http://barrapunto.com/article.pl?sid=12/01/31/1953200&amp;from=rss">
+
+<title>El Constitucional alem&#225;n falla a favor de un sitio que enlaz&#243; software "anti-anticopia"</title>
+<link>http://barrapunto.com/article.pl?sid=12/01/31/1953200&amp;from=rss</link>
+<description>Leo en El Navegante, que el Tribunal Constitucional Alem&amp;#225;n ha absuelto a una revista que enlaz&amp;#243; software que permit&amp;#237;a copiar CDs y DVDs con protecciones anticopia. La industria musical y de entretenimiento hab&amp;#237;a demandado a Heise Online por fomentar la pirater&amp;#237;a. Los tribunales, no obstante, distinguen entre enlaces y contenido, y declaran que prohibir lo primero ir&amp;#237;a contra la libertad de expresi&amp;#243;n. La cuesti&amp;#243;n no ha sido por tanto si &amp;#233;se tipo de software es legal, sino si enlazarlo equivale a distribuirlo. El art&amp;#237;culo recuerda, no obstante, que en Espa&amp;#241;a la Ley Sinde s&amp;#237; equipara el enlazar con alojar.</description>
+
+<dc:creator>Mu</dc:creator>
+<dc:date>2012-02-01T11:12:00+00:00</dc:date>
+<dc:subject>tribunales</dc:subject>
+<slash:department>enlaces!=contenido</slash:department>
+<slash:section>mainpage</slash:section>
+<slash:comments>10</slash:comments>
+<slash:hit_parade>10,10,5,5,0,0,0</slash:hit_parade>
+</item>
+
+<item rdf:about="http://barrapunto.com/article.pl?sid=12/01/31/1758216&amp;from=rss">
+
+<title>Diferencias internas entre Git y Mercurial</title>
+<link>http://barrapunto.com/article.pl?sid=12/01/31/1758216&amp;from=rss</link>
+<description>Me he topado con La Verdadera Diferencia entre Git y Mercurial, un art&amp;#237;culo que repasa y compara la forma en la que Git y Mercurial, quiz&amp;#225;s los dos sistemas de versiones distribu&amp;#237;dos m&amp;#225;s populares, almacenan y transmiten las versiones de los archivos y c&amp;#243;mo se representan las ramas. El art&amp;#237;culo es largo y duro t&amp;#233;cnicamente (y adem&amp;#225;s en ingl&amp;#233;s) pero muy interesante e instructivo respecto al tema de formas de almacenamiento eficiente de datos.</description>
+<dc:creator>Mu</dc:creator>
+
+<dc:date>2012-02-01T09:10:10+00:00</dc:date>
+<dc:subject>Programaci&#243;n</dc:subject>
+<slash:department>y&#233;ndonos-por-las-ramas</slash:department>
+<slash:section>mainpage</slash:section>
+<slash:hit_parade>0,0,0,0,0,0,0</slash:hit_parade>
+</item>
+
+<item rdf:about="http://espana.barrapunto.com/article.pl?sid=12/01/31/1020237&amp;from=rss">
+<title>Tercer Hackaton de software libre de la UGR</title>
+
+<link>http://espana.barrapunto.com/article.pl?sid=12/01/31/1020237&amp;from=rss</link>
+<description>La Oficina de software libre de la Universidad de Granada organiza el pr&amp;#243;ximo marzo el Tercer Hackaton de Proyectos de Software Libre en la escuela de inform&amp;#225;tica y teleco de la misma universidad. El evento consiste en reunir en equipos a voluntarios para trabajar en proyectos del IV concurso (mayormente) universitario granadino de software libre (que reune a los equipos granadinos participantes en el 6 Concurso Universitario de Software Libre), con el objeto de darles impulso y aprender a trabajar en equipos de desarrollo. Est&amp;#225; dirigido a toda la comunidad universitaria, incluyendo traductores, estudiantes de Bellas Artes y de Documentaci&amp;#243;n. Si te interesa, recuerda que es imprescindible registrarse.</description>
+<dc:creator>Mu</dc:creator>
+<dc:date>2012-02-01T07:08:00+00:00</dc:date>
+<dc:subject>educacion</dc:subject>
+<slash:department>maratones,-hackatones-y-atracones</slash:department>
+
+<slash:section>es</slash:section>
+<slash:comments>1</slash:comments>
+<slash:hit_parade>1,1,1,1,0,0,0</slash:hit_parade>
+</item>
+
+<item rdf:about="http://ciberderechos.barrapunto.com/article.pl?sid=12/01/31/2337222&amp;from=rss">
+<title>Europa y los derechos 'civiles' digitales</title>
+<link>http://ciberderechos.barrapunto.com/article.pl?sid=12/01/31/2337222&amp;from=rss</link>
+<description>Recientemente, la organizaci&amp;#243;n de defensa de los derechos (civiles) "digitales" en Europa, European Digital Rights (EDRi) ha publicado un par de documentos muy interesantes. En EU surveillance podemos conocer la situaci&amp;#243;n de los mecanismos, normativas y &amp;#225;mbitos de actuaci&amp;#243;n de la vigilancia de los individuos as&amp;#237; como el control y seguimiento de datos que se est&amp;#225;n realizando en la Uni&amp;#243;n Europea. En Activist guide to the Brussels maze se nos presenta una magn&amp;#237;fica, y abreviada, gu&amp;#237;a para conocer, y actuar dentro de, el laberinto burocr&amp;#225;tico de las instituciones pol&amp;#237;ticas de la capital "administrativa" de Europa, esto es, Bruselas; con el objetivo de potenciar y facilitar el activismo y las iniciativas sociales.</description>
+
+<dc:creator>nettizen</dc:creator>
+<dc:date>2012-01-31T22:52:00+00:00</dc:date>
+<dc:subject>administraciones</dc:subject>
+<slash:department>la-informaci&amp;#243;n-es-poder</slash:department>
+<slash:section>ciberderechos</slash:section>
+<slash:comments>1</slash:comments>
+<slash:hit_parade>1,1,1,1,0,0,0</slash:hit_parade>
+</item>
+
+<item rdf:about="http://barrapunto.com/article.pl?sid=12/01/31/1250243&amp;from=rss">
+
+<title>Las Fuerzas A&#233;reas estadounidenses preparan un "radar social"</title>
+<link>http://barrapunto.com/article.pl?sid=12/01/31/1250243&amp;from=rss</link>
+<description>Un pobrecito hablador nos cuenta: &amp;#171;Leyendo en el Pa&amp;#237;s el art&amp;#237;culo "Que detengan a Keynes, es peligroso" he llegado a esto: Air Force's Top Brain Wants a 'Social Radar' to 'See Into Hearts and Minds', y con el poco ingl&amp;#233;s que s&amp;#233;, se me han puesto los pelos de punta. No me parece un problema cient&amp;#237;fico, dir&amp;#225;n que lo tienen y luego la polic&amp;#237;a del pensamiento vendr&amp;#225; por ti. Orwell era un adelantado.&amp;#187; El invento pretende cruzar informaci&amp;#243;n proveniente de medios de comunicaci&amp;#243;n y otras fuentes para prever conflictos y movimientos sociales (este gr&amp;#225;fico explica m&amp;#225;s que casi toda la noticia).</description>
+
+<dc:creator>Mu</dc:creator>
+<dc:date>2012-01-31T17:18:00+00:00</dc:date>
+<dc:subject>Protesta</dc:subject>
+<slash:department>grandes-hermanos</slash:department>
+<slash:section>mainpage</slash:section>
+<slash:comments>17</slash:comments>
+<slash:hit_parade>17,17,8,3,1,0,0</slash:hit_parade>
+</item>
+
+<item rdf:about="http://softlibre.barrapunto.com/article.pl?sid=12/01/30/2228238&amp;from=rss">
+
+<title>La FSF relanza su secci&#243;n de educaci&#243;n</title>
+<link>http://softlibre.barrapunto.com/article.pl?sid=12/01/30/2228238&amp;from=rss</link>
+<description>La Fundaci&amp;#243;n del Software Libre ha relanzado su secci&amp;#243;n de software libre en la educaci&amp;#243;n, que estar&amp;#225; a cargo de Dora Scilipoti, una profesora y activista italiana que tendr&amp;#225; entre otras misiones buscar y presentar casos de &amp;#233;xito, hablar con la comunidad educativa y mantenerse en contacto con otras organizaciones dedicadas a promover el software libre en la administraci&amp;#243;n. Pod&amp;#233;is leer el anuncio en el blog de la FSF.</description>
+
+<dc:creator>Mu</dc:creator>
+<dc:date>2012-01-31T15:16:00+00:00</dc:date>
+<dc:subject>educacion</dc:subject>
+<slash:department>2+2=4</slash:department>
+<slash:section>softlibre</slash:section>
+<slash:comments>9</slash:comments>
+<slash:hit_parade>9,7,1,1,0,0,0</slash:hit_parade>
+</item>
+
+<item rdf:about="http://barrapunto.com/article.pl?sid=12/01/30/216220&amp;from=rss">
+
+<title>Los mejores inicios de novela</title>
+<link>http://barrapunto.com/article.pl?sid=12/01/30/216220&amp;from=rss</link>
+<description>Un pobrecito hablador nos ha enviado una propuesta de los diez mejores inicios de novelas. &amp;#191;Os gusta la lista? &amp;#191;Qu&amp;#233; otros inicios de novelas memorables record&amp;#225;is?</description>
+<dc:creator>Mu</dc:creator>
+<dc:date>2012-01-31T13:14:00+00:00</dc:date>
+<dc:subject>libros</dc:subject>
+
+<slash:department>en-un-lugar-de-la-mancha</slash:department>
+<slash:section>mainpage</slash:section>
+<slash:comments>49</slash:comments>
+<slash:hit_parade>49,49,24,19,3,2,1</slash:hit_parade>
+</item>
+
+<textinput rdf:about="http://barrapunto.com/search.pl">
+<title>Search Barrapunto</title>
+<description>Search Barrapunto stories</description>
+<name>query</name>
+<link>http://barrapunto.com/search.pl</link>
+
+</textinput>
+
+</rdf:RDF>

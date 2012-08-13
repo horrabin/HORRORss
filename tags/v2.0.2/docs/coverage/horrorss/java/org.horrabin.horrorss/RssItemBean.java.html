@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>RssItemBean.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">TestParser (02-mar-2012 21:20:35)</a> &gt; <a href="../../index.html" class="el_group">horrorss</a> &gt; <a href="../index.html" class="el_bundle">java</a> &gt; <a href="index.html" class="el_package">org.horrabin.horrorss</a> &gt; <span class="el_source">RssItemBean.java</span></div><h1>RssItemBean.java</h1><pre class="source lang-java linenums">/**
+ * RssItemBean.java 
+ *
+ * HORRORss Package, Version 2.0
+ * Simple RSS parser
+ *
+ * March 3, 2012
+ *
+ * Copyright (C) 2012 Fernando Fornieles
+ * e-mail: nandofm@gmail.com
+ *
+ * This file is part of HORRORss
+ *
+ * HORRORss is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * HORRORss is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+ */
+
+package org.horrabin.horrorss;
+
+import java.util.Date;
+
+/**
+* The RssItemBean object maps the element &lt;i&gt;item&lt;/i&gt; of an RSS feed. 
+* @author Fernando Fornieles
+*/ 
+public class RssItemBean {
+  //For all specifications
+  private String title;
+  private String link;
+  private String description;  
+  private String author;
+  private Date pubDate;  
+
+  //Only for RSS 2.0
+  private String category;
+
+   /** 
+   * Create a new RssItemBean.
+   */   
+<span class="fc" id="L50">  public RssItemBean(){</span>
+<span class="fc" id="L51">     title = &quot;&quot;;</span>
+<span class="fc" id="L52">     link = &quot;&quot;;</span>
+<span class="fc" id="L53">     description = &quot;&quot;;</span>
+<span class="fc" id="L54">     author = &quot;&quot;;</span>
+<span class="fc" id="L55">     category = &quot;&quot;;</span>
+<span class="fc" id="L56">     pubDate = new Date();</span>
+<span class="fc" id="L57">  }</span>
+
+   /** 
+   * Create a new RssItemBean.
+   * @param title Title of the item
+   * @param link The link of the item
+   * @param description Description of the item
+   */   
+<span class="nc" id="L65">  public RssItemBean(String title, String link, String description){</span>
+<span class="nc" id="L66">     this.title = title;</span>
+<span class="nc" id="L67">     this.link = link;</span>
+<span class="nc" id="L68">     this.description = description;</span>
+<span class="nc" id="L69">     author = &quot;&quot;;</span>
+<span class="nc" id="L70">     category = &quot;&quot;;</span>
+<span class="nc" id="L71">     pubDate = new Date();</span>
+<span class="nc" id="L72">  }</span>
+
+  /**
+   * Sets the title of the item
+   * @param title Title of the item
+   */
+  public void setTitle(String title){
+<span class="fc" id="L79">	 this.title = title;</span>
+<span class="fc" id="L80">  }</span>
+
+  /**
+   * Sets the link of the item
+   * @param link Link of the item
+   */  
+  public void setLink(String link){
+<span class="fc" id="L87">	 this.link = link;</span>
+<span class="fc" id="L88">  }</span>
+
+  /**
+   * Sets the description of the item
+   * @param description Description of the item
+   */  
+  public void setDescription(String description){
+<span class="fc" id="L95">	 this.description = description;</span>
+<span class="fc" id="L96">  }</span>
+
+  /**
+   * Sets the author of the item
+   * @param author Author of the item
+   */    
+  public void setAuthor(String author){
+<span class="fc" id="L103">	  this.author = author;</span>
+<span class="fc" id="L104">  }</span>
+
+  /**
+   * Sets the publication date of the item
+   * @param pubDate Publication date of the item
+   */      
+  public void setPubDate(Date pubDate){  	 
+<span class="fc" id="L111">	  this.pubDate = pubDate;</span>
+<span class="fc" id="L112">  }</span>
+
+  /**
+   * Sets the category of the item
+   * @param category Category of the item
+   */      
+  public void setCategory(String category){
+<span class="nc" id="L119">	 this.category = category;</span>
+<span class="nc" id="L120">  }</span>
+
+  /**
+   * Returns the title of the item
+   * @return Title of the item
+   */      
+  public String getTitle(){
+<span class="fc" id="L127">	 return title;</span>
+  }
+
+  /**
+   * Returns the link of the item
+   * @return Link of the item
+   */        
+  public String getLink(){
+<span class="nc" id="L135">	 return link;</span>
+  }
+
+  /**
+   * Returns the description of the item
+   * @return Description of the item
+   */        
+  public String getDescription(){
+<span class="nc" id="L143">	 return description;</span>
+  }
+
+  /**
+   * Returns the author of the item
+   * @return Author of the item
+   */          
+  public String getAuthor(){
+<span class="nc" id="L151">  	 return this.author;</span>
+  }
+
+  /**
+   * Returns the publication date of the item
+   * @return Publication date of the item
+   */
+  public Date getPubDate(){
+<span class="fc" id="L159">  	 return this.pubDate;</span>
+  }
+
+  /**
+   * Returns the category of the item
+   * @return Category of the item
+   */            
+  public String getCategory(){
+<span class="nc" id="L167">	 return category;</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.5.6.201201232323</span>TestParser (02-mar-2012 21:20:35)</div></body></html>
