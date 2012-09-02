@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" media="screen" href="/~d/styles/rss2full.xsl"?><?xml-stylesheet type="text/css" media="screen" href="http://feeds.feedburner.com/~d/styles/itemcontent.css"?><rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0" version="2.0">
+
+<channel>
+	<title>JRMora, humor gráfico</title>
+	
+	<link>http://www.jrmora.com/blog</link>
+	<description>Viñetas y noticias de humor gráfico</description>
+	<lastBuildDate>Thu, 02 Feb 2012 14:29:19 +0000</lastBuildDate>
+	<language>es</language>
+
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.2.1</generator>
+	<copyright>2006-2007 </copyright>
+	<managingEditor>jrmora@gmail.com (JRMora, humor gráfico)</managingEditor>
+	<webMaster>jrmora@gmail.com (JRMora, humor gráfico)</webMaster>
+
+	<ttl>1440</ttl>
+	<image><link>http://www.humorgraficojr.com/blog</link><url>http://www.jrmora.com/jr_bocata.jpg</url><title>JRMora Humor gráfico</title></image>
+	<itunes:subtitle />
+	<itunes:summary>Viñetas y noticias de humor gráfico</itunes:summary>
+	<itunes:keywords />
+	<itunes:category text="Society &amp; Culture" />
+
+	<itunes:author>JRMora, humor gráfico</itunes:author>
+	<itunes:owner>
+		<itunes:name>JRMora, humor gráfico</itunes:name>
+		<itunes:email>jrmora@gmail.com</itunes:email>
+	</itunes:owner>
+	<itunes:block>no</itunes:block>
+	<itunes:explicit>no</itunes:explicit>
+
+	<itunes:image href="http://www.jrmora.com/blog/wp-content/plugins/podpress/images/powered_by_podpress_large.jpg" />
+		<atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="http://feeds.feedburner.com/JrmoraHumorGrfico" /><feedburner:info uri="jrmorahumorgrfico" /><atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://pubsubhubbub.appspot.com/" /><atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://superfeedr.com/hubbub" /><geo:lat>34.007854</geo:lat><geo:long>-80.067505</geo:long><feedburner:emailServiceId>JrmoraHumorGrfico</feedburner:emailServiceId><feedburner:feedburnerHostname>http://feedburner.google.com</feedburner:feedburnerHostname><item>
+		<title>Activismo de clic</title>
+		<link>http://feedproxy.google.com/~r/JrmoraHumorGrfico/~3/Pli-DVXsCmY/</link>
+		<comments>http://www.jrmora.com/blog/2012/02/02/activismo-de-clic/#comments</comments>
+
+		<pubDate>Thu, 02 Feb 2012 14:12:51 +0000</pubDate>
+		<dc:creator>JRMora</dc:creator>
+				<category><![CDATA[Viñetas]]></category>
+		<category><![CDATA[activismo]]></category>
+		<category><![CDATA[actuable]]></category>
+		<category><![CDATA[consumismo]]></category>
+		<category><![CDATA[contradicciones]]></category>
+		<category><![CDATA[Internet]]></category>
+
+		<category><![CDATA[Iphone]]></category>
+		<category><![CDATA[opinión]]></category>
+
+		<guid isPermaLink="false">http://www.jrmora.com/blog/?p=17474</guid>
+		<description><![CDATA[Ayer leía una &#8220;noticia&#8221; que, por absurda y paradójica, primero me hizo soltar una sonrisa sarcástica, luego un tuiteo,  después una nota en un papel y ahora un garabato. Gritos de solidaridad contradictoria que reclaman poder seguir comprando sus teléfonos de 700 euros, pero construidos con ética. Miles de personas pidiendo iPhones &#8220;éticos&#8221;, ridículos del [...]]]></description>
+			<content:encoded><![CDATA[<p><img class="size-full wp-image-17475 aligncenter" title="020212-activismo" src="http://www.jrmora.com/blog/wp-content/uploads/2012/02/020212-activismo.jpg" alt="" width="567" height="424" /></p>
+<p>Ayer leía <strong><a href="http://tecnologia.elpais.com/tecnologia/2012/02/01/actualidad/1328090244_226847.html">una &#8220;noticia&#8221; </a></strong>que, por absurda y paradójica, primero me hizo soltar una sonrisa sarcástica, <a href="https://twitter.com/#!/JRMora/status/164741311910522880">luego un tuiteo</a>,  después una nota en un papel y ahora un garabato.</p>
+<p>Gritos de solidaridad contradictoria que reclaman poder seguir comprando sus teléfonos de 700 euros, pero construidos con ética.</p>
+<p>Miles de personas pidiendo iPhones &#8220;éticos&#8221;, ridículos del activismo consumista.</p>
+<p style="text-align: center;"><a href="http://www.jrmora.com/blog/1965/01/26/seleccion-de-post-mas-leidos"><img class="size-full wp-image-11990 aligncenter" title="masleidos" src="http://www.jrmora.com/blog/wp-content/uploads/2010/03/masleidos.jpg" alt="" /></a></p>
+<div class="feedflare">
+<a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=Pli-DVXsCmY:EzSEc1KX50Y:F7zBnMyn0Lo"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=Pli-DVXsCmY:EzSEc1KX50Y:F7zBnMyn0Lo" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=Pli-DVXsCmY:EzSEc1KX50Y:V_sGLiPBpWU"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=Pli-DVXsCmY:EzSEc1KX50Y:V_sGLiPBpWU" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=Pli-DVXsCmY:EzSEc1KX50Y:qj6IDK7rITs"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?d=qj6IDK7rITs" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=Pli-DVXsCmY:EzSEc1KX50Y:yIl2AUoC8zA"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?d=yIl2AUoC8zA" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=Pli-DVXsCmY:EzSEc1KX50Y:D7DqB2pKExk"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=Pli-DVXsCmY:EzSEc1KX50Y:D7DqB2pKExk" border="0"></img></a>
+</div><img src="http://feeds.feedburner.com/~r/JrmoraHumorGrfico/~4/Pli-DVXsCmY" height="1" width="1"/>]]></content:encoded>
+			<wfw:commentRss>http://www.jrmora.com/blog/2012/02/02/activismo-de-clic/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+
+		<feedburner:origLink>http://www.jrmora.com/blog/2012/02/02/activismo-de-clic/</feedburner:origLink></item>
+		<item>
+		<title>Logo Madrid 2020</title>
+		<link>http://feedproxy.google.com/~r/JrmoraHumorGrfico/~3/pY7wOARlDt8/</link>
+		<comments>http://www.jrmora.com/blog/2012/01/30/logo-madrid-2020/#comments</comments>
+		<pubDate>Mon, 30 Jan 2012 14:26:46 +0000</pubDate>
+
+		<dc:creator>JRMora</dc:creator>
+				<category><![CDATA[Viñetas]]></category>
+		<category><![CDATA[cachondeo]]></category>
+		<category><![CDATA[creatividad]]></category>
+		<category><![CDATA[Diseño]]></category>
+		<category><![CDATA[Ideas]]></category>
+		<category><![CDATA[logo]]></category>
+		<category><![CDATA[Madrid]]></category>
+
+		<category><![CDATA[madrid 2020]]></category>
+
+		<guid isPermaLink="false">http://www.jrmora.com/blog/?p=17466</guid>
+		<description><![CDATA[Viñeta según guión original de Javier Lezaola. Para los que llegan tarde al barullo.]]></description>
+			<content:encoded><![CDATA[<p><img class="size-full wp-image-17468 aligncenter" title="300112-madrid2010" src="http://www.jrmora.com/blog/wp-content/uploads/2012/01/300112-madrid2010.jpg" alt="" width="567" height="412" /></p>
+<p><img class="alignnone size-full wp-image-4405" title="narices" src="http://www.jrmora.com/blog/wp-content/uploads/2008/11/narices.jpg" alt="" width="30" height="30" />Viñeta <a href="https://twitter.com/#!/JavierLezaola/status/163977442904649729">según guión original de <strong>Javier Lezaola</strong></a>.</p>
+<p>Para los que llegan tarde al <a href="http://www.elmundo.es/elmundo/2012/01/30/madrid/1327929130.html">barullo.</a></p>
+<div class="feedflare">
+<a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=pY7wOARlDt8:CYS0tJ7RFoo:F7zBnMyn0Lo"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=pY7wOARlDt8:CYS0tJ7RFoo:F7zBnMyn0Lo" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=pY7wOARlDt8:CYS0tJ7RFoo:V_sGLiPBpWU"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=pY7wOARlDt8:CYS0tJ7RFoo:V_sGLiPBpWU" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=pY7wOARlDt8:CYS0tJ7RFoo:qj6IDK7rITs"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?d=qj6IDK7rITs" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=pY7wOARlDt8:CYS0tJ7RFoo:yIl2AUoC8zA"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?d=yIl2AUoC8zA" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=pY7wOARlDt8:CYS0tJ7RFoo:D7DqB2pKExk"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=pY7wOARlDt8:CYS0tJ7RFoo:D7DqB2pKExk" border="0"></img></a>
+</div><img src="http://feeds.feedburner.com/~r/JrmoraHumorGrfico/~4/pY7wOARlDt8" height="1" width="1"/>]]></content:encoded>
+			<wfw:commentRss>http://www.jrmora.com/blog/2012/01/30/logo-madrid-2020/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		<feedburner:origLink>http://www.jrmora.com/blog/2012/01/30/logo-madrid-2020/</feedburner:origLink></item>
+
+		<item>
+		<title>Noticias que vuelan</title>
+		<link>http://feedproxy.google.com/~r/JrmoraHumorGrfico/~3/vFHHrN6Wkt4/</link>
+		<comments>http://www.jrmora.com/blog/2012/01/30/noticias-que-vuelan/#comments</comments>
+		<pubDate>Sun, 29 Jan 2012 22:35:19 +0000</pubDate>
+		<dc:creator>JRMora</dc:creator>
+
+				<category><![CDATA[Viñetas]]></category>
+		<category><![CDATA[air comet]]></category>
+		<category><![CDATA[air madrid]]></category>
+		<category><![CDATA[Dinero]]></category>
+		<category><![CDATA[Spanair]]></category>
+		<category><![CDATA[Trabajo]]></category>
+
+		<guid isPermaLink="false">http://www.jrmora.com/blog/?p=17458</guid>
+		<description><![CDATA[Viñeta de ayer en Euribor Tras el anuncio de Spanair de que dejaba de volar empecé a escuchar noticias relacionadas que venían desde distintos medios hasta que me quedé con el bucle chicharra de TVE24 horas. En todas las noticias, sobretodo de televisión, se invertían, más titulares,  más minutos y esfuerzo en recalcar el problemón [...]]]></description>
+
+			<content:encoded><![CDATA[<p><center><img class="size-full wp-image-17459 aligncenter" title="280112-spanair-euribor-jrmora" src="http://www.jrmora.com/blog/wp-content/uploads/2012/01/280112-spanair-euribor-jrmora.jpg" alt="" width="501" height="359" /></center></p>
+<p style="text-align: center;">Viñeta de <a href="http://www.euribor.com.es/2012/01/28/la-vineta-de-la-semana-129/">ayer en Euribor</a></p>
+<p>Tras el anuncio de Spanair de que dejaba de volar empecé a escuchar noticias relacionadas que venían desde distintos medios hasta que me quedé con el bucle chicharra de TVE24 horas.</p>
+<p>En todas las noticias, sobretodo de televisión, se invertían, más titulares,  más minutos y esfuerzo en recalcar el problemón que tenían los pasajeros a los que habían  cancelado su vuelo. Aún siendo por diferente causa recordaba mucho a la última huelga de controladores.</p>
+<p>Incluso escuché a politicoides hablar de lo perros que son los empresarios por dejar en tierra a sus clientes, sobre las subvenciones que recibieron, pero poco sobre la jodida situación a la que se deben enfrentar ahora los trabajadores de la empresa.</p>
+<p>Incluso se anuncia una multa millonaria a la empresa, pero ningún plan para los que verdaderamente pierden más en esta historia.</p>
+<p>Puede que cualquier periodista, de esos para las que las cifras son las que mandan, defienda que informativamente hablando  más de 20.000 personas sufran una incidencia en sus desplazamientos sea lo más importante, pero tengo claro que no es así.</p>
+<p>Esos muchos miles de personas paralizadas por el cierre de Spanair a estas horas ya habrán solucionado su problema de movilidad y poco a poco recuperarán  todo o parte del dinero de sus billetes y con suerte recibirán alguna indemnización.</p>
+<p>Pero hagan cuentas, el problema de los casi 4000 empleados de la empresa se prolongará en el tiempo y dejará cifras más chungas, para empezar añadirá un empujón a la cifra total de parados, a partir de ahí hagan cálculos sobre lo que perderán a largo plazo.</p>
+<p>Pero es más fácil <em>meterle la papa</em> a un montón de viajeros en caliente y juntar unos totales que pintan una emergencia escandalosa para enterrar la verdadera desgracia de la que muy pronto nadie recordará más que aquello que les hicieron ver.</p>
+<p>¿Acaso alguien está preocupado por lo que fue de los currantes de esas otras compañías que cerraron?. ¡Bah!, Eso ya no se lleva, no son nuestro problema.</p>
+<p><center><img class="aligncenter" src="http://www.jrmora.com/blog/wp-content/uploads/2009/12/231209-aircomet.jpg" alt="" width="500" height="757" /></center></p>
+<p style="text-align: center;">Air Comet 2009</p>
+<p><center><img class="size-full wp-image-17460 aligncenter" title="181206-airmadrid" src="http://www.jrmora.com/blog/wp-content/uploads/2012/01/181206-airmadrid.jpg" alt="" width="500" height="336" /></center></p>
+<p style="text-align: center;">Air Madrid 2006</p>
+<div class="feedflare">
+<a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=vFHHrN6Wkt4:hUNqIe_7QC0:F7zBnMyn0Lo"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=vFHHrN6Wkt4:hUNqIe_7QC0:F7zBnMyn0Lo" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=vFHHrN6Wkt4:hUNqIe_7QC0:V_sGLiPBpWU"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=vFHHrN6Wkt4:hUNqIe_7QC0:V_sGLiPBpWU" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=vFHHrN6Wkt4:hUNqIe_7QC0:qj6IDK7rITs"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?d=qj6IDK7rITs" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=vFHHrN6Wkt4:hUNqIe_7QC0:yIl2AUoC8zA"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?d=yIl2AUoC8zA" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=vFHHrN6Wkt4:hUNqIe_7QC0:D7DqB2pKExk"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=vFHHrN6Wkt4:hUNqIe_7QC0:D7DqB2pKExk" border="0"></img></a>
+</div><img src="http://feeds.feedburner.com/~r/JrmoraHumorGrfico/~4/vFHHrN6Wkt4" height="1" width="1"/>]]></content:encoded>
+			<wfw:commentRss>http://www.jrmora.com/blog/2012/01/30/noticias-que-vuelan/feed/</wfw:commentRss>
+		<slash:comments>4</slash:comments>
+		<feedburner:origLink>http://www.jrmora.com/blog/2012/01/30/noticias-que-vuelan/</feedburner:origLink></item>
+		<item>
+		<title>Permanencia</title>
+		<link>http://feedproxy.google.com/~r/JrmoraHumorGrfico/~3/rlS7GN1a6aw/</link>
+
+		<comments>http://www.jrmora.com/blog/2012/01/29/permanencia/#comments</comments>
+		<pubDate>Sun, 29 Jan 2012 14:11:36 +0000</pubDate>
+		<dc:creator>JRMora</dc:creator>
+				<category><![CDATA[Viñetas]]></category>
+		<category><![CDATA[Consumo]]></category>
+		<category><![CDATA[contratos]]></category>
+		<category><![CDATA[derechos]]></category>
+
+		<category><![CDATA[permanencia]]></category>
+		<category><![CDATA[telefonía móvil]]></category>
+		<category><![CDATA[Vodafone]]></category>
+
+		<guid isPermaLink="false">http://www.jrmora.com/blog/?p=17454</guid>
+		<description><![CDATA[A partir del 1 de febrero puede acudir a su oficina más cercana para entregarse voluntariamente.]]></description>
+			<content:encoded><![CDATA[<p><img class="size-full wp-image-17455 aligncenter" title="290112-vodafone" src="http://www.jrmora.com/blog/wp-content/uploads/2012/01/290112-vodafone.jpg" alt="" width="567" height="433" /></p>
+<p><a href="http://operadoras-moviles.com/noticias-telefonia/vodafone-aplicara-desde-el-1-de-febrero-hasta-36-meses-de-permanencia/">A partir del 1 de febrero</a> puede acudir a su oficina más cercana para entregarse voluntariamente.</p>
+<div class="feedflare">
+<a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=rlS7GN1a6aw:tNtVuqsBUn8:F7zBnMyn0Lo"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=rlS7GN1a6aw:tNtVuqsBUn8:F7zBnMyn0Lo" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=rlS7GN1a6aw:tNtVuqsBUn8:V_sGLiPBpWU"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=rlS7GN1a6aw:tNtVuqsBUn8:V_sGLiPBpWU" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=rlS7GN1a6aw:tNtVuqsBUn8:qj6IDK7rITs"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?d=qj6IDK7rITs" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=rlS7GN1a6aw:tNtVuqsBUn8:yIl2AUoC8zA"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?d=yIl2AUoC8zA" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=rlS7GN1a6aw:tNtVuqsBUn8:D7DqB2pKExk"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=rlS7GN1a6aw:tNtVuqsBUn8:D7DqB2pKExk" border="0"></img></a>
+</div><img src="http://feeds.feedburner.com/~r/JrmoraHumorGrfico/~4/rlS7GN1a6aw" height="1" width="1"/>]]></content:encoded>
+			<wfw:commentRss>http://www.jrmora.com/blog/2012/01/29/permanencia/feed/</wfw:commentRss>
+
+		<slash:comments>6</slash:comments>
+		<feedburner:origLink>http://www.jrmora.com/blog/2012/01/29/permanencia/</feedburner:origLink></item>
+		<item>
+		<title>Tebeosfera</title>
+		<link>http://feedproxy.google.com/~r/JrmoraHumorGrfico/~3/JxroLRmc_Ds/</link>
+		<comments>http://www.jrmora.com/blog/2012/01/25/tebeosfera/#comments</comments>
+
+		<pubDate>Wed, 25 Jan 2012 12:23:36 +0000</pubDate>
+		<dc:creator>JRMora</dc:creator>
+				<category><![CDATA[Viñetas]]></category>
+		<category><![CDATA[Cómic]]></category>
+		<category><![CDATA[conocimiento]]></category>
+		<category><![CDATA[divulgación]]></category>
+		<category><![CDATA[Historia]]></category>
+		<category><![CDATA[Humor Gráfico]]></category>
+
+		<category><![CDATA[tebeo]]></category>
+		<category><![CDATA[tebeosfera]]></category>
+
+		<guid isPermaLink="false">http://www.jrmora.com/blog/?p=17444</guid>
+		<description><![CDATA[Acabo de hacerme socio de la Asociación Tebeosfera ya que, por fin, este año he podido poner un pie fuera del umbral de la pobreza  y me siento casi obligado a dejar unos céntimos en iniciativas que trabajan en la difusión de la cultura y el conocimiento. Basta repasar el esfuerzo que lleva haciendo Manuel Barrero [...]]]></description>
+			<content:encoded><![CDATA[<p><center><img class="size-full wp-image-17445 aligncenter" title="socio-tebeosfera" src="http://www.jrmora.com/blog/wp-content/uploads/2012/01/socio-tebeosfera.jpg" alt="" width="450" height="423" /></center>Acabo de hacerme socio de la <a href="http://asociacionculturaltebeosfera.blogspot.com/2011/02/ser-socio-de-tebeosfera-membership.html">Asociación Tebeosfera</a> ya que, por fin, este año he podido poner un pie fuera del umbral de la pobreza  y me siento casi obligado a dejar unos céntimos en iniciativas que trabajan en la difusión de la cultura y el conocimiento.</p>
+<p>Basta repasar el esfuerzo que lleva haciendo <a href="http://www.tebeosfera.com/autores/manuel_barrero.html">Manuel Barrero</a> y sus secuaces desde hace años para sorprenderse de que no haya recibido aún el reconociento que merece por su labor de rescate y divulgación de la historia de la viñeta como proyecto en internet.</p>
+<p>Creo que se trata  de uno de los mejores trabajos de estudio y divulgación, sin ánimo de lucro,  hecho en España.</p>
+<p>Y todo está ahí para ser consultado y usado por cualquiera.</p>
+<p>Tebeosfera es una gigantesca enciclopedia de la historieta y el humor gráfico, una gran base de datos con entrevistas, textos teóricos, análisis, referencias bibliográficas, reseñas de publicaciones históricas y contemporáneas, biografías, fichas de autores, etc.</p>
+<p><strong><img class="alignnone size-full wp-image-4405" title="narices" src="http://www.jrmora.com/blog/wp-content/uploads/2008/11/narices.jpg" alt="" width="30" height="30" /><a href="http://www.tebeosfera.com/portada.php">Revista Tebeosfera</a></strong></p>
+<p><strong><a href="http://www.tebeosfera.com/catalogos/"><img title="narices" src="http://www.jrmora.com/blog/wp-content/uploads/2008/11/narices.jpg" alt="" width="30" height="30" />Catálogo de la historieta</a></strong></p>
+<p><strong><a href="http://tebeosfera.blogspot.com/"><img title="narices" src="http://www.jrmora.com/blog/wp-content/uploads/2008/11/narices.jpg" alt="" width="30" height="30" />Blog Tebeosfera</a></strong></p>
+<p><strong><a href="http://asociacionculturaltebeosfera.blogspot.com/2011/02/ser-socio-de-tebeosfera-membership.html"><img title="narices" src="http://www.jrmora.com/blog/wp-content/uploads/2008/11/narices.jpg" alt="" width="30" height="30" />Asociarse</a></strong></p>
+<p><strong><strong><a href="http://asociacionculturaltebeosfera.blogspot.com/2011/02/ser-socio-de-tebeosfera-membership.html"><img title="narices" src="http://www.jrmora.com/blog/wp-content/uploads/2008/11/narices.jpg" alt="" width="30" height="30" /></a></strong> <a href="http://www.tebeosfera.com/anexos/calendario_tebeosfera_2012.pdf">Descargar calendario Tebeosfera 2012 (PDF)</a></strong></p>
+<p><strong><strong><a href="http://asociacionculturaltebeosfera.blogspot.com/2011/02/ser-socio-de-tebeosfera-membership.html"><img title="narices" src="http://www.jrmora.com/blog/wp-content/uploads/2008/11/narices.jpg" alt="" width="30" height="30" /></a></strong> <a href="http://asociacionculturaltebeosfera.blogspot.com/2012/01/concurso-calendario-tebeosfera-2012.html">Concursito para conseguir un ejemplar en papel (hasta el 31 de enero)</a></strong></p>
+<div class="feedflare">
+<a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=JxroLRmc_Ds:Q2Gha3F0X6A:F7zBnMyn0Lo"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=JxroLRmc_Ds:Q2Gha3F0X6A:F7zBnMyn0Lo" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=JxroLRmc_Ds:Q2Gha3F0X6A:V_sGLiPBpWU"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=JxroLRmc_Ds:Q2Gha3F0X6A:V_sGLiPBpWU" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=JxroLRmc_Ds:Q2Gha3F0X6A:qj6IDK7rITs"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?d=qj6IDK7rITs" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=JxroLRmc_Ds:Q2Gha3F0X6A:yIl2AUoC8zA"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?d=yIl2AUoC8zA" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=JxroLRmc_Ds:Q2Gha3F0X6A:D7DqB2pKExk"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=JxroLRmc_Ds:Q2Gha3F0X6A:D7DqB2pKExk" border="0"></img></a>
+</div><img src="http://feeds.feedburner.com/~r/JrmoraHumorGrfico/~4/JxroLRmc_Ds" height="1" width="1"/>]]></content:encoded>
+			<wfw:commentRss>http://www.jrmora.com/blog/2012/01/25/tebeosfera/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+
+		<feedburner:origLink>http://www.jrmora.com/blog/2012/01/25/tebeosfera/</feedburner:origLink></item>
+		<item>
+		<title>Cuando el banco habla</title>
+		<link>http://feedproxy.google.com/~r/JrmoraHumorGrfico/~3/V3TH1X1BP0U/</link>
+		<comments>http://www.jrmora.com/blog/2012/01/23/cuando-el-banco-habla/#comments</comments>
+		<pubDate>Mon, 23 Jan 2012 20:28:40 +0000</pubDate>
+
+		<dc:creator>JRMora</dc:creator>
+				<category><![CDATA[Viñetas]]></category>
+		<category><![CDATA[banco]]></category>
+		<category><![CDATA[Crisis]]></category>
+		<category><![CDATA[Dinero]]></category>
+		<category><![CDATA[Economía]]></category>
+		<category><![CDATA[españa]]></category>
+		<category><![CDATA[Recesión]]></category>
+
+		<guid isPermaLink="false">http://www.jrmora.com/blog/?p=17440</guid>
+		<description />
+			<content:encoded><![CDATA[<p><img class="size-full wp-image-17441 aligncenter" title="230112-recesion" src="http://www.jrmora.com/blog/wp-content/uploads/2012/01/230112-recesion.jpg" alt="" width="567" height="430" /></p>
+<div class="feedflare">
+<a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=V3TH1X1BP0U:VRPQRcjWGhQ:F7zBnMyn0Lo"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=V3TH1X1BP0U:VRPQRcjWGhQ:F7zBnMyn0Lo" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=V3TH1X1BP0U:VRPQRcjWGhQ:V_sGLiPBpWU"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=V3TH1X1BP0U:VRPQRcjWGhQ:V_sGLiPBpWU" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=V3TH1X1BP0U:VRPQRcjWGhQ:qj6IDK7rITs"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?d=qj6IDK7rITs" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=V3TH1X1BP0U:VRPQRcjWGhQ:yIl2AUoC8zA"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?d=yIl2AUoC8zA" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=V3TH1X1BP0U:VRPQRcjWGhQ:D7DqB2pKExk"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=V3TH1X1BP0U:VRPQRcjWGhQ:D7DqB2pKExk" border="0"></img></a>
+</div><img src="http://feeds.feedburner.com/~r/JrmoraHumorGrfico/~4/V3TH1X1BP0U" height="1" width="1"/>]]></content:encoded>
+			<wfw:commentRss>http://www.jrmora.com/blog/2012/01/23/cuando-el-banco-habla/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		<feedburner:origLink>http://www.jrmora.com/blog/2012/01/23/cuando-el-banco-habla/</feedburner:origLink></item>
+
+		<item>
+		<title>Estudio</title>
+		<link>http://feedproxy.google.com/~r/JrmoraHumorGrfico/~3/b4cvfO4QeeY/</link>
+		<comments>http://www.jrmora.com/blog/2012/01/23/estudio/#comments</comments>
+		<pubDate>Mon, 23 Jan 2012 18:05:13 +0000</pubDate>
+		<dc:creator>JRMora</dc:creator>
+
+				<category><![CDATA[Viñetas]]></category>
+		<category><![CDATA[cerebros]]></category>
+		<category><![CDATA[opinión]]></category>
+		<category><![CDATA[pensamiento]]></category>
+		<category><![CDATA[precinto]]></category>
+		<category><![CDATA[razón]]></category>
+		<category><![CDATA[totalitarismos]]></category>
+
+		<guid isPermaLink="false">http://www.jrmora.com/blog/?p=17436</guid>
+
+		<description />
+			<content:encoded><![CDATA[<p><img class="size-full wp-image-17437 aligncenter" title="230112-precinto" src="http://www.jrmora.com/blog/wp-content/uploads/2012/01/230112-precinto.jpg" alt="" width="567" height="419" /></p>
+<div class="feedflare">
+<a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=b4cvfO4QeeY:SKtgkvwN1sE:F7zBnMyn0Lo"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=b4cvfO4QeeY:SKtgkvwN1sE:F7zBnMyn0Lo" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=b4cvfO4QeeY:SKtgkvwN1sE:V_sGLiPBpWU"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=b4cvfO4QeeY:SKtgkvwN1sE:V_sGLiPBpWU" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=b4cvfO4QeeY:SKtgkvwN1sE:qj6IDK7rITs"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?d=qj6IDK7rITs" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=b4cvfO4QeeY:SKtgkvwN1sE:yIl2AUoC8zA"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?d=yIl2AUoC8zA" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=b4cvfO4QeeY:SKtgkvwN1sE:D7DqB2pKExk"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=b4cvfO4QeeY:SKtgkvwN1sE:D7DqB2pKExk" border="0"></img></a>
+</div><img src="http://feeds.feedburner.com/~r/JrmoraHumorGrfico/~4/b4cvfO4QeeY" height="1" width="1"/>]]></content:encoded>
+			<wfw:commentRss>http://www.jrmora.com/blog/2012/01/23/estudio/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		<feedburner:origLink>http://www.jrmora.com/blog/2012/01/23/estudio/</feedburner:origLink></item>
+		<item>
+		<title>Gustavo Sala, una tira al paredón</title>
+
+		<link>http://feedproxy.google.com/~r/JrmoraHumorGrfico/~3/NemoNFMeoUg/</link>
+		<comments>http://www.jrmora.com/blog/2012/01/22/gustavo-sala-una-tira-al-paredon/#comments</comments>
+		<pubDate>Sun, 22 Jan 2012 07:53:29 +0000</pubDate>
+		<dc:creator>JRMora</dc:creator>
+				<category><![CDATA[Viñetas]]></category>
+		<category><![CDATA[argentina]]></category>
+		<category><![CDATA[david gueta]]></category>
+
+		<category><![CDATA[gustavo]]></category>
+		<category><![CDATA[gustavo sala]]></category>
+		<category><![CDATA[humor negro]]></category>
+		<category><![CDATA[judíos]]></category>
+		<category><![CDATA[pagina 12]]></category>
+		<category><![CDATA[sala]]></category>
+		<category><![CDATA[Viñeta]]></category>
+
+		<guid isPermaLink="false">http://www.jrmora.com/blog/?p=17421</guid>
+
+		<description><![CDATA[La tira de la bronca. Clic para ampliar. Versión con texto añadido Esta es otra de esas historias que se repiten cada cierto tiempo sobre las que he escrito aquí en más de una ocasión. Desde ayer ando siguiendo las reacciones a esta viñeta que han desembocado en el habitual alzamiento de antorchas y cruce [...]]]></description>
+			<content:encoded><![CDATA[<p><a href="http://www.jrmora.com/blog/wp-content/uploads/2012/01/david-gueto.jpg"><img class="size-full wp-image-17422 aligncenter" title="david-gueto" src="http://www.jrmora.com/blog/wp-content/uploads/2012/01/david-gueto.jpg" alt="" width="567" height="199" /></a></p>
+<p style="text-align: center;">La tira de la bronca. Clic para ampliar. <a href="http://www.jrmora.com/blog/wp-content/uploads/2012/01/david-gueto-texto.jpg">Versión con texto añadido</a></p>
+<p>Esta es otra de esas historias que se repiten cada cierto tiempo sobre las que he escrito aquí en más de una ocasión.</p>
+<p>Desde ayer ando siguiendo las reacciones a esta viñeta que han desembocado en el habitual alzamiento de antorchas y <a href="http://www.wiesenthal.com/site/apps/nlnet/content2.aspx?c=lsKWLbPJLnF&amp;b=4441467&amp;ct=11596589">cruce de comunicados</a> de <a href="http://www.infobae.com/notas/627842-Unanime-rechazo-de-la-colectividad-judia-a-una-historieta-del-Holocausto.html">distintos</a>  <a href="http://inadi.gob.ar/2012/01/tira-humoristica-que-agravia-a-la-comunidad-judia/">colectivos</a>.</p>
+<p><a href="http://angosto.blogspot.com/">Su autor es  Gustavo Sala</a>  nacido en abril de 1973 en Mar del Plata (Argentina). Ha publicado sus tiras en las publicaciones &#8220;La Mano&#8221;, &#8220;Barcelona&#8221;, &#8221;Genios&#8221;, &#8220;Comiqueando&#8221; y en la revista/fanzine española <a href="http://www.tebeosfera.com/1/Obra/Revista/Mono/Grafico.htm">Monográfico</a>, entre otras.</p>
+<p>Ahora trabaja para <a href="http://www.pagina12.com.ar">Página/ 12</a>, en su <a href="http://www.pagina12.com.ar/diario/suplementos/no/index.html">suplemento &#8220;NO</a>&#8221; con la tira protagonizada por su personaje Bife Angosto, allí se publicó esta viñeta el día 19 de enero  <a href="http://www.pagina12.com.ar/diario/suplementos/no/34-5779-2012-01-19.html">que ahora aparece retirada</a>.</p>
+<p>Muchos medios argentinos e internacionales destacan esta polémica abriendo con esos titulares tan manidos de &#8220;Arde Twitter&#8221;, se habla sobre antisemitismo, opiniones a favor, insultos, peticiones de ahorcamiento al garabatero y también algunas defensas más o menos argumentadas.</p>
+<p>Puede leerlas, si tiene paciencia, aquí bajo <a href="https://twitter.com/#!/search/realtime/gustavosalas">#gustavosalas</a> ,  aquí <a href="https://twitter.com/#!/search/realtime/%23davidgueto">#davidgueto</a> , y otros hilos relacionados que encontrará.</p>
+<p>Todo este jaleo ha obligado a su autor a ofrecer <a href="http://www.elintransigente.com/notas/2012/1/20/hablo-gustavo-sala-autor-chiste-sobre-holocausto-120078.asp">una explicación a modo de disculpa.</a> Y también al diario que, con un <a href="http://www.pagina12.com.ar/diario/sociedad/3-185928-2012-01-21.html">escueto comunicado</a>, se disculpa y además <a href="http://www.pagina12.com.ar/diario/sociedad/3-185927-2012-01-21.html">matiza</a> su posición.</p>
+<h2>La historia interminable</h2>
+<p>No es la única viñeta o tira de humor negro que aparece con esta temática, tampoco será la última, los más viejos del lugar podrían citar ya cientos de casos.</p>
+<p>Como suele pasar, el pico de indignación ya subió a su punto más alto y todo lo que queda es la bajada natural hasta desaparecer para camuflarse en el olvido.</p>
+<p>Solo unos pocos dibujantes y lectores habituales la recordarán como anécdota para citar, esto vuelve a demostrar que el humor grueso, bruto para algunos, parece tener terrenos prohibidos por convenio.</p>
+<p>Muchos &#8220;nuevos&#8221; lectores o acostumbrados al humor blanco, buenista, tontuno, para la risa casi infantil se han encontrado con algo muy practicado desde hace décadas en las alcantarillas del fanzine, incluso mucho más extremo también en internet sin ninguna repercusión mediática.</p>
+<p>La diferencia en la reacción solo la marca que la viñeta de la polémica ha sido publicada en un medio.</p>
+<p>A estas alturas, agota tener que volver a explicar que el humor de este pelaje es así, que se explotan recursos que mezclan la realidad-ficción, la provocación y la parodia cruda , la historia con lo contemporáneo y el absurdo. Este género, le guste o no,  tiene su público.</p>
+<p><a href="http://carambacomics.com/blog/los-limites-del-humor/">Los juicios sumarios</a> sin ninguna argumentación sobre la intencionalidad suelen hinchar globos con puro ruido.</p>
+<p>Como ejercicio para la reflexión, eso tan abandonado del pensamiento enriquecido, ya sabe, dejo aquí otra viñeta del mismo autor donde también aparece Hitler  y además <strong>se sugiere el exterminio de otros colectivos</strong>.</p>
+<p>Si considera que hay que apedrear a su autor por ello, aunque ya  se haya repetido mucho, tiene usted un problema. Y muy gordo.</p>
+<p><a href="http://www.jrmora.com/blog/wp-content/uploads/2012/01/reggaeton.jpg"><img class="size-full wp-image-17423 aligncenter" title="reggaeton" src="http://www.jrmora.com/blog/wp-content/uploads/2012/01/reggaeton.jpg" alt="" width="567" height="193" /></a></p>
+<p>&nbsp;</p>
+<p style="text-align: center;">Clic para ampliar</p>
+<p>&nbsp;</p>
+<div class="feedflare">
+<a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=NemoNFMeoUg:w2hu9KJeY0Y:F7zBnMyn0Lo"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=NemoNFMeoUg:w2hu9KJeY0Y:F7zBnMyn0Lo" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=NemoNFMeoUg:w2hu9KJeY0Y:V_sGLiPBpWU"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=NemoNFMeoUg:w2hu9KJeY0Y:V_sGLiPBpWU" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=NemoNFMeoUg:w2hu9KJeY0Y:qj6IDK7rITs"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?d=qj6IDK7rITs" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=NemoNFMeoUg:w2hu9KJeY0Y:yIl2AUoC8zA"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?d=yIl2AUoC8zA" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=NemoNFMeoUg:w2hu9KJeY0Y:D7DqB2pKExk"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=NemoNFMeoUg:w2hu9KJeY0Y:D7DqB2pKExk" border="0"></img></a>
+</div><img src="http://feeds.feedburner.com/~r/JrmoraHumorGrfico/~4/NemoNFMeoUg" height="1" width="1"/>]]></content:encoded>
+			<wfw:commentRss>http://www.jrmora.com/blog/2012/01/22/gustavo-sala-una-tira-al-paredon/feed/</wfw:commentRss>
+		<slash:comments>7</slash:comments>
+		<feedburner:origLink>http://www.jrmora.com/blog/2012/01/22/gustavo-sala-una-tira-al-paredon/</feedburner:origLink></item>
+		<item>
+		<title>Idea</title>
+
+		<link>http://feedproxy.google.com/~r/JrmoraHumorGrfico/~3/vgKWAxTBPeY/</link>
+		<comments>http://www.jrmora.com/blog/2012/01/21/idea/#comments</comments>
+		<pubDate>Sat, 21 Jan 2012 06:12:10 +0000</pubDate>
+		<dc:creator>JRMora</dc:creator>
+				<category><![CDATA[Viñetas]]></category>
+		<category><![CDATA[activismo]]></category>
+		<category><![CDATA[argumentos]]></category>
+
+		<category><![CDATA[derechos]]></category>
+		<category><![CDATA[Ideas]]></category>
+		<category><![CDATA[pensamiento]]></category>
+		<category><![CDATA[Política]]></category>
+		<category><![CDATA[sociedad]]></category>
+
+		<guid isPermaLink="false">http://www.jrmora.com/blog/?p=17415</guid>
+		<description />
+			<content:encoded><![CDATA[<p><img class="size-full wp-image-17416 aligncenter" title="210112-idea" src="http://www.jrmora.com/blog/wp-content/uploads/2012/01/210112-idea.jpg" alt="" width="567" height="437" /></p>
+<div class="feedflare">
+<a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=vgKWAxTBPeY:wvN-4b9vJFg:F7zBnMyn0Lo"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=vgKWAxTBPeY:wvN-4b9vJFg:F7zBnMyn0Lo" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=vgKWAxTBPeY:wvN-4b9vJFg:V_sGLiPBpWU"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=vgKWAxTBPeY:wvN-4b9vJFg:V_sGLiPBpWU" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=vgKWAxTBPeY:wvN-4b9vJFg:qj6IDK7rITs"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?d=qj6IDK7rITs" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=vgKWAxTBPeY:wvN-4b9vJFg:yIl2AUoC8zA"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?d=yIl2AUoC8zA" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=vgKWAxTBPeY:wvN-4b9vJFg:D7DqB2pKExk"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=vgKWAxTBPeY:wvN-4b9vJFg:D7DqB2pKExk" border="0"></img></a>
+</div><img src="http://feeds.feedburner.com/~r/JrmoraHumorGrfico/~4/vgKWAxTBPeY" height="1" width="1"/>]]></content:encoded>
+
+			<wfw:commentRss>http://www.jrmora.com/blog/2012/01/21/idea/feed/</wfw:commentRss>
+		<slash:comments>4</slash:comments>
+		<feedburner:origLink>http://www.jrmora.com/blog/2012/01/21/idea/</feedburner:origLink></item>
+		<item>
+		<title>Memoria</title>
+		<link>http://feedproxy.google.com/~r/JrmoraHumorGrfico/~3/63KF8m2vfYE/</link>
+
+		<comments>http://www.jrmora.com/blog/2012/01/16/memoria/#comments</comments>
+		<pubDate>Mon, 16 Jan 2012 06:51:09 +0000</pubDate>
+		<dc:creator>JRMora</dc:creator>
+				<category><![CDATA[Viñetas]]></category>
+		<category><![CDATA[fraga]]></category>
+		<category><![CDATA[Manuel]]></category>
+		<category><![CDATA[Manuel Fraga Iribarne]]></category>
+
+		<category><![CDATA[Política]]></category>
+
+		<guid isPermaLink="false">http://www.jrmora.com/blog/?p=17410</guid>
+		<description><![CDATA[Fallece Manuel Fraga.]]></description>
+			<content:encoded><![CDATA[<p><img class="size-full wp-image-17411 aligncenter" title="160112-memoria" src="http://www.jrmora.com/blog/wp-content/uploads/2012/01/160112-memoria.jpg" alt="" width="567" height="426" /></p>
+<p>Fallece Manuel Fraga.</p>
+<div class="feedflare">
+<a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=63KF8m2vfYE:YfYp-dPA4Ks:F7zBnMyn0Lo"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=63KF8m2vfYE:YfYp-dPA4Ks:F7zBnMyn0Lo" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=63KF8m2vfYE:YfYp-dPA4Ks:V_sGLiPBpWU"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=63KF8m2vfYE:YfYp-dPA4Ks:V_sGLiPBpWU" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=63KF8m2vfYE:YfYp-dPA4Ks:qj6IDK7rITs"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?d=qj6IDK7rITs" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=63KF8m2vfYE:YfYp-dPA4Ks:yIl2AUoC8zA"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?d=yIl2AUoC8zA" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=63KF8m2vfYE:YfYp-dPA4Ks:D7DqB2pKExk"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=63KF8m2vfYE:YfYp-dPA4Ks:D7DqB2pKExk" border="0"></img></a>
+</div><img src="http://feeds.feedburner.com/~r/JrmoraHumorGrfico/~4/63KF8m2vfYE" height="1" width="1"/>]]></content:encoded>
+			<wfw:commentRss>http://www.jrmora.com/blog/2012/01/16/memoria/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		<feedburner:origLink>http://www.jrmora.com/blog/2012/01/16/memoria/</feedburner:origLink></item>
+
+		<item>
+		<title>Meteorito crisis</title>
+		<link>http://feedproxy.google.com/~r/JrmoraHumorGrfico/~3/e_eXwnCTrd4/</link>
+		<comments>http://www.jrmora.com/blog/2012/01/15/meteorito-crisis/#comments</comments>
+		<pubDate>Sat, 14 Jan 2012 23:52:24 +0000</pubDate>
+		<dc:creator>JRMora</dc:creator>
+
+				<category><![CDATA[Viñetas]]></category>
+		<category><![CDATA[agencias de rating]]></category>
+		<category><![CDATA[Crisis]]></category>
+		<category><![CDATA[Economía]]></category>
+		<category><![CDATA[moody´s]]></category>
+		<category><![CDATA[Paro]]></category>
+		<category><![CDATA[sociedad]]></category>
+		<category><![CDATA[standard & poors]]></category>
+
+		<guid isPermaLink="false">http://www.jrmora.com/blog/?p=17399</guid>
+		<description><![CDATA[Si miles de naves extraterrestre se aproximan  para invadir y ocupar nuestro planeta siempre harán su primera parada en Nueva York. Si un meteorito, cien veces más grande que la tierra, se dirige  hacia nosotros amenazando con la destrucción total  de nuestra civilización, irremediablemente fijará su punto de impacto en la isla de Manhattan. Todas [...]]]></description>
+			<content:encoded><![CDATA[<p><img class="size-full wp-image-17403 aligncenter" title="140112-blackwater-economia" src="http://www.jrmora.com/blog/wp-content/uploads/2012/01/140112-blackwater-economia.jpg" alt="" width="567" height="444" /></p>
+<p>Si miles de naves extraterrestre se aproximan  para invadir y ocupar nuestro planeta siempre harán su primera parada en Nueva York.</p>
+<p>Si un meteorito, cien veces más grande que la tierra, se dirige  hacia nosotros amenazando con la destrucción total  de nuestra civilización, irremediablemente fijará su punto de impacto en la isla de Manhattan.</p>
+<p>Todas las amenazas que propagan el miedo por el mundo tienen origen y destino en Yankilandia y desde allí se extienden al mundo, es su guión preferido y también parece ser el nuestro.</p>
+<p>Todos señalan 2008 como el año del colapso financiero americano, culpa de todos los males actuales de la tierra, como el año en que una serie de carambolas encendieron la mecha de la traca de la crisis global que a día de hoy sigue explotando por todo los rincones.</p>
+<p>Todo empezó, tras la negación sistemática de que algo andaba mal, con el discurso de sacudirse las culpas pronunciado de mil formas diferentes que no pasaba nada, otra vez mostrando eso tan nuestro, que consiste en no prevenir nada, en no adaptarse, en dejar hacer, porque  luego todos somos felices reclamando culpas y discutiendo por repartirlas, nunca por buscar soluciones.</p>
+<p>Y mientras tanto el paro aumentando a lo bestia.</p>
+<p><img class="aligncenter" src="http://www.jrmora.com/blog/wp-content/uploads/2010/09/080910-despido-basura.jpg" alt="" width="567" height="367" /></p>
+<p>Y así fue, falsos progresistas  repitieron hasta el aburrimiento que el origen de todos nuestros males era EEUU y sus <strong>hipotecas subprime, </strong>una burbuja financiera dominó creada por especuladores y toda una legión de pequeños y medianos Madoff´s  que enseguida tuvo su reflejo en nuestra burbuja inmobiliaria  y ya teníamos culpables, se gestaba  la estrategia para llamarnos  tontos y culpables, endeudados viviendo por encima de nuestras posibilidades.</p>
+<p>Había nacido ya el nuevo diccionario de la crisis.</p>
+<p>De aquella crisis de las subprime, en apenas unos días, nos metieron por narices la sentencia de la crisis mundial, mutada enseguida a global y por rebote a desmoronamiento de Europa, todo un complejo efecto dominó que insiste en hacernos olvidar quién empujó la primera pieza. Ya teníamos una gran historia de culpables, las soluciones seguían en paradero desconocido.</p>
+<p>Ahora, y de golpe, ya se habla del déficit como &#8220;la herida&#8221;, de la prima de riesgo como &#8220;la amenaza&#8221;, del paro como &#8220;la lacra&#8221;, todo un  repertorio de figuras literarias y frases de apocalíptica construcción dignas de los títulos de las más populares superproduciones de catástrofes de Hollywood.</p>
+<p>Y para dejar claro todo esto, Moody´s anuncia por la mañana que España debe recortar 40.000 millones más,  el doble de lo previsto por el gobierno de Rajoy.</p>
+<p><img class="size-full wp-image-17404 aligncenter" title="100112-jrmora-moodys" src="http://www.jrmora.com/blog/wp-content/uploads/2012/01/100112-jrmora-moodys.jpg" alt="" width="567" height="421" /></p>
+<p>Y por la tarde, apenas unas horas después de  la <del>advertencia</del> amenaza  de Moody´s,  el presidente aparece para anunciar que sus planes son&#8230;eso mismo, con las mismas cifras. La campaña del acojone lleva meses en marcha.</p>
+<p><img class="size-full wp-image-17405 aligncenter" title="110112-jrmora-recortes" src="http://www.jrmora.com/blog/wp-content/uploads/2012/01/110112-jrmora-recortes.jpg" alt="" width="567" height="439" /></p>
+<p>Días después Standard &amp; Poor&#8217;s rebaja dos puntos la calificación de la deuda de España y se toma la libertad de ordenar al gobierno que acometa, a la voz de ya,  la reforma laboral o nos aporreará sin miramientos con sus descalificaciones.</p>
+<p>Y enseguida, toda la cohorte de nuevos economistas espontáneos que pululan por televisiones y bares de barrio toman estas puntuaciones como alarmas que confirman que otro meteorito, que EEUU ha conseguido desviar,  ahora se aproxima a nuestro país.</p>
+<p><center><img class="size-full wp-image-17406 aligncenter" title="standar-poors-euribor-jrmora" src="http://www.jrmora.com/blog/wp-content/uploads/2012/01/standar-poors-euribor-jrmora.jpg" alt="" width="501" height="381" /></center></p>
+<p>La nueva burbuja es la de la deuda y los rescates,  y su camuflaje la neolengua.</p>
+<div class="feedflare">
+<a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=e_eXwnCTrd4:WBx-BBWvgsA:F7zBnMyn0Lo"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=e_eXwnCTrd4:WBx-BBWvgsA:F7zBnMyn0Lo" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=e_eXwnCTrd4:WBx-BBWvgsA:V_sGLiPBpWU"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=e_eXwnCTrd4:WBx-BBWvgsA:V_sGLiPBpWU" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=e_eXwnCTrd4:WBx-BBWvgsA:qj6IDK7rITs"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?d=qj6IDK7rITs" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=e_eXwnCTrd4:WBx-BBWvgsA:yIl2AUoC8zA"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?d=yIl2AUoC8zA" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=e_eXwnCTrd4:WBx-BBWvgsA:D7DqB2pKExk"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=e_eXwnCTrd4:WBx-BBWvgsA:D7DqB2pKExk" border="0"></img></a>
+</div><img src="http://feeds.feedburner.com/~r/JrmoraHumorGrfico/~4/e_eXwnCTrd4" height="1" width="1"/>]]></content:encoded>
+			<wfw:commentRss>http://www.jrmora.com/blog/2012/01/15/meteorito-crisis/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		<feedburner:origLink>http://www.jrmora.com/blog/2012/01/15/meteorito-crisis/</feedburner:origLink></item>
+		<item>
+
+		<title>Emprendedores</title>
+		<link>http://feedproxy.google.com/~r/JrmoraHumorGrfico/~3/OxHKiKyUYUg/</link>
+		<comments>http://www.jrmora.com/blog/2012/01/12/emprendedores/#comments</comments>
+		<pubDate>Thu, 12 Jan 2012 14:45:45 +0000</pubDate>
+		<dc:creator>JRMora</dc:creator>
+				<category><![CDATA[Viñetas]]></category>
+
+		<category><![CDATA[cosas]]></category>
+		<category><![CDATA[Emprendedores]]></category>
+		<category><![CDATA[Humor]]></category>
+		<category><![CDATA[Ideas]]></category>
+		<category><![CDATA[Internet]]></category>
+		<category><![CDATA[negocios]]></category>
+		<category><![CDATA[tuiteos to viñeta]]></category>
+
+		<guid isPermaLink="false">http://www.jrmora.com/blog/?p=17395</guid>
+
+		<description />
+			<content:encoded><![CDATA[<p><img class="size-full wp-image-17396 aligncenter" title="120112-emprendedores" src="http://www.jrmora.com/blog/wp-content/uploads/2012/01/120112-emprendedores.jpg" alt="" width="567" height="434" /></p>
+<div class="feedflare">
+<a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=OxHKiKyUYUg:Ju3XVuAr3DU:F7zBnMyn0Lo"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=OxHKiKyUYUg:Ju3XVuAr3DU:F7zBnMyn0Lo" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=OxHKiKyUYUg:Ju3XVuAr3DU:V_sGLiPBpWU"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=OxHKiKyUYUg:Ju3XVuAr3DU:V_sGLiPBpWU" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=OxHKiKyUYUg:Ju3XVuAr3DU:qj6IDK7rITs"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?d=qj6IDK7rITs" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=OxHKiKyUYUg:Ju3XVuAr3DU:yIl2AUoC8zA"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?d=yIl2AUoC8zA" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?a=OxHKiKyUYUg:Ju3XVuAr3DU:D7DqB2pKExk"><img src="http://feeds.feedburner.com/~ff/JrmoraHumorGrfico?i=OxHKiKyUYUg:Ju3XVuAr3DU:D7DqB2pKExk" border="0"></img></a>
+</div><img src="http://feeds.feedburner.com/~r/JrmoraHumorGrfico/~4/OxHKiKyUYUg" height="1" width="1"/>]]></content:encoded>
+			<wfw:commentRss>http://www.jrmora.com/blog/2012/01/12/emprendedores/feed/</wfw:commentRss>
+		<slash:comments>8</slash:comments>
+		<feedburner:origLink>http://www.jrmora.com/blog/2012/01/12/emprendedores/</feedburner:origLink></item>
+	</channel>
+</rss><!-- Dynamic page generated in 0,426 seconds. --><!-- Cached page generated by WP-Super-Cache on 2012-02-02 16:29:20 -->

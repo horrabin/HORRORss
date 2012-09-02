@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+
+<head>
+<title>HORRORss: A Simple Java RSS Parser</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="description" content="description" />
+<meta name="keywords" content="keywords" /> 
+<meta name="author" content="author" /> 
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+
+<div id="container">
+	<div id="top">
+		<div id="header">
+			<img src="img/logo.png"/><br />
+			<span class="subHeader">A Simple Java RSS Parser</span>
+		</div>
+		<div id="menu">
+			<a href="#overview">Overview</a><a href="#features">Features</a><a href="#samplecode">Sample Code</a><a href="../api/index.html">Javadoc</a><a href="#advanced">Advanced features</a><a href="#links">Useful Links</a>
+		</div>
+	</div>
+	<div id="body">
+		<div class="post">	
+			<a name="overview"></a>		
+			<h1>Overview</h1>
+			<p>
+ 				<a href="https://horrorss.googlecode.com">HORRORss</a> is a set of Java classes to parse RSS files. 
+ 				It works with simple objects (POJOs) which represents the main items of RSS files like 
+ 				&quot;channel&quot;, &quot;image&quot;, and &quot;item&quot;.  
+ 			</p>
+ 			<p>
+ 				The first aim of <a href="https://horrorss.googlecode.com">HORRORss</a> was to be a parser as free as 
+ 				possible: free software and free from the private Java Sun's platform. In 2004 the only way to make a 
+ 				real free development with this language was with the <a href="http://www.gnu.org/software/classpath/">GNU Classpath</a> 
+ 				project. Nowadays, after Sun opened Java with <a href="http://openjdk.java.net/">OpenJDK</a>, this only
+ 				have sense if you want to compile to native code. 
+ 			</p>
+ 			<p>
+				The second aim was to be easy to use. <a href="https://horrorss.googlecode.com">HORRORss</a> transforms 
+				the <a href="http://en.wikipedia.org/wiki/Rss">RSS</a> files into Java objects to make easier the 
+				manipulation.   			
+ 			</p>
+ 		</div>
+		<div class="post">
+			<a name="features"></a>
+			<h1>Features</h1> 		
+ 			<p>
+ 				The main features are:
+ 			</p>
+ 			<ul>
+ 				<li>ease to use </li>
+ 				<li>RSS 0.9x compatible </li>
+ 				<li>RSS 1.0 compatible </li>
+ 				<li>RSS 2.0 compatible </li>
+ 				<li>Atom compatible </li> 				
+ 				<li>cache system  </li>
+ 			</ul>
+ 			<p>
+ 				It requires <a href="http://sparta-xml.sourceforge.net/" rel="nofollow">Sparta-XML</a>, a 
+ 				light-weight XML parser based on <a href="http://en.wikipedia.org/wiki/Xpath" rel="nofollow">XPath</a>.
+ 			</p>
+ 			<p>
+ 				Visit the <a href="http://code.google.com/p/horrorss/w/list" rel="nofollow">Wiki</a> of the project 
+ 				for more information
+ 			</p>						
+		</div>
+		<div class="post">
+			<a name="samplecode"></a>
+			<h1>Sample Code</h1>
+			<p>
+				The use <a href="https://horrorss.googlecode.com">HORRORss</a> in your project is as easy as you 
+				can see below. You only need to create a new RssParser passing the file path or the URL where the 
+				content is. 			
+			</p>			
+			<code>
+RssParser rss = new RssParser();
+
+try{
+	RssFeed feed = rss.load("http://rss.slashdot.org/Slashdot/slashdot");
+	
+	// Gets the channel information of the feed and 
+	// display its title
+	RssChannelBean channel = feed.getChannel();
+	System.out.println("Feed Title: " + channel.getTitle());
+	
+	// Gets the image of the feed and display the image URL
+	RssImageBean image = feed.getImage();
+	System.out.println("Feed Image: " + image.getUrl());
+	
+	// Gets and iterate the items of the feed 
+	List&lt;RssItemBean&gt; items = feed.getItems();
+	for (int i=0; i&lt;items.size(); i++){
+             RssItemBean item = items.get(i); 
+             System.out.println("Title: " + item.getTitle());
+             System.out.println("Link : " + item.getLink());
+             System.out.println("Desc.: " + item.getDescription());				
+	}
+	
+}catch(Exception e){
+	// Something to do if an exception occurs
+}			
+			</code>
+			<p>That's all!</p>			
+		</div>
+		<div class="post">
+			<a name="advanced"></a>
+			<h1>Advanced features</h1>			
+			<p>
+				With <a href="https://horrorss.googlecode.com">HORRORss</a> you are only able to get 
+				the most commonly used elements from RSS files (title, link, ...). 
+				If you need other elements you have to implement the RssModuleParser interface
+				and add it to the parser. 
+			</p>
+			<h3>Creating a custom parser</h3>
+			<p>
+				First, create an object mapping the elements you need to get.
+			</p>
+			<code>
+public class SimpleGeoRssItemBean {
+
+	private double latitude;
+	private double longitude;
+	
+	public double getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+	public double getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+	
+}			
+			</code>
+			<p>
+				Second, implement the interface of RssModuleParser. See the 
+				<a href="http://sparta-xml.sourceforge.net/">Sparta-XML</a> 
+				documentation on how to get elements from XML files using 
+				XPath expressions.   
+			</p>
+			<code>
+public class SimpleGeoModuleParser implements RssModuleParser {
+
+  // Use this method to get values from the channel element
+  public Object parseChannel(int rssType, Document doc) {	
+    return null;
+  }
+  
+  // Use this method to get values from the image element
+  public Object parseImage(int rssType, Document doc) {	
+    return null;
+  }
+
+  // Use this method to get values from each item
+  public Object parseItem(int rssType, Document doc, int index) throws Exception {
+    SimpleGeoRssItemBean geo = new SimpleGeoRssItemBean();
+	
+    try {
+      String latitude = doc.xpathSelectString("rss/channel/item[" + index + "]/geo:lat/text()");
+      String longitude = doc.xpathSelectString("rss/channel/item[" + index + "]/geo:long/text()"); 
+      geo.setLatitude(new Double(latitude));
+      geo.setLongitude(new Double(longitude));
+    }catch(Exception e){
+      throw new Exception("Error GeoRSS Module item at index " + index, e);
+    }
+    return geo;
+  }
+
+}			
+			</code>	
+			<p>
+				And finally add your parser and get your values
+			</p>		
+			<code>
+RssParser rss = new RssParser("/foo/bar/my_rss_file.xml");
+rss.addRssModuleParser("geoRss", new SimpleGeoModuleParser());
+
+try{
+  RssFeed obj = rss.load();
+  channel = obj.getChannel();
+  List&ltRssItemBean&gt items = obj.getItems();
+
+  for (int i=0; i&ltitems.size(); i++){ 
+    RssItemBean item = items.get(i);
+    SimpleGeoRssItemBean geo = (SimpleGeoRssItemBean)item.getAdditionalInfo("geoRss");
+    System.out.println("Title: " + item.getTitle());
+    System.out.println("Lat. : " + geo.getLatitude());
+    System.out.println("Long.: " + geo.getLongitude());	
+  }			
+}catch(Exception e){ 
+  // Something to do if an exception occurs 
+}
+			</code>
+			<h3>Querying the Document object</h3>
+			<p>
+				You can also get elements from an RSS file launching XPath expressions directly to the Document object. 
+			</p>
+			<code>
+RssParser rss = new RssParser("/foo/bar/my_rss_file.xml");
+
+try {
+	//Loads the RSS file
+	rss.load();
+	//Obtain the com.hp.hpl.sparta.Document object
+	Document doc = rss.getDocument();
+	//Gets the latitude from the fifth item
+	String latitude = doc.xpathSelectString("rss/channel/item[5]/geo:lat/text()");
+}catch(Exception e){
+	e.printStackTrace();
+}				
+			</code>
+		</div>		
+		<div class="post">
+			<a name="links"></a>
+			<h1>Useful Links</h1>
+			<ul>
+				<li><a href="http://sparta-xml.sourceforge.net/">Sparta-XML</a></li>
+				<li><a href="http://web.resource.org/rss/1.0/spec">RSS 1.0</a></li>
+				<li><a href="http://blogs.law.harvard.edu/tech/rss">RSS 2.0</a></li>
+				<li><a href="http://www.w3.org/RDF">RDF</a></li>
+				<li><a href="http://www.atomenabled.org/">Atom</a></li>
+			</ul>
+		</div>
+
+	</div>
+	<div id="footer">
+		<p class="right"><a href="http://validator.w3.org/check?uri=referer">XHTML 1.1</a> <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> <a href="http://templates.lanmust.org">CSS template by</a> <a href="http://webdesign.lanmust.org">Mapers</a></p><p>License <a href="http://www.gnu.org/home.en.html">GNU</a>/<a href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html">LGPL</a> | Courtesy <a href="http://www.openwebdesign.org" target="_blank">Open Web Design</a></p>
+	</div>
+</div>
+
+</body>
+
+</html>
