@@ -1,3 +1,4 @@
+#labels Phase-Deploy,Featured
 =Advanced Features=
 With *<font color="#336699">HORRO</font><font color="#ff9900">Rss</font>* you are only able to get the most commonly used elements from RSS files (title, link, ...). If you need other elements you have to implement the RssModuleParser interface and add it to the parser.
 
