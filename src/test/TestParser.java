@@ -10,6 +10,10 @@ import org.horrabin.horrorss.RssFeed;
 import org.horrabin.horrorss.RssImageBean;
 import org.horrabin.horrorss.RssItemBean;
 import org.horrabin.horrorss.RssParser;
+import org.horrabin.horrorss.modules.objects.SimpleGeoRssItemBean;
+import org.horrabin.horrorss.modules.parsers.SimpleGeoModuleParser;
+
+import com.hp.hpl.sparta.Document;
 
 public class TestParser extends TestCase {
 
@@ -32,6 +36,51 @@ public class TestParser extends TestCase {
 		}catch(Exception e){
 			e.printStackTrace();
 		}				
+	}
+	
+	public void testSimpleGeoModuleParser(){
+		RssParser rss = new RssParser("java/test/data/georss.xml");
+		rss.addRssModuleParser("geoRss", new SimpleGeoModuleParser());
+		RssItemBean item;
+		RssChannelBean channel;
+		SimpleGeoRssItemBean geo;
+		
+		try{
+			RssFeed obj = rss.load();
+			channel = obj.getChannel();
+			List<RssItemBean> items = obj.getItems();
+			
+			assertEquals("USGS M 5+ Earthquakes", channel.getTitle());
+			
+			item = items.get(0);
+			geo = (SimpleGeoRssItemBean)item.getAdditionalInfo("geoRss");			
+			assertEquals("M 5.1, northwestern Iran", item.getTitle());
+			assertEquals(38.3506, geo.getLatitude());
+			assertEquals(46.7494, geo.getLongitude());
+			
+			item = items.get(20);
+			geo = (SimpleGeoRssItemBean)item.getAdditionalInfo("geoRss");
+			assertEquals("M 5.2, southern Mid-Atlantic Ridge", item.getTitle());
+			assertEquals(-33.1277, geo.getLatitude());
+			assertEquals(-15.8708, geo.getLongitude());			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void testDocumentXpathQuery(){
+		RssParser rss = new RssParser("java/test/data/georss.xml");
+		String result = "";
+		
+		try {
+			rss.load();
+			Document doc = rss.getDocument();
+			result = doc.xpathSelectString("rss/channel/item[21]/geo:lat/text()");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		assertEquals("-33.1277", result);
 	}
 	
 	public void testCache(){
@@ -109,7 +158,9 @@ public class TestParser extends TestCase {
 
 		item = this.items.get(20);
 		assertEquals("Y con este sencillo acto...", item.getTitle());
+		assertEquals("http://horrablog.blogspot.com/2008/07/y-con-este-sencillo-acto.html", item.getLink());
 		assertEquals("Sun Jul 27 13:50:00 CEST 2008", item.getPubDate().toString());
+		assertEquals("Horrabin", item.getAuthor());
 		
 		assertEquals("", this.image.getUrl());
 	}
@@ -123,9 +174,11 @@ public class TestParser extends TestCase {
 		RssItemBean item = this.items.get(0);
 		assertEquals("Activismo de clic", item.getTitle());
 
-		item = this.items.get(11);
-		assertEquals("Emprendedores", item.getTitle());
-		assertEquals("Thu Jan 12 15:45:45 CET 2012", item.getPubDate().toString());
+		item = this.items.get(10);
+		assertEquals("Meteorito crisis", item.getTitle());
+		assertEquals("http://feedproxy.google.com/~r/JrmoraHumorGrfico/~3/e_eXwnCTrd4/", item.getLink());
+		assertEquals("Sun Jan 15 00:52:24 CET 2012", item.getPubDate().toString());
+		assertEquals("JRMora", item.getAuthor());	
 		
 		assertEquals("http://www.jrmora.com/jr_bocata.jpg", this.image.getUrl());
 	}	
@@ -141,7 +194,9 @@ public class TestParser extends TestCase {
 
 		item = this.items.get(9);
 		assertEquals("Los mejores inicios de novela", item.getTitle());
+		assertEquals("http://barrapunto.com/article.pl?sid=12/01/30/216220&from=rss", item.getLink());
 		assertEquals("Tue Jan 31 00:00:00 CET 2012", item.getPubDate().toString());
+		assertEquals("Mu", item.getAuthor());
 		
 		assertEquals("http://barrapunto.com/images/topics/topicbarrapunto.png", this.image.getUrl());
 	}
@@ -168,4 +223,5 @@ public class TestParser extends TestCase {
 		item = this.items.get(20);
 		assertEquals("Y con este sencillo acto...", item.getTitle());
 	}
+	
 }

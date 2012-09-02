@@ -1,10 +1,10 @@
 /**
  * RssParser.java
  *
- * HORRORss Package, Version 2.0
+ * HORRORss Package, Version 2.1.0
  * Simple RSS parser
  *
- * March 3, 2012
+ * August 30, 2012
  *
  * Copyright (C) 2012 Fernando Fornieles
  * e-mail: nandofm@gmail.com
@@ -41,8 +41,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 
 import com.hp.hpl.sparta.Document;
 import com.hp.hpl.sparta.Parser;
@@ -52,9 +56,9 @@ import com.hp.hpl.sparta.Parser;
 * @author Fernando Fornieles
 */
 public class RssParser {
-	private static final int TYPE_RDF = 0;
-	private static final int TYPE_RSS = 1;
-	private static final int TYPE_ATOM = 2;
+	public static final int TYPE_RDF = 0;
+	public static final int TYPE_RSS = 1;
+	public static final int TYPE_ATOM = 2;
 	
 	private Document doc;
 	private String filename;
@@ -63,6 +67,8 @@ public class RssParser {
 	private String charset = "utf8";
 	private String cacheDir;
 	private long cacheLifeTime = 0;
+	
+	private Map<String, RssModuleParser> moduleParsers;
 	  
 
  /**
@@ -80,6 +86,18 @@ public class RssParser {
        this.filename = filename;
   }
 
+  /**
+   * Add a custom RssModuleParser, identified by the parameter name, to parse and obtain
+   * additional info from the RSS file.
+   * 
+   * @param name String to identify the parser
+   * @param moduleParser An implementation of RssModuleParser
+   */
+  public void addRssModuleParser(String name, RssModuleParser moduleParser){
+	  if (this.moduleParsers == null) this.moduleParsers = new HashMap<String, RssModuleParser>();
+	  this.moduleParsers.put(name, moduleParser);
+  }
+  
   /**
    * Parses the RSS source defined in the constructor and load its content into an RssFeed object
    * @return RSS mapped into an RssFeed object
@@ -163,6 +181,14 @@ public class RssParser {
 	  this.cacheDir = cacheDir;
 	  this.cacheLifeTime = cacheLifeTime;
   }
+  
+  /**
+   * Get the Document object containing all the RSS elements in the file
+   * @return The Document object
+   */  
+  public Document getDocument(){
+	  return this.doc;
+  }
 
   private RssChannelBean getChannel() throws Exception {
   	 if (rssType!=TYPE_ATOM) return this.getChannelRss();
@@ -179,6 +205,7 @@ public class RssParser {
 		 res.setLink(doc.xpathSelectString("/feed/link/@href"));		 
 		 pubDate =  doc.xpathSelectString("/feed/modified/text()");
 		 if (pubDate!=null) res.setPubDate(this.getDate(pubDate, TYPE_ATOM));
+		 this.parseAdditionalChannelInfo(res);
 	 }catch(Exception e){
 		   throw new Exception("Error obteniendo elemento canal de " + filename, e);
 	 }
@@ -203,6 +230,8 @@ public class RssParser {
 	   }
 	   
 	   if (datePublish!=null) res.setPubDate(this.getDate(datePublish, this.rssType));
+	   
+	   this.parseAdditionalChannelInfo(res);
 	 }
 	 catch (Exception e){
 	   throw new Exception("Error reading element channel from " + filename, e);
@@ -233,6 +262,8 @@ public class RssParser {
     		   res.setUrl(doc.xpathSelectString(this.xPath + "/channel/image/url/text()"));
     	   }
        }
+       
+       this.parseAdditionalImageInfo(res);
      }catch (Exception e){
        throw new Exception("Error obteniendo elemento imagen de " + filename, e);
      }
@@ -283,13 +314,19 @@ public class RssParser {
  	 RssItemBean res = new RssItemBean();
  	 String description;
  	 String datePublish;
+ 	 String link;
  	 
  	 try{
 	   res.setTitle(doc.xpathSelectString("feed/entry[" + index + "]/title/text()"));
-	   res.setLink(doc.xpathSelectString("feed/entry[" + index + "]/link/text()"));
+	   link = doc.xpathSelectString("feed/entry[" + index + "]/link/text()");
+	   
+	   if (link == null){
+		   link = doc.xpathSelectString("feed/entry[" + index + "]/link[@rel=\"alternate\"]/@href");
+	   }
+	   res.setLink(link);
 	   
 	   description = doc.xpathSelectString("feed/entry[" + index + "]/content/text()");
-	   if (description!=null){
+	   if (description == null){
 		   description = doc.xpathSelectString("feed/entry[" + index + "]/summary/text()");
 	   }
 	   res.setDescription(description);
@@ -302,6 +339,8 @@ public class RssParser {
        }
  	   
  	   res.setPubDate(this.getDate(datePublish, TYPE_ATOM));
+ 	   
+ 	   this.parseAdditionalItemInfo(res, index);
  	 }
  	 catch (Exception e){
  	   throw new Exception("Error obtaining the entry at position " + index + " of " + filename, e);
@@ -313,25 +352,63 @@ public class RssParser {
   private RssItemBean getItemRss(int index) throws Exception{
 	 RssItemBean res = new RssItemBean();
 	 String datePublish;
-
+	 String author;
+ 
 	 try{
 	   res.setTitle(doc.xpathSelectString(xPath + "/item[" + index + "]/title/text()"));
 	   res.setLink(doc.xpathSelectString(xPath + "/item[" + index + "]/link/text()"));
 	   res.setDescription(doc.xpathSelectString(xPath + "/item[" + index + "]/description/text()"));
 	   if (this.rssType==TYPE_RDF){
-		   res.setAuthor(doc.xpathSelectString(xPath + "/item[" + index + "]/dc:creator/text()"));
+		   author = doc.xpathSelectString(xPath + "/item[" + index + "]/dc:creator/text()");
 		   datePublish = doc.xpathSelectString(xPath + "/item[" + index + "]/dc:date/text()");		   
 	   }else{
-		   res.setAuthor(doc.xpathSelectString(xPath + "/item[" + index + "]/author/text()"));
+		   author = doc.xpathSelectString(xPath + "/item[" + index + "]/author/text()");
+		   if (author==null) author = doc.xpathSelectString(xPath + "/item[" + index + "]/dc:creator/text()");
 		   datePublish = doc.xpathSelectString(xPath + "/item[" + index + "]/pubDate/text()");
 	   }
+	   res.setAuthor(author);
 	   res.setPubDate(this.getDate(datePublish, this.rssType));
+	   	  
+	   this.parseAdditionalItemInfo(res, index);
 	 }
 	 catch (Exception e){
 	   throw new Exception("Error obtaining the entry at position " + index + " of " + filename, e);
 	 }
 
 	 return res;
+  }
+  
+  private void parseAdditionalChannelInfo(RssChannelBean item) throws Exception{
+	  if (this.moduleParsers!=null){
+		  Iterator<String> keys = this.moduleParsers.keySet().iterator();
+		  while (keys.hasNext()){
+			  String keyName = keys.next();
+			  RssModuleParser moduleParser = this.moduleParsers.get(keyName);
+			  item.putAdditionalInfo(keyName, moduleParser.parseChannel(this.rssType, this.doc));
+		  }
+	  }
+  }  
+  
+  private void parseAdditionalImageInfo(RssImageBean item) throws Exception{
+	  if (this.moduleParsers!=null){
+		  Iterator<String> keys = this.moduleParsers.keySet().iterator();
+		  while (keys.hasNext()){
+			  String keyName = keys.next();
+			  RssModuleParser moduleParser = this.moduleParsers.get(keyName);
+			  item.putAdditionalInfo(keyName, moduleParser.parseImage(this.rssType, this.doc));
+		  }
+	  }
+  }  
+  
+  private void parseAdditionalItemInfo(RssItemBean item, int index) throws Exception{
+	  if (this.moduleParsers!=null){
+		  Iterator<String> keys = this.moduleParsers.keySet().iterator();
+		  while (keys.hasNext()){
+			  String keyName = keys.next();
+			  RssModuleParser moduleParser = this.moduleParsers.get(keyName);
+			  item.putAdditionalInfo(keyName, moduleParser.parseItem(this.rssType, this.doc, index));
+		  }
+	  }
   }
   
   private void parseFromReader(BufferedReader buffer) throws Exception{
@@ -465,7 +542,7 @@ public class RssParser {
 	       else {
  	       	 list = doc.xpathSelectElements("rss/channel");
 	       	 if (list.hasMoreElements()) xPath = "rss/channel";
-	       		else xPath = "atom";
+	       		else xPath = "";
 	       }
 	   }catch (Exception e){
 	     throw new Exception("Error obtaining the file XPath root [" + filename + "]", e);
