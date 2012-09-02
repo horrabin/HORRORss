@@ -1,5 +1,10 @@
 =Change Log=
 
+== HORRORss - V 2.1.0 ==
+  * Solved a bug getting the element link from Atom files
+  * Added the possibility to create custom parsers
+<br>
+
 == HORRORss - V 2.0.2 ==
  * Solved a bug parsing files with BOM character
 <br>
