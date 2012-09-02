@@ -8,7 +8,7 @@
  * Contributors:
  *    Marc R. Hoffmann - initial API and implementation
  *    
- * $Id: sort.js,v 1.1 2012/03/11 22:11:33 horrabin Exp $
+ * $Id: sort.js,v 1.3 2012/09/02 20:15:08 horrabin Exp $
  *******************************************************************************/
 
 (function () {

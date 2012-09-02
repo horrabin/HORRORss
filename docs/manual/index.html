@@ -19,7 +19,7 @@
 			<span class="subHeader">A Simple Java RSS Parser</span>
 		</div>
 		<div id="menu">
-			<a href="#overview">Overview</a><a href="#features">Features</a><a href="#samplecode">Sample Code</a><a href="../api/index.html">Javadoc</a><a href="#links">Useful Links</a>
+			<a href="#overview">Overview</a><a href="#features">Features</a><a href="#samplecode">Sample Code</a><a href="../api/index.html">Javadoc</a><a href="#advanced">Advanced features</a><a href="#links">Useful Links</a>
 		</div>
 	</div>
 	<div id="body">
@@ -105,6 +105,118 @@ try{
 			</code>
 			<p>That's all!</p>			
 		</div>
+		<div class="post">
+			<a name="advanced"></a>
+			<h1>Advanced features</h1>			
+			<p>
+				With <a href="https://horrorss.googlecode.com">HORRORss</a> you are only able to get 
+				the most commonly used elements from RSS files (title, link, ...). 
+				If you need other elements you have to implement the RssModuleParser interface
+				and add it to the parser. 
+			</p>
+			<h3>Creating a custom parser</h3>
+			<p>
+				First, create an object mapping the elements you need to get.
+			</p>
+			<code>
+public class SimpleGeoRssItemBean {
+
+	private double latitude;
+	private double longitude;
+	
+	public double getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+	public double getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+	
+}			
+			</code>
+			<p>
+				Second, implement the interface of RssModuleParser. See the 
+				<a href="http://sparta-xml.sourceforge.net/">Sparta-XML</a> 
+				documentation on how to get elements from XML files using 
+				XPath expressions.   
+			</p>
+			<code>
+public class SimpleGeoModuleParser implements RssModuleParser {
+
+  // Use this method to get values from the channel element
+  public Object parseChannel(int rssType, Document doc) {	
+    return null;
+  }
+  
+  // Use this method to get values from the image element
+  public Object parseImage(int rssType, Document doc) {	
+    return null;
+  }
+
+  // Use this method to get values from each item
+  public Object parseItem(int rssType, Document doc, int index) throws Exception {
+    SimpleGeoRssItemBean geo = new SimpleGeoRssItemBean();
+	
+    try {
+      String latitude = doc.xpathSelectString("rss/channel/item[" + index + "]/geo:lat/text()");
+      String longitude = doc.xpathSelectString("rss/channel/item[" + index + "]/geo:long/text()"); 
+      geo.setLatitude(new Double(latitude));
+      geo.setLongitude(new Double(longitude));
+    }catch(Exception e){
+      throw new Exception("Error GeoRSS Module item at index " + index, e);
+    }
+    return geo;
+  }
+
+}			
+			</code>	
+			<p>
+				And finally add your parser and get your values
+			</p>		
+			<code>
+RssParser rss = new RssParser("/foo/bar/my_rss_file.xml");
+rss.addRssModuleParser("geoRss", new SimpleGeoModuleParser());
+
+try{
+  RssFeed obj = rss.load();
+  channel = obj.getChannel();
+  List&ltRssItemBean&gt items = obj.getItems();
+
+  for (int i=0; i&ltitems.size(); i++){ 
+    RssItemBean item = items.get(i);
+    SimpleGeoRssItemBean geo = (SimpleGeoRssItemBean)item.getAdditionalInfo("geoRss");
+    System.out.println("Title: " + item.getTitle());
+    System.out.println("Lat. : " + geo.getLatitude());
+    System.out.println("Long.: " + geo.getLongitude());	
+  }			
+}catch(Exception e){ 
+  // Something to do if an exception occurs 
+}
+			</code>
+			<h3>Querying the Document object</h3>
+			<p>
+				You can also get elements from an RSS file launching XPath expressions directly to the Document object. 
+			</p>
+			<code>
+RssParser rss = new RssParser("/foo/bar/my_rss_file.xml");
+
+try {
+	//Loads the RSS file
+	rss.load();
+	//Obtain the com.hp.hpl.sparta.Document object
+	Document doc = rss.getDocument();
+	//Gets the latitude from the fifth item
+	String latitude = doc.xpathSelectString("rss/channel/item[5]/geo:lat/text()");
+}catch(Exception e){
+	e.printStackTrace();
+}				
+			</code>
+		</div>		
 		<div class="post">
 			<a name="links"></a>
 			<h1>Useful Links</h1>
