@@ -1,7 +1,7 @@
 /**
  * RssFeed.java 
  *
- * HORRORss Package, Version 2.0
+ * HORRORss Package, Version 2.1.0
  * Simple RSS parser
  *
  * March 3, 2012

@@ -1,10 +1,10 @@
 /**
  * RssChannelBean.java 
  *
- * HORRORss Package, Version 2.0
+ * HORRORss Package, Version 2.1.0
  * Simple RSS parser
  *
- * March 3, 2012
+ * August 30, 2012
  *
  * Copyright (C) 2012 Fernando Fornieles
  * e-mail: nandofm@gmail.com
@@ -28,6 +28,8 @@
 package org.horrabin.horrorss;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
 * The RssChannelBean object maps the element <i>channel</i> of an RSS feed. 
@@ -41,6 +43,8 @@ public class RssChannelBean {
   private String link;
   private String description;
   private Date pubDate;
+  
+  private Map<String, Object> additionalInfo;
   
    /** 
    * Create a new RssChannelBean.
@@ -63,6 +67,27 @@ public class RssChannelBean {
      this.link = link;
      this.description = description;
   }
+  
+  /** 
+   * Adds an object with additional info identified by the string name
+   * 
+   * @param name The string identifying the object
+   * @param object The object to add
+   */  
+  public void putAdditionalInfo(String name, Object object){
+	  if (this.additionalInfo==null) this.additionalInfo = new HashMap<String,Object>();
+	  this.additionalInfo.put(name, object);
+  }
+  
+  /**
+   * Get an object with additional info identified by the string name
+   * 
+   * @param name The string identifying the object
+   * @return An object with additional info
+   */   
+  public Object getAdditionalInfo(String name){
+	  return this.additionalInfo.get(name);
+  }  
 
   /**   
   * Sets the title of the feed 
