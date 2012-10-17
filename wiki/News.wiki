@@ -1,5 +1,9 @@
 #labels news
 =Latest News=
+*17-10-2012: <font color="#336699">HORRO</font><font color="#ff9900">Rss</font> 2.2.0 available*<br>
+  * Added the possibility to create custom date parsers
+<br>
+
 *02-09-2012: <font color="#336699">HORRO</font><font color="#ff9900">Rss</font> 2.1.0 available*<br>
   * Solved a bug getting the element link from Atom files
   * Added the possibility to create custom parsers
