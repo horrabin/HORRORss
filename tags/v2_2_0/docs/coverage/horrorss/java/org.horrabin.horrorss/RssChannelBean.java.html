@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>RssChannelBean.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">TestParser (17-oct-2012 0:01:27)</a> &gt; <a href="../../index.html" class="el_group">horrorss</a> &gt; <a href="../index.html" class="el_bundle">java</a> &gt; <a href="index.html" class="el_package">org.horrabin.horrorss</a> &gt; <span class="el_source">RssChannelBean.java</span></div><h1>RssChannelBean.java</h1><pre class="source lang-java linenums">/**
+ * RssChannelBean.java 
+ *
+ * HORRORss Package, Version 2.1.0
+ * Simple RSS parser
+ *
+ * August 30, 2012
+ *
+ * Copyright (C) 2012 Fernando Fornieles
+ * e-mail: nandofm@gmail.com
+ *
+ * This file is part of HORRORss
+ *
+ * HORRORss is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * HORRORss is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+ */
+
+package org.horrabin.horrorss;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+* The RssChannelBean object maps the element &lt;i&gt;channel&lt;/i&gt; of an RSS feed. 
+* Compatible with RSS 2.0, RDF and ATOM 0.3
+*  
+* @author Fernando Fornieles 
+*/
+public class RssChannelBean {
+  //For RSS 2.0, RDF y ATOM
+  private String title;
+  private String link;
+  private String description;
+  private Date pubDate;
+  
+  private Map&lt;String, Object&gt; additionalInfo;
+  
+   /** 
+   * Create a new RssChannelBean.
+   */
+<span class="fc" id="L52">  public RssChannelBean(){</span>
+<span class="fc" id="L53">     this.title = &quot;&quot;;</span>
+<span class="fc" id="L54">     this.link = &quot;&quot;;</span>
+<span class="fc" id="L55">     this.description = &quot;&quot;;</span>
+<span class="fc" id="L56">  }</span>
+
+   /** 
+   * Create a new RssChannelBean.
+   * 
+   * @param title the title of the feed
+   * @param link the URL to the feed web page
+   * @param description the description of the feed 
+   */ 
+<span class="nc" id="L65">  public RssChannelBean(String title, String link, String description){</span>
+<span class="nc" id="L66">     this.title = title;</span>
+<span class="nc" id="L67">     this.link = link;</span>
+<span class="nc" id="L68">     this.description = description;</span>
+<span class="nc" id="L69">  }</span>
+  
+  /** 
+   * Adds an object with additional info identified by the string name
+   * 
+   * @param name The string identifying the object
+   * @param object The object to add
+   */  
+  public void putAdditionalInfo(String name, Object object){
+<span class="pc bpc" id="L78" title="1 of 2 branches missed.">	  if (this.additionalInfo==null) this.additionalInfo = new HashMap&lt;String,Object&gt;();</span>
+<span class="fc" id="L79">	  this.additionalInfo.put(name, object);</span>
+<span class="fc" id="L80">  }</span>
+  
+  /**
+   * Get an object with additional info identified by the string name
+   * 
+   * @param name The string identifying the object
+   * @return An object with additional info
+   */   
+  public Object getAdditionalInfo(String name){
+<span class="nc" id="L89">	  return this.additionalInfo.get(name);</span>
+  }  
+
+  /**   
+  * Sets the title of the feed 
+  * @param title the title of the feed
+  */
+  public void setTitle(String title){
+<span class="fc" id="L97">     this.title = title;</span>
+<span class="fc" id="L98">  }</span>
+
+  /** 
+  * Sets the description of the feed 
+  * @param description the description of the feed
+  */
+  public void setDescription(String description){
+<span class="fc" id="L105">     this.description = description;</span>
+<span class="fc" id="L106">  }</span>
+
+  /** 
+  * Sets the URL to the feed's web page
+  * @param link The URL to the feed's web page 
+  */
+  public void setLink(String link){
+<span class="fc" id="L113">     this.link = link;</span>
+<span class="fc" id="L114">  }</span>
+
+  /** 
+   * Sets the publication date of the feed
+   * @param pubDate the publication date of the feed
+   */      
+  public void setPubDate(Date pubDate){
+<span class="fc" id="L121">	  this.pubDate = pubDate;</span>
+<span class="fc" id="L122">  }</span>
+
+  /** 
+   * Returns the title of the feed
+   * @return Title of the feed
+   */    
+  public String getTitle(){
+<span class="fc" id="L129">     return this.title;</span>
+  }
+
+  /** 
+   * Returns the description of the feed
+   * @return Description of the feed
+   */    
+  public String getDescription(){
+<span class="nc" id="L137">     return this.description;</span>
+  }
+
+  /** 
+   * Returns the URL of the feed's web page
+   * @return URL of the feed's web page
+   */   
+  public String getLink(){
+<span class="nc" id="L145">     return this.link;</span>
+  }
+
+  /** 
+   * Returns the last modification date of the feed
+   * @return The last modification date of the feed
+   */     
+  public Date getPubDate(){
+<span class="nc" id="L153">  	 return this.pubDate;</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.5.6.201201232323</span>TestParser (17-oct-2012 0:01:27)</div></body></html>

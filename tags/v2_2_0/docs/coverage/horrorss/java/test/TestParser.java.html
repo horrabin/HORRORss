@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>TestParser.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">TestParser (17-oct-2012 0:01:27)</a> &gt; <a href="../../index.html" class="el_group">horrorss</a> &gt; <a href="../index.html" class="el_bundle">java</a> &gt; <a href="index.html" class="el_package">test</a> &gt; <span class="el_source">TestParser.java</span></div><h1>TestParser.java</h1><pre class="source lang-java linenums">package test;
+
+import java.io.File;
+import java.util.List;
+
+import junit.framework.TestCase;
+
+import org.horrabin.horrorss.RssChannelBean;
+import org.horrabin.horrorss.RssFeed;
+import org.horrabin.horrorss.RssImageBean;
+import org.horrabin.horrorss.RssItemBean;
+import org.horrabin.horrorss.RssParser;
+import org.horrabin.horrorss.modules.objects.SimpleGeoRssItemBean;
+import org.horrabin.horrorss.modules.parsers.SimpleGeoModuleParser;
+
+import com.hp.hpl.sparta.Document;
+
+<span class="fc" id="L18">public class TestParser extends TestCase {</span>
+
+	private RssChannelBean channel;
+	private RssImageBean image;
+	private List&lt;RssItemBean&gt; items;
+
+	public void fileParse(String filename){
+<span class="fc" id="L25">		this.fileParse(filename, null);</span>
+<span class="fc" id="L26">	}</span>
+
+	public void fileParse(String filename, String charset){
+<span class="fc" id="L29">		RssParser rss = new RssParser(filename);</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">		if (charset!=null) rss.setCharset(charset);</span>
+		try {
+<span class="fc" id="L32">			RssFeed obj = rss.load();</span>
+<span class="fc" id="L33">			this.channel = obj.getChannel(); //Gets the channel element</span>
+<span class="fc" id="L34">			this.items = obj.getItems(); //Gets a List of RssItemBean</span>
+<span class="fc" id="L35">			this.image = obj.getImage(); //Gets the image element</span>
+<span class="nc" id="L36">		}catch(Exception e){</span>
+<span class="nc" id="L37">			e.printStackTrace();</span>
+		}				
+<span class="fc" id="L39">	}</span>
+	
+	public void testSimpleGeoModuleParser(){
+<span class="fc" id="L42">		RssParser rss = new RssParser(&quot;java/test/data/georss.xml&quot;);</span>
+<span class="fc" id="L43">		rss.addRssModuleParser(&quot;geoRss&quot;, new SimpleGeoModuleParser());</span>
+		RssItemBean item;
+		RssChannelBean channel;
+		SimpleGeoRssItemBean geo;
+		
+		try{
+<span class="fc" id="L49">			RssFeed obj = rss.load();</span>
+<span class="fc" id="L50">			channel = obj.getChannel();</span>
+<span class="fc" id="L51">			List&lt;RssItemBean&gt; items = obj.getItems();</span>
+			
+<span class="fc" id="L53">			assertEquals(&quot;USGS M 5+ Earthquakes&quot;, channel.getTitle());</span>
+			
+<span class="fc" id="L55">			item = items.get(0);</span>
+<span class="fc" id="L56">			geo = (SimpleGeoRssItemBean)item.getAdditionalInfo(&quot;geoRss&quot;);			</span>
+<span class="fc" id="L57">			assertEquals(&quot;M 5.1, northwestern Iran&quot;, item.getTitle());</span>
+<span class="fc" id="L58">			assertEquals(38.3506, geo.getLatitude());</span>
+<span class="fc" id="L59">			assertEquals(46.7494, geo.getLongitude());</span>
+			
+<span class="fc" id="L61">			item = items.get(20);</span>
+<span class="fc" id="L62">			geo = (SimpleGeoRssItemBean)item.getAdditionalInfo(&quot;geoRss&quot;);</span>
+<span class="fc" id="L63">			assertEquals(&quot;M 5.2, southern Mid-Atlantic Ridge&quot;, item.getTitle());</span>
+<span class="fc" id="L64">			assertEquals(-33.1277, geo.getLatitude());</span>
+<span class="fc" id="L65">			assertEquals(-15.8708, geo.getLongitude());			</span>
+<span class="nc" id="L66">		}catch(Exception e){</span>
+<span class="nc" id="L67">			e.printStackTrace();</span>
+		}
+<span class="fc" id="L69">	}</span>
+	
+	public void testDocumentXpathQuery(){
+<span class="fc" id="L72">		RssParser rss = new RssParser(&quot;java/test/data/georss.xml&quot;);</span>
+<span class="fc" id="L73">		String result = &quot;&quot;;</span>
+		
+		try {
+<span class="fc" id="L76">			rss.load();</span>
+<span class="fc" id="L77">			Document doc = rss.getDocument();</span>
+<span class="fc" id="L78">			result = doc.xpathSelectString(&quot;rss/channel/item[21]/geo:lat/text()&quot;);</span>
+<span class="nc" id="L79">		}catch(Exception e){</span>
+<span class="nc" id="L80">			e.printStackTrace();</span>
+		}
+		
+<span class="fc" id="L83">		assertEquals(&quot;-33.1277&quot;, result);</span>
+<span class="fc" id="L84">	}</span>
+	
+	public void testCache(){
+<span class="fc" id="L87">		RssParser rss = new RssParser();</span>
+<span class="fc" id="L88">		rss.enableCache(&quot;java/test/data/&quot;, 1000);</span>
+		
+<span class="fc" id="L90">		File file = new File(&quot;java/test/data/https%3A%2F%2Fhorrorss.googlecode.com%2Fsvn%2Ftrunk%2Fsrc%2Ftest%2Fdata%2Frss-utf8.xml.cache&quot;);</span>
+<span class="fc" id="L91">		assertEquals(false, file.exists());</span>
+		
+		try {
+<span class="fc" id="L94">			rss.load(&quot;https://horrorss.googlecode.com/svn/trunk/src/test/data/rss-utf8.xml&quot;);</span>
+<span class="fc" id="L95">			assertEquals(true, file.exists());</span>
+<span class="fc" id="L96">			file.delete();</span>
+<span class="nc" id="L97">		}catch(Exception e){</span>
+<span class="nc" id="L98">			System.out.println(&quot;ERROR testing the cache system&quot;);</span>
+		}
+<span class="fc" id="L100">	}</span>
+
+	public void testUTF8FileParse(){
+<span class="fc" id="L103">		this.fileParse(&quot;java/test/data/rss-utf8.xml&quot;, &quot;utf-8&quot;);</span>
+<span class="fc" id="L104">		assertEquals(21,this.items.size());</span>
+
+<span class="fc" id="L106">		RssItemBean item = this.items.get(0);</span>
+<span class="fc" id="L107">		assertEquals(&quot;La niñez de Luke Skywalker&quot;, item.getTitle());</span>
+
+<span class="fc" id="L109">		item = this.items.get(20);</span>
+<span class="fc" id="L110">		assertEquals(&quot;Y con este sencillo acto...&quot;, item.getTitle());</span>
+<span class="fc" id="L111">		assertEquals(&quot;Sun Jul 27 13:50:00 CEST 2008&quot;, item.getPubDate().toString());	</span>
+<span class="fc" id="L112">	}</span>
+
+	public void testUTF8URLParse(){
+<span class="fc" id="L115">		this.fileParse(&quot;https://horrorss.googlecode.com/svn/trunk/src/test/data/rss-utf8.xml&quot;, &quot;utf-8&quot;);</span>
+<span class="fc" id="L116">		assertEquals(21,this.items.size());</span>
+
+<span class="fc" id="L118">		RssItemBean item = this.items.get(0);</span>
+<span class="fc" id="L119">		assertEquals(&quot;La niñez de Luke Skywalker&quot;, item.getTitle());</span>
+
+<span class="fc" id="L121">		item = this.items.get(20);</span>
+<span class="fc" id="L122">		assertEquals(&quot;Y con este sencillo acto...&quot;, item.getTitle());</span>
+<span class="fc" id="L123">		assertEquals(&quot;Sun Jul 27 13:50:00 CEST 2008&quot;, item.getPubDate().toString());</span>
+<span class="fc" id="L124">	}</span>
+
+	public void testISO88591FileParse(){
+<span class="fc" id="L127">		this.fileParse(&quot;java/test/data/rss-iso-8859-1.xml&quot;, &quot;iso-8859-1&quot;);</span>
+<span class="fc" id="L128">		assertEquals(21,this.items.size());</span>
+
+<span class="fc" id="L130">		RssItemBean item = this.items.get(0);</span>
+<span class="fc" id="L131">		assertEquals(&quot;La niñez de Luke Skywalker&quot;, item.getTitle());</span>
+
+<span class="fc" id="L133">		item = this.items.get(20);</span>
+<span class="fc" id="L134">		assertEquals(&quot;Y con este sencillo acto...&quot;, item.getTitle());</span>
+<span class="fc" id="L135">		assertEquals(&quot;Sun Jul 27 13:50:00 CEST 2008&quot;, item.getPubDate().toString());		</span>
+<span class="fc" id="L136">	}</span>
+
+	public void testISO88591URLParse(){
+<span class="fc" id="L139">		this.fileParse(&quot;http://horrorss.googlecode.com/svn/trunk/src/test/data/rss-iso-8859-1.xml&quot;, &quot;iso-8859-1&quot;);</span>
+<span class="fc" id="L140">		assertEquals(21,this.items.size());</span>
+
+<span class="fc" id="L142">		RssItemBean item = this.items.get(0);</span>
+<span class="fc" id="L143">		assertEquals(&quot;La niñez de Luke Skywalker&quot;, item.getTitle());</span>
+
+<span class="fc" id="L145">		item = this.items.get(20);</span>
+<span class="fc" id="L146">		assertEquals(&quot;Y con este sencillo acto...&quot;, item.getTitle());</span>
+<span class="fc" id="L147">		assertEquals(&quot;Sun Jul 27 13:50:00 CEST 2008&quot;, item.getPubDate().toString());		</span>
+<span class="fc" id="L148">	}</span>
+
+	public void testAtomParse(){
+<span class="fc" id="L151">		this.fileParse(&quot;java/test/data/rss-atom.xml&quot;);</span>
+<span class="fc" id="L152">		assertEquals(21,this.items.size());</span>
+
+<span class="fc" id="L154">		assertEquals(&quot;El blog horroroso de Horrabin&quot;, this.channel.getTitle());</span>
+
+<span class="fc" id="L156">		RssItemBean item = this.items.get(0);</span>
+<span class="fc" id="L157">		assertEquals(&quot;La niñez de Luke Skywalker&quot;, item.getTitle());</span>
+
+<span class="fc" id="L159">		item = this.items.get(20);</span>
+<span class="fc" id="L160">		assertEquals(&quot;Y con este sencillo acto...&quot;, item.getTitle());</span>
+<span class="fc" id="L161">		assertEquals(&quot;http://horrablog.blogspot.com/2008/07/y-con-este-sencillo-acto.html&quot;, item.getLink());</span>
+<span class="fc" id="L162">		assertEquals(&quot;Sun Jul 27 13:50:00 CEST 2008&quot;, item.getPubDate().toString());</span>
+<span class="fc" id="L163">		assertEquals(&quot;Horrabin&quot;, item.getAuthor());</span>
+		
+<span class="fc" id="L165">		assertEquals(&quot;&quot;, this.image.getUrl());</span>
+<span class="fc" id="L166">	}</span>
+	
+	public void testRSSParse(){
+<span class="fc" id="L169">		this.fileParse(&quot;java/test/data/rss20.xml&quot;);</span>
+<span class="fc" id="L170">		assertEquals(12,this.items.size());</span>
+
+<span class="fc" id="L172">		assertEquals(&quot;JRMora, humor gráfico&quot;, this.channel.getTitle());</span>
+
+<span class="fc" id="L174">		RssItemBean item = this.items.get(0);</span>
+<span class="fc" id="L175">		assertEquals(&quot;Activismo de clic&quot;, item.getTitle());</span>
+
+<span class="fc" id="L177">		item = this.items.get(10);</span>
+<span class="fc" id="L178">		assertEquals(&quot;Meteorito crisis&quot;, item.getTitle());</span>
+<span class="fc" id="L179">		assertEquals(&quot;http://feedproxy.google.com/~r/JrmoraHumorGrfico/~3/e_eXwnCTrd4/&quot;, item.getLink());</span>
+<span class="fc" id="L180">		assertEquals(&quot;Sun Jan 15 00:52:24 CET 2012&quot;, item.getPubDate().toString());</span>
+<span class="fc" id="L181">		assertEquals(&quot;JRMora&quot;, item.getAuthor());	</span>
+		
+<span class="fc" id="L183">		assertEquals(&quot;http://www.jrmora.com/jr_bocata.jpg&quot;, this.image.getUrl());</span>
+<span class="fc" id="L184">	}	</span>
+
+	public void testRDFParse(){
+<span class="fc" id="L187">		this.fileParse(&quot;java/test/data/rss-rdf.xml&quot;);</span>
+<span class="fc" id="L188">		assertEquals(10,this.items.size());</span>
+
+<span class="fc" id="L190">		assertEquals(&quot;Barrapunto&quot;, this.channel.getTitle());</span>
+
+<span class="fc" id="L192">		RssItemBean item = this.items.get(0);</span>
+<span class="fc" id="L193">		assertEquals(&quot;Bloomberg abre su API de datos&quot;, item.getTitle());</span>
+
+<span class="fc" id="L195">		item = this.items.get(9);</span>
+<span class="fc" id="L196">		assertEquals(&quot;Los mejores inicios de novela&quot;, item.getTitle());</span>
+<span class="fc" id="L197">		assertEquals(&quot;http://barrapunto.com/article.pl?sid=12/01/30/216220&amp;from=rss&quot;, item.getLink());</span>
+<span class="fc" id="L198">		assertEquals(&quot;Tue Jan 31 00:00:00 CET 2012&quot;, item.getPubDate().toString());</span>
+<span class="fc" id="L199">		assertEquals(&quot;Mu&quot;, item.getAuthor());</span>
+		
+<span class="fc" id="L201">		assertEquals(&quot;http://barrapunto.com/images/topics/topicbarrapunto.png&quot;, this.image.getUrl());</span>
+<span class="fc" id="L202">	}</span>
+
+	public void testFileParse(){
+<span class="fc" id="L205">		this.fileParse(&quot;java/test/data/rss-utf8.xml&quot;);</span>
+<span class="fc" id="L206">		assertEquals(21,this.items.size());</span>
+
+<span class="fc" id="L208">		RssItemBean item = this.items.get(0);</span>
+<span class="fc" id="L209">		assertEquals(&quot;La niñez de Luke Skywalker&quot;, item.getTitle());</span>
+
+<span class="fc" id="L211">		item = this.items.get(20);</span>
+<span class="fc" id="L212">		assertEquals(&quot;Y con este sencillo acto...&quot;, item.getTitle());</span>
+<span class="fc" id="L213">	}</span>
+			
+	public void testURLParse(){
+<span class="fc" id="L216">		this.fileParse(&quot;http://horrorss.googlecode.com/svn/trunk/src/test/data/rss-utf8.xml&quot;);		</span>
+		
+<span class="fc" id="L218">		assertEquals(21,this.items.size());</span>
+
+<span class="fc" id="L220">		RssItemBean item = this.items.get(0);</span>
+<span class="fc" id="L221">		assertEquals(&quot;La niñez de Luke Skywalker&quot;, item.getTitle());</span>
+
+<span class="fc" id="L223">		item = this.items.get(20);</span>
+<span class="fc" id="L224">		assertEquals(&quot;Y con este sencillo acto...&quot;, item.getTitle());</span>
+<span class="fc" id="L225">	}</span>
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.5.6.201201232323</span>TestParser (17-oct-2012 0:01:27)</div></body></html>

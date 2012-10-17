@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>DateParserDefault.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">TestParser (17-oct-2012 0:01:27)</a> &gt; <a href="../../index.html" class="el_group">horrorss</a> &gt; <a href="../index.html" class="el_bundle">java</a> &gt; <a href="index.html" class="el_package">org.horrabin.horrorss.util</a> &gt; <span class="el_source">DateParserDefault.java</span></div><h1>DateParserDefault.java</h1><pre class="source lang-java linenums">/*
+ * Created on 15/10/2012
+ *
+ * TODO To change the template for this generated file go to
+ * Window - Preferences - Java - Code Style - Code Templates
+ */
+package org.horrabin.horrorss.util;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import org.horrabin.horrorss.RssParser;
+
+<span class="fc" id="L15">public class DateParserDefault implements DateParser {</span>
+
+	public Date getDate(String date, int rssType) throws Exception {
+<span class="fc" id="L18">		  Date res = null;</span>
+<span class="fc" id="L19">		  String pattern = null;</span>
+			
+<span class="pc bpc" id="L21" title="1 of 4 branches missed.">		  switch (rssType){</span>
+		  	case RssParser.TYPE_RDF: {
+<span class="pc bpc" id="L23" title="1 of 2 branches missed.">		  		if (date.indexOf(&quot;+&quot;)&gt;=0)</span>
+<span class="fc" id="L24">		  			pattern = &quot;yyyy-MM-dd'T'HH:mm:ss+HH:mm&quot;;</span>
+<span class="nc" id="L25">		  		else pattern = &quot;yyyy-MM-dd'T'HH:mm:ss-HH:mm&quot;;</span>
+<span class="nc" id="L26">		  		break;</span>
+		  	}
+			case RssParser.TYPE_RSS: {
+<span class="fc" id="L29">				pattern = &quot;EEE, dd MMM yyyy HH:mm:ss Z&quot;;</span>
+<span class="fc" id="L30">				break;</span>
+			}
+			case RssParser.TYPE_ATOM: {
+<span class="fc" id="L33">				pattern = &quot;yyyy-MM-dd'T'HH:mm:ss&quot;;</span>
+				break;				
+			}
+		  }
+		  
+		  try {
+<span class="fc" id="L39">			  SimpleDateFormat sd = new SimpleDateFormat(pattern, Locale.ENGLISH);</span>
+<span class="fc" id="L40">			  res = sd.parse(date);</span>
+<span class="nc" id="L41">		  } catch (Exception e) {</span>
+<span class="nc" id="L42">			  System.out.println(&quot;Error parsing date: &quot; + date + &quot; [Type: &quot; + rssType + &quot;] --&quot; + e.toString());</span>
+			  //throw e;
+		  }	  
+		  
+<span class="fc" id="L46">		  return res;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.5.6.201201232323</span>TestParser (17-oct-2012 0:01:27)</div></body></html>
