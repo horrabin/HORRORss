@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>RssParser.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">TestParser (17-oct-2012 0:01:27)</a> &gt; <a href="../../index.html" class="el_group">horrorss</a> &gt; <a href="../index.html" class="el_bundle">java</a> &gt; <a href="index.html" class="el_package">org.horrabin.horrorss</a> &gt; <span class="el_source">RssParser.java</span></div><h1>RssParser.java</h1><pre class="source lang-java linenums">/**
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>RssParser.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">TestParser (17-oct-2012 22:08:35)</a> &gt; <a href="../../index.html" class="el_group">horrorss</a> &gt; <a href="../index.html" class="el_bundle">java</a> &gt; <a href="index.html" class="el_package">org.horrabin.horrorss</a> &gt; <span class="el_source">RssParser.java</span></div><h1>RssParser.java</h1><pre class="source lang-java linenums">/**
  * RssParser.java
  *
- * HORRORss Package, Version 2.1.0
+ * HORRORss Package, Version 2.2.0
  * Simple RSS parser
  *
- * August 30, 2012
+ * October 16, 2012
  *
  * Copyright (C) 2012 Fernando Fornieles
  * e-mail: nandofm@gmail.com
@@ -48,7 +48,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import org.horrabin.horrorss.util.DateParser;
-import org.horrabin.horrorss.util.DateParserDefault;
+import org.horrabin.horrorss.util.DefaultDateParser;
 
 import com.hp.hpl.sparta.Document;
 import com.hp.hpl.sparta.Parser;
@@ -70,7 +70,7 @@ public class RssParser {
 	private String cacheDir;
 <span class="fc" id="L71">	private long cacheLifeTime = 0;</span>
 	
-<span class="fc" id="L73">	private DateParser dateParser = new DateParserDefault();</span>
+<span class="fc" id="L73">	private DateParser dateParser = new DefaultDateParser();</span>
 	private Map&lt;String, RssModuleParser&gt; moduleParsers;
 	  
 
@@ -586,4 +586,4 @@ public class RssParser {
 <span class="fc" id="L586">	  return this.dateParser.getDate(date, rssType);</span>
   }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.5.6.201201232323</span>TestParser (17-oct-2012 0:01:27)</div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.5.6.201201232323</span>TestParser (17-oct-2012 22:08:35)</div></body></html>
