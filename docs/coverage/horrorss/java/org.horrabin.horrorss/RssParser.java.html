@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>RssParser.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">TestParser (02-sep-2012 22:10:57)</a> &gt; <a href="../../index.html" class="el_group">horrorss</a> &gt; <a href="../index.html" class="el_bundle">java</a> &gt; <a href="index.html" class="el_package">org.horrabin.horrorss</a> &gt; <span class="el_source">RssParser.java</span></div><h1>RssParser.java</h1><pre class="source lang-java linenums">/**
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>RssParser.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">TestParser (17-oct-2012 0:01:27)</a> &gt; <a href="../../index.html" class="el_group">horrorss</a> &gt; <a href="../index.html" class="el_bundle">java</a> &gt; <a href="index.html" class="el_package">org.horrabin.horrorss</a> &gt; <span class="el_source">RssParser.java</span></div><h1>RssParser.java</h1><pre class="source lang-java linenums">/**
  * RssParser.java
  *
  * HORRORss Package, Version 2.1.0
@@ -46,7 +46,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
+
+import org.horrabin.horrorss.util.DateParser;
+import org.horrabin.horrorss.util.DateParserDefault;
 
 import com.hp.hpl.sparta.Document;
 import com.hp.hpl.sparta.Parser;
@@ -64,27 +66,32 @@ public class RssParser {
 	private String filename;
 	private String xPath;
 	private int rssType;
-<span class="fc" id="L67">	private String charset = &quot;utf8&quot;;</span>
+<span class="fc" id="L69">	private String charset = &quot;utf8&quot;;</span>
 	private String cacheDir;
-<span class="fc" id="L69">	private long cacheLifeTime = 0;</span>
+<span class="fc" id="L71">	private long cacheLifeTime = 0;</span>
 	
+<span class="fc" id="L73">	private DateParser dateParser = new DateParserDefault();</span>
 	private Map&lt;String, RssModuleParser&gt; moduleParsers;
 	  
 
  /**
   * Create a new RSS parser.
   */
-<span class="fc" id="L77">  public RssParser(){</span>
-<span class="fc" id="L78">       this.filename = &quot;&quot;;</span>
-<span class="fc" id="L79">  }</span>
+<span class="fc" id="L80">  public RssParser(){</span>
+<span class="fc" id="L81">      this.filename = &quot;&quot;;</span>
+<span class="fc" id="L82">  }</span>
 
  /**
   * Create a new RSS file parser.
   * @param filename String it can be a filename or an URL
   */
-<span class="fc" id="L85">  public RssParser(String filename){</span>
-<span class="fc" id="L86">       this.filename = filename;</span>
-<span class="fc" id="L87">  }</span>
+<span class="fc" id="L88">  public RssParser(String filename){</span>
+<span class="fc" id="L89">       this.filename = filename;</span>
+<span class="fc" id="L90">  }</span>
+  
+  public void setDateParser(DateParser dateParser){
+<span class="nc" id="L93">	  this.dateParser = dateParser;</span>
+<span class="nc" id="L94">  }</span>
 
   /**
    * Add a custom RssModuleParser, identified by the parameter name, to parse and obtain
@@ -94,9 +101,9 @@ public class RssParser {
    * @param moduleParser An implementation of RssModuleParser
    */
   public void addRssModuleParser(String name, RssModuleParser moduleParser){
-<span class="pc bpc" id="L97" title="1 of 2 branches missed.">	  if (this.moduleParsers == null) this.moduleParsers = new HashMap&lt;String, RssModuleParser&gt;();</span>
-<span class="fc" id="L98">	  this.moduleParsers.put(name, moduleParser);</span>
-<span class="fc" id="L99">  }</span>
+<span class="pc bpc" id="L104" title="1 of 2 branches missed.">	  if (this.moduleParsers == null) this.moduleParsers = new HashMap&lt;String, RssModuleParser&gt;();</span>
+<span class="fc" id="L105">	  this.moduleParsers.put(name, moduleParser);</span>
+<span class="fc" id="L106">  }</span>
   
   /**
    * Parses the RSS source defined in the constructor and load its content into an RssFeed object
@@ -104,11 +111,11 @@ public class RssParser {
    * @throws Exception
    */
   public RssFeed load() throws Exception {
-<span class="fc bfc" id="L107" title="All 2 branches covered.">       if ((this.filename.startsWith(&quot;http://&quot;)) || </span>
-<span class="fc bfc" id="L108" title="All 2 branches covered.">    	   (this.filename.startsWith(&quot;https://&quot;))) this.parseFromURL();</span>
-<span class="fc" id="L109">         else this.parseFromReader(this.getReaderFromFile(this.filename));</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">      if ((this.filename.startsWith(&quot;http://&quot;)) || </span>
+<span class="fc bfc" id="L115" title="All 2 branches covered.">    	   (this.filename.startsWith(&quot;https://&quot;))) this.parseFromURL();</span>
+<span class="fc" id="L116">         else this.parseFromReader(this.getReaderFromFile(this.filename));</span>
        
-<span class="fc" id="L111">       return this.getRssFeed();</span>
+<span class="fc" id="L118">      return this.getRssFeed();</span>
   }
 
   /**
@@ -119,14 +126,14 @@ public class RssParser {
    */
   public RssFeed loadString(String xml) throws Exception{
 	    try {
-<span class="nc" id="L122">	        doc = Parser.parse(xml);</span>
-<span class="nc" id="L123">	    }catch(Exception e){</span>
-<span class="nc" id="L124">	        doc = new Document();</span>
-<span class="nc" id="L125">	        throw new Exception(&quot;Error reading the file &quot; + filename, e);	        </span>
+<span class="nc" id="L129">	        doc = Parser.parse(xml);</span>
+<span class="nc" id="L130">	    }catch(Exception e){</span>
+<span class="nc" id="L131">	        doc = new Document();</span>
+<span class="nc" id="L132">	        throw new Exception(&quot;Error reading the file &quot; + filename, e);	        </span>
 	    }
-<span class="nc" id="L127">	    this.setChannelXPath();</span>
+<span class="nc" id="L134">	    this.setChannelXPath();</span>
 	    
-<span class="nc" id="L129">	    return this.getRssFeed();</span>
+<span class="nc" id="L136">	    return this.getRssFeed();</span>
   }
   
   /**
@@ -136,9 +143,9 @@ public class RssParser {
    * @throws Exception
    */
   public RssFeed load(String filename) throws Exception{
-<span class="fc" id="L139">	  this.filename = filename;</span>
-<span class="fc" id="L140">	  this.load();</span>
-<span class="fc" id="L141">	  return this.getRssFeed();</span>
+<span class="fc" id="L146">	  this.filename = filename;</span>
+<span class="fc" id="L147">	  this.load();</span>
+<span class="fc" id="L148">	  return this.getRssFeed();</span>
   }   
   
   /**
@@ -148,9 +155,9 @@ public class RssParser {
    * @throws Exception
    */
   public RssFeed load(File file) throws Exception{
-<span class="nc" id="L151">	  InputStream input = new FileInputStream(file);</span>
-<span class="nc" id="L152">	  this.parseFromReader(this.getReaderFromInputStream(input));</span>
-<span class="nc" id="L153">	  return this.getRssFeed();</span>
+<span class="nc" id="L158">	  InputStream input = new FileInputStream(file);</span>
+<span class="nc" id="L159">	  this.parseFromReader(this.getReaderFromInputStream(input));</span>
+<span class="nc" id="L160">	  return this.getRssFeed();</span>
   }  
 
   /**
@@ -160,8 +167,8 @@ public class RssParser {
    * @throws Exception
    */
   public RssFeed load(InputStream input) throws Exception{
-<span class="nc" id="L163">	  this.parseFromReader(this.getReaderFromInputStream(input));</span>
-<span class="nc" id="L164">	  return this.getRssFeed();</span>
+<span class="nc" id="L170">	  this.parseFromReader(this.getReaderFromInputStream(input));</span>
+<span class="nc" id="L171">	  return this.getRssFeed();</span>
   }
 
   /**
@@ -169,8 +176,8 @@ public class RssParser {
    * @param charset Charset name (iso-8859-1, utf-8,...).
    */
   public void setCharset(String charset){
-<span class="fc" id="L172">	  this.charset = charset;</span>
-<span class="fc" id="L173">  }</span>
+<span class="fc" id="L179">	  this.charset = charset;</span>
+<span class="fc" id="L180">  }</span>
 
   /**
    * Enables the caching system.
@@ -178,433 +185,405 @@ public class RssParser {
    * @param cacheLifeTime long Cache lifetime in milliseconds. If cacheLifeTime=0 it will be disabled.
    */
   public void enableCache(String cacheDir, long cacheLifeTime){
-<span class="fc" id="L181">	  this.cacheDir = cacheDir;</span>
-<span class="fc" id="L182">	  this.cacheLifeTime = cacheLifeTime;</span>
-<span class="fc" id="L183">  }</span>
+<span class="fc" id="L188">	  this.cacheDir = cacheDir;</span>
+<span class="fc" id="L189">	  this.cacheLifeTime = cacheLifeTime;</span>
+<span class="fc" id="L190">  }</span>
   
   /**
    * Get the Document object containing all the RSS elements in the file
    * @return The Document object
    */  
   public Document getDocument(){
-<span class="fc" id="L190">	  return this.doc;</span>
+<span class="fc" id="L197">	  return this.doc;</span>
   }
 
   private RssChannelBean getChannel() throws Exception {
-<span class="fc bfc" id="L194" title="All 2 branches covered.">  	 if (rssType!=TYPE_ATOM) return this.getChannelRss();</span>
-<span class="fc" id="L195">  	 	else return this.getChannelAtom();</span>
+<span class="fc bfc" id="L201" title="All 2 branches covered.">  	 if (rssType!=TYPE_ATOM) return this.getChannelRss();</span>
+<span class="fc" id="L202">  	 	else return this.getChannelAtom();</span>
   }
 
   private RssChannelBean getChannelAtom() throws Exception {
-<span class="fc" id="L199">   	 RssChannelBean res = new RssChannelBean();</span>
+<span class="fc" id="L206">   	 RssChannelBean res = new RssChannelBean();</span>
    	 String pubDate;
    	 
 	 try{
-<span class="fc" id="L203">		 res.setTitle(doc.xpathSelectString(&quot;/feed/title/text()&quot;));		 </span>
-<span class="fc" id="L204">		 res.setDescription(doc.xpathSelectString(&quot;/feed/tagline/text()&quot;));</span>
-<span class="fc" id="L205">		 res.setLink(doc.xpathSelectString(&quot;/feed/link/@href&quot;));		 </span>
-<span class="fc" id="L206">		 pubDate =  doc.xpathSelectString(&quot;/feed/modified/text()&quot;);</span>
-<span class="pc bpc" id="L207" title="1 of 2 branches missed.">		 if (pubDate!=null) res.setPubDate(this.getDate(pubDate, TYPE_ATOM));</span>
-<span class="fc" id="L208">		 this.parseAdditionalChannelInfo(res);</span>
-<span class="nc" id="L209">	 }catch(Exception e){</span>
-<span class="nc" id="L210">		   throw new Exception(&quot;Error obteniendo elemento canal de &quot; + filename, e);</span>
+<span class="fc" id="L210">		 res.setTitle(doc.xpathSelectString(&quot;/feed/title/text()&quot;));		 </span>
+<span class="fc" id="L211">		 res.setDescription(doc.xpathSelectString(&quot;/feed/tagline/text()&quot;));</span>
+<span class="fc" id="L212">		 res.setLink(doc.xpathSelectString(&quot;/feed/link/@href&quot;));		 </span>
+<span class="fc" id="L213">		 pubDate =  doc.xpathSelectString(&quot;/feed/modified/text()&quot;);</span>
+<span class="pc bpc" id="L214" title="1 of 2 branches missed.">		 if (pubDate!=null) res.setPubDate(this.getDate(pubDate, TYPE_ATOM));</span>
+<span class="fc" id="L215">		 this.parseAdditionalChannelInfo(res);</span>
+<span class="nc" id="L216">	 }catch(Exception e){</span>
+<span class="nc" id="L217">		   throw new Exception(&quot;Error obteniendo elemento canal de &quot; + filename, e);</span>
 	 }
-<span class="fc" id="L212">   	 return res;</span>
+<span class="fc" id="L219">   	 return res;</span>
   }
 
   private RssChannelBean getChannelRss() throws Exception {
-<span class="fc" id="L216">	 RssChannelBean res = new RssChannelBean();</span>
+<span class="fc" id="L223">	 RssChannelBean res = new RssChannelBean();</span>
 	 String datePublish;
 	 
 	 try{	   
-<span class="fc bfc" id="L220" title="All 2 branches covered.">	   if (this.rssType==TYPE_RDF){		   		   </span>
-<span class="fc" id="L221">		   res.setTitle(doc.xpathSelectString(this.xPath + &quot;/channel/title/text()&quot;));</span>
-<span class="fc" id="L222">		   res.setLink(doc.xpathSelectString(this.xPath + &quot;/channel/link/text()&quot;));</span>
-<span class="fc" id="L223">		   res.setDescription(doc.xpathSelectString(this.xPath + &quot;/channel/description/text()&quot;));	</span>
-<span class="fc" id="L224">		   datePublish = doc.xpathSelectString(this.xPath + &quot;/channel/dc:date/text()&quot;);</span>
+<span class="fc bfc" id="L227" title="All 2 branches covered.">	   if (this.rssType==TYPE_RDF){		   		   </span>
+<span class="fc" id="L228">		   res.setTitle(doc.xpathSelectString(this.xPath + &quot;/channel/title/text()&quot;));</span>
+<span class="fc" id="L229">		   res.setLink(doc.xpathSelectString(this.xPath + &quot;/channel/link/text()&quot;));</span>
+<span class="fc" id="L230">		   res.setDescription(doc.xpathSelectString(this.xPath + &quot;/channel/description/text()&quot;));	</span>
+<span class="fc" id="L231">		   datePublish = doc.xpathSelectString(this.xPath + &quot;/channel/dc:date/text()&quot;);</span>
 	   }else {
-<span class="fc" id="L226">		   res.setTitle(doc.xpathSelectString(this.xPath + &quot;/title/text()&quot;));</span>
-<span class="fc" id="L227">		   res.setLink(doc.xpathSelectString(this.xPath + &quot;/link/text()&quot;));</span>
-<span class="fc" id="L228">		   res.setDescription(doc.xpathSelectString(this.xPath + &quot;/description/text()&quot;));		   </span>
-<span class="fc" id="L229">		   datePublish = doc.xpathSelectString(this.xPath + &quot;/pubDate/text()&quot;);</span>
+<span class="fc" id="L233">		   res.setTitle(doc.xpathSelectString(this.xPath + &quot;/title/text()&quot;));</span>
+<span class="fc" id="L234">		   res.setLink(doc.xpathSelectString(this.xPath + &quot;/link/text()&quot;));</span>
+<span class="fc" id="L235">		   res.setDescription(doc.xpathSelectString(this.xPath + &quot;/description/text()&quot;));		   </span>
+<span class="fc" id="L236">		   datePublish = doc.xpathSelectString(this.xPath + &quot;/pubDate/text()&quot;);</span>
 	   }
 	   
-<span class="fc bfc" id="L232" title="All 2 branches covered.">	   if (datePublish!=null) res.setPubDate(this.getDate(datePublish, this.rssType));</span>
+<span class="fc bfc" id="L239" title="All 2 branches covered.">	   if (datePublish!=null) res.setPubDate(this.getDate(datePublish, this.rssType));</span>
 	   
-<span class="fc" id="L234">	   this.parseAdditionalChannelInfo(res);</span>
+<span class="fc" id="L241">	   this.parseAdditionalChannelInfo(res);</span>
 	 }
-<span class="nc" id="L236">	 catch (Exception e){</span>
-<span class="nc" id="L237">	   throw new Exception(&quot;Error reading element channel from &quot; + filename, e);</span>
+<span class="nc" id="L243">	 catch (Exception e){</span>
+<span class="nc" id="L244">	   throw new Exception(&quot;Error reading element channel from &quot; + filename, e);</span>
 	 }
 
-<span class="fc" id="L240">	 return res;</span>
+<span class="fc" id="L247">	 return res;</span>
   }
 
   private RssImageBean getImage() throws Exception {
-<span class="fc bfc" id="L244" title="All 2 branches covered.">   	 if (rssType!=TYPE_ATOM) return this.getImageRss();</span>
-<span class="fc" id="L245">   	 	else return new RssImageBean();</span>
+<span class="fc bfc" id="L251" title="All 2 branches covered.">   	 if (rssType!=TYPE_ATOM) return this.getImageRss();</span>
+<span class="fc" id="L252">   	 	else return new RssImageBean();</span>
   }
 
   private RssImageBean getImageRss() throws Exception {
-<span class="fc" id="L249">     RssImageBean res = new RssImageBean();</span>
+<span class="fc" id="L256">     RssImageBean res = new RssImageBean();</span>
      String title;
      try{
-<span class="fc" id="L252">       title = doc.xpathSelectString(this.xPath + &quot;/image/title/text()&quot;);</span>
-<span class="fc bfc" id="L253" title="All 2 branches covered.">       if (title!=null){</span>
-<span class="fc" id="L254">    	   res.setTitle(title);</span>
-<span class="fc" id="L255">    	   res.setLink(doc.xpathSelectString(this.xPath + &quot;/image/link/text()&quot;));</span>
-<span class="fc" id="L256">    	   res.setUrl(doc.xpathSelectString(this.xPath + &quot;/image/url/text()&quot;));</span>
+<span class="fc" id="L259">       title = doc.xpathSelectString(this.xPath + &quot;/image/title/text()&quot;);</span>
+<span class="fc bfc" id="L260" title="All 2 branches covered.">       if (title!=null){</span>
+<span class="fc" id="L261">    	   res.setTitle(title);</span>
+<span class="fc" id="L262">    	   res.setLink(doc.xpathSelectString(this.xPath + &quot;/image/link/text()&quot;));</span>
+<span class="fc" id="L263">    	   res.setUrl(doc.xpathSelectString(this.xPath + &quot;/image/url/text()&quot;));</span>
        }else{
-<span class="fc" id="L258">    	   title = doc.xpathSelectString(this.xPath + &quot;/channel/image/title/text()&quot;);</span>
-<span class="pc bpc" id="L259" title="1 of 2 branches missed.">    	   if (title!=null){</span>
-<span class="nc" id="L260">    		   res.setTitle(title);</span>
-<span class="nc" id="L261">    		   res.setLink(doc.xpathSelectString(this.xPath + &quot;/channel/image/link/text()&quot;));</span>
-<span class="nc" id="L262">    		   res.setUrl(doc.xpathSelectString(this.xPath + &quot;/channel/image/url/text()&quot;));</span>
+<span class="fc" id="L265">    	   title = doc.xpathSelectString(this.xPath + &quot;/channel/image/title/text()&quot;);</span>
+<span class="pc bpc" id="L266" title="1 of 2 branches missed.">    	   if (title!=null){</span>
+<span class="nc" id="L267">    		   res.setTitle(title);</span>
+<span class="nc" id="L268">    		   res.setLink(doc.xpathSelectString(this.xPath + &quot;/channel/image/link/text()&quot;));</span>
+<span class="nc" id="L269">    		   res.setUrl(doc.xpathSelectString(this.xPath + &quot;/channel/image/url/text()&quot;));</span>
     	   }
        }
        
-<span class="fc" id="L266">       this.parseAdditionalImageInfo(res);</span>
-<span class="nc" id="L267">     }catch (Exception e){</span>
-<span class="nc" id="L268">       throw new Exception(&quot;Error obteniendo elemento imagen de &quot; + filename, e);</span>
+<span class="fc" id="L273">       this.parseAdditionalImageInfo(res);</span>
+<span class="nc" id="L274">     }catch (Exception e){</span>
+<span class="nc" id="L275">       throw new Exception(&quot;Error obteniendo elemento imagen de &quot; + filename, e);</span>
      }
 
-<span class="fc" id="L271">     return res;</span>
+<span class="fc" id="L278">     return res;</span>
   }
 
   private List&lt;RssItemBean&gt; getItems() throws Exception {
-<span class="fc bfc" id="L275" title="All 2 branches covered.">   	  if (rssType!=TYPE_ATOM) return this.getItemsRss();</span>
-<span class="fc" id="L276">   	  	else return this.getItemsAtom();</span>
+<span class="fc bfc" id="L282" title="All 2 branches covered.">   	  if (rssType!=TYPE_ATOM) return this.getItemsRss();</span>
+<span class="fc" id="L283">   	  	else return this.getItemsAtom();</span>
   }
 
   private List&lt;RssItemBean&gt; getItemsAtom() throws Exception {
-<span class="fc" id="L280">     List&lt;RssItemBean&gt; res = new ArrayList&lt;RssItemBean&gt;();</span>
+<span class="fc" id="L287">     List&lt;RssItemBean&gt; res = new ArrayList&lt;RssItemBean&gt;();</span>
   	 try{
-<span class="fc" id="L282">  	   Enumeration list = doc.xpathSelectElements(&quot;feed/entry&quot;);</span>
-<span class="fc" id="L283">  	   int i=1;</span>
-<span class="fc bfc" id="L284" title="All 2 branches covered.">  	   while (list.hasMoreElements()){</span>
-<span class="fc" id="L285">  	     list.nextElement();</span>
-<span class="fc" id="L286">  		 res.add(getItemAtom(i));</span>
-<span class="fc" id="L287">  		 i++;</span>
+<span class="fc" id="L289">  	   Enumeration list = doc.xpathSelectElements(&quot;feed/entry&quot;);</span>
+<span class="fc" id="L290">  	   int i=1;</span>
+<span class="fc bfc" id="L291" title="All 2 branches covered.">  	   while (list.hasMoreElements()){</span>
+<span class="fc" id="L292">  	     list.nextElement();</span>
+<span class="fc" id="L293">  		 res.add(getItemAtom(i));</span>
+<span class="fc" id="L294">  		 i++;</span>
   	   }
   	 }
-<span class="nc" id="L290">  	 catch (Exception e){</span>
-<span class="nc" id="L291">  	   throw new Exception(&quot;Error el Vector de elementos entry de &quot; + filename ,e);</span>
+<span class="nc" id="L297">  	 catch (Exception e){</span>
+<span class="nc" id="L298">  	   throw new Exception(&quot;Error el Vector de elementos entry de &quot; + filename ,e);</span>
   	 }
-<span class="fc" id="L293">  	 return res;</span>
+<span class="fc" id="L300">  	 return res;</span>
   }
 
   private List&lt;RssItemBean&gt; getItemsRss() throws Exception {
-<span class="fc" id="L297">	 List&lt;RssItemBean&gt; res = new ArrayList&lt;RssItemBean&gt;();</span>
+<span class="fc" id="L304">	 List&lt;RssItemBean&gt; res = new ArrayList&lt;RssItemBean&gt;();</span>
 	 try{
-<span class="fc" id="L299">	   Enumeration list = doc.xpathSelectElements(xPath + &quot;/item&quot;);</span>
-<span class="fc" id="L300">	   int i=1;</span>
-<span class="fc bfc" id="L301" title="All 2 branches covered.">	   while (list.hasMoreElements()){</span>
-<span class="fc" id="L302">	     list.nextElement();</span>
-<span class="fc" id="L303">		 res.add(getItemRss(i));</span>
-<span class="fc" id="L304">		 i++;</span>
+<span class="fc" id="L306">	   Enumeration list = doc.xpathSelectElements(xPath + &quot;/item&quot;);</span>
+<span class="fc" id="L307">	   int i=1;</span>
+<span class="fc bfc" id="L308" title="All 2 branches covered.">	   while (list.hasMoreElements()){</span>
+<span class="fc" id="L309">	     list.nextElement();</span>
+<span class="fc" id="L310">		 res.add(getItemRss(i));</span>
+<span class="fc" id="L311">		 i++;</span>
 	   }
 	 }
-<span class="nc" id="L307">	 catch (Exception e){</span>
-<span class="nc" id="L308">	   throw new Exception(&quot;Error el Vector de elementos item de &quot; + filename, e);</span>
+<span class="nc" id="L314">	 catch (Exception e){</span>
+<span class="nc" id="L315">	   throw new Exception(&quot;Error el Vector de elementos item de &quot; + filename, e);</span>
 	 }
-<span class="fc" id="L310">	 return res;</span>
+<span class="fc" id="L317">	 return res;</span>
   }
 
   private RssItemBean getItemAtom(int index) throws Exception{
-<span class="fc" id="L314"> 	 RssItemBean res = new RssItemBean();</span>
+<span class="fc" id="L321"> 	 RssItemBean res = new RssItemBean();</span>
  	 String description;
  	 String datePublish;
  	 String link;
  	 
  	 try{
-<span class="fc" id="L320">	   res.setTitle(doc.xpathSelectString(&quot;feed/entry[&quot; + index + &quot;]/title/text()&quot;));</span>
-<span class="fc" id="L321">	   link = doc.xpathSelectString(&quot;feed/entry[&quot; + index + &quot;]/link/text()&quot;);</span>
+<span class="fc" id="L327">	   res.setTitle(doc.xpathSelectString(&quot;feed/entry[&quot; + index + &quot;]/title/text()&quot;));</span>
+<span class="fc" id="L328">	   link = doc.xpathSelectString(&quot;feed/entry[&quot; + index + &quot;]/link/text()&quot;);</span>
 	   
-<span class="pc bpc" id="L323" title="1 of 2 branches missed.">	   if (link == null){</span>
-<span class="fc" id="L324">		   link = doc.xpathSelectString(&quot;feed/entry[&quot; + index + &quot;]/link[@rel=\&quot;alternate\&quot;]/@href&quot;);</span>
+<span class="pc bpc" id="L330" title="1 of 2 branches missed.">	   if (link == null){</span>
+<span class="fc" id="L331">		   link = doc.xpathSelectString(&quot;feed/entry[&quot; + index + &quot;]/link[@rel=\&quot;alternate\&quot;]/@href&quot;);</span>
 	   }
-<span class="fc" id="L326">	   res.setLink(link);</span>
+<span class="fc" id="L333">	   res.setLink(link);</span>
 	   
-<span class="fc" id="L328">	   description = doc.xpathSelectString(&quot;feed/entry[&quot; + index + &quot;]/content/text()&quot;);</span>
-<span class="pc bpc" id="L329" title="1 of 2 branches missed.">	   if (description == null){</span>
-<span class="fc" id="L330">		   description = doc.xpathSelectString(&quot;feed/entry[&quot; + index + &quot;]/summary/text()&quot;);</span>
+<span class="fc" id="L335">	   description = doc.xpathSelectString(&quot;feed/entry[&quot; + index + &quot;]/content/text()&quot;);</span>
+<span class="pc bpc" id="L336" title="1 of 2 branches missed.">	   if (description == null){</span>
+<span class="fc" id="L337">		   description = doc.xpathSelectString(&quot;feed/entry[&quot; + index + &quot;]/summary/text()&quot;);</span>
 	   }
-<span class="fc" id="L332">	   res.setDescription(description);</span>
-<span class="fc" id="L333">	   res.setAuthor(doc.xpathSelectString(&quot;feed/entry[&quot; + index + &quot;]/author/name/text()&quot;));</span>
+<span class="fc" id="L339">	   res.setDescription(description);</span>
+<span class="fc" id="L340">	   res.setAuthor(doc.xpathSelectString(&quot;feed/entry[&quot; + index + &quot;]/author/name/text()&quot;));</span>
 
-<span class="fc" id="L335">	   datePublish = doc.xpathSelectString(&quot;feed/entry[&quot; + index + &quot;]/created/text()&quot;);</span>
+<span class="fc" id="L342">	   datePublish = doc.xpathSelectString(&quot;feed/entry[&quot; + index + &quot;]/created/text()&quot;);</span>
        //If it is Atom 1.0 the creation date is in &quot;published&quot;
-<span class="pc bpc" id="L337" title="3 of 4 branches missed."> 	   if ((datePublish==null) || (datePublish.equals(&quot;&quot;))){</span>
-<span class="fc" id="L338"> 		   datePublish = doc.xpathSelectString(&quot;feed/entry[&quot; + index + &quot;]/published/text()&quot;);</span>
+<span class="pc bpc" id="L344" title="3 of 4 branches missed."> 	   if ((datePublish==null) || (datePublish.equals(&quot;&quot;))){</span>
+<span class="fc" id="L345"> 		   datePublish = doc.xpathSelectString(&quot;feed/entry[&quot; + index + &quot;]/published/text()&quot;);</span>
        }
  	   
-<span class="fc" id="L341"> 	   res.setPubDate(this.getDate(datePublish, TYPE_ATOM));</span>
+<span class="fc" id="L348"> 	   res.setPubDate(this.getDate(datePublish, TYPE_ATOM));</span>
  	   
-<span class="fc" id="L343"> 	   this.parseAdditionalItemInfo(res, index);</span>
+<span class="fc" id="L350"> 	   this.parseAdditionalItemInfo(res, index);</span>
  	 }
-<span class="nc" id="L345"> 	 catch (Exception e){</span>
-<span class="nc" id="L346"> 	   throw new Exception(&quot;Error obtaining the entry at position &quot; + index + &quot; of &quot; + filename, e);</span>
+<span class="nc" id="L352"> 	 catch (Exception e){</span>
+<span class="nc" id="L353"> 	   throw new Exception(&quot;Error obtaining the entry at position &quot; + index + &quot; of &quot; + filename, e);</span>
  	 }
 
-<span class="fc" id="L349"> 	 return res;</span>
+<span class="fc" id="L356"> 	 return res;</span>
   }
 
   private RssItemBean getItemRss(int index) throws Exception{
-<span class="fc" id="L353">	 RssItemBean res = new RssItemBean();</span>
+<span class="fc" id="L360">	 RssItemBean res = new RssItemBean();</span>
 	 String datePublish;
 	 String author;
  
 	 try{
-<span class="fc" id="L358">	   res.setTitle(doc.xpathSelectString(xPath + &quot;/item[&quot; + index + &quot;]/title/text()&quot;));</span>
-<span class="fc" id="L359">	   res.setLink(doc.xpathSelectString(xPath + &quot;/item[&quot; + index + &quot;]/link/text()&quot;));</span>
-<span class="fc" id="L360">	   res.setDescription(doc.xpathSelectString(xPath + &quot;/item[&quot; + index + &quot;]/description/text()&quot;));</span>
-<span class="fc bfc" id="L361" title="All 2 branches covered.">	   if (this.rssType==TYPE_RDF){</span>
-<span class="fc" id="L362">		   author = doc.xpathSelectString(xPath + &quot;/item[&quot; + index + &quot;]/dc:creator/text()&quot;);</span>
-<span class="fc" id="L363">		   datePublish = doc.xpathSelectString(xPath + &quot;/item[&quot; + index + &quot;]/dc:date/text()&quot;);		   </span>
+<span class="fc" id="L365">	   res.setTitle(doc.xpathSelectString(xPath + &quot;/item[&quot; + index + &quot;]/title/text()&quot;));</span>
+<span class="fc" id="L366">	   res.setLink(doc.xpathSelectString(xPath + &quot;/item[&quot; + index + &quot;]/link/text()&quot;));</span>
+<span class="fc" id="L367">	   res.setDescription(doc.xpathSelectString(xPath + &quot;/item[&quot; + index + &quot;]/description/text()&quot;));</span>
+<span class="fc bfc" id="L368" title="All 2 branches covered.">	   if (this.rssType==TYPE_RDF){</span>
+<span class="fc" id="L369">		   author = doc.xpathSelectString(xPath + &quot;/item[&quot; + index + &quot;]/dc:creator/text()&quot;);</span>
+<span class="fc" id="L370">		   datePublish = doc.xpathSelectString(xPath + &quot;/item[&quot; + index + &quot;]/dc:date/text()&quot;);		   </span>
 	   }else{
-<span class="fc" id="L365">		   author = doc.xpathSelectString(xPath + &quot;/item[&quot; + index + &quot;]/author/text()&quot;);</span>
-<span class="pc bpc" id="L366" title="1 of 2 branches missed.">		   if (author==null) author = doc.xpathSelectString(xPath + &quot;/item[&quot; + index + &quot;]/dc:creator/text()&quot;);</span>
-<span class="fc" id="L367">		   datePublish = doc.xpathSelectString(xPath + &quot;/item[&quot; + index + &quot;]/pubDate/text()&quot;);</span>
+<span class="fc" id="L372">		   author = doc.xpathSelectString(xPath + &quot;/item[&quot; + index + &quot;]/author/text()&quot;);</span>
+<span class="pc bpc" id="L373" title="1 of 2 branches missed.">		   if (author==null) author = doc.xpathSelectString(xPath + &quot;/item[&quot; + index + &quot;]/dc:creator/text()&quot;);</span>
+<span class="fc" id="L374">		   datePublish = doc.xpathSelectString(xPath + &quot;/item[&quot; + index + &quot;]/pubDate/text()&quot;);</span>
 	   }
-<span class="fc" id="L369">	   res.setAuthor(author);</span>
-<span class="fc" id="L370">	   res.setPubDate(this.getDate(datePublish, this.rssType));</span>
+<span class="fc" id="L376">	   res.setAuthor(author);</span>
+<span class="fc" id="L377">	   res.setPubDate(this.getDate(datePublish, this.rssType));</span>
 	   	  
-<span class="fc" id="L372">	   this.parseAdditionalItemInfo(res, index);</span>
+<span class="fc" id="L379">	   this.parseAdditionalItemInfo(res, index);</span>
 	 }
-<span class="nc" id="L374">	 catch (Exception e){</span>
-<span class="nc" id="L375">	   throw new Exception(&quot;Error obtaining the entry at position &quot; + index + &quot; of &quot; + filename, e);</span>
+<span class="nc" id="L381">	 catch (Exception e){</span>
+<span class="nc" id="L382">	   throw new Exception(&quot;Error obtaining the entry at position &quot; + index + &quot; of &quot; + filename, e);</span>
 	 }
 
-<span class="fc" id="L378">	 return res;</span>
+<span class="fc" id="L385">	 return res;</span>
   }
   
   private void parseAdditionalChannelInfo(RssChannelBean item) throws Exception{
-<span class="fc bfc" id="L382" title="All 2 branches covered.">	  if (this.moduleParsers!=null){</span>
-<span class="fc" id="L383">		  Iterator&lt;String&gt; keys = this.moduleParsers.keySet().iterator();</span>
-<span class="fc bfc" id="L384" title="All 2 branches covered.">		  while (keys.hasNext()){</span>
-<span class="fc" id="L385">			  String keyName = keys.next();</span>
-<span class="fc" id="L386">			  RssModuleParser moduleParser = this.moduleParsers.get(keyName);</span>
-<span class="fc" id="L387">			  item.putAdditionalInfo(keyName, moduleParser.parseChannel(this.rssType, this.doc));</span>
+<span class="fc bfc" id="L389" title="All 2 branches covered.">	  if (this.moduleParsers!=null){</span>
+<span class="fc" id="L390">		  Iterator&lt;String&gt; keys = this.moduleParsers.keySet().iterator();</span>
+<span class="fc bfc" id="L391" title="All 2 branches covered.">		  while (keys.hasNext()){</span>
+<span class="fc" id="L392">			  String keyName = keys.next();</span>
+<span class="fc" id="L393">			  RssModuleParser moduleParser = this.moduleParsers.get(keyName);</span>
+<span class="fc" id="L394">			  item.putAdditionalInfo(keyName, moduleParser.parseChannel(this.rssType, this.doc));</span>
 		  }
 	  }
-<span class="fc" id="L390">  }  </span>
+<span class="fc" id="L397">  }  </span>
   
   private void parseAdditionalImageInfo(RssImageBean item) throws Exception{
-<span class="fc bfc" id="L393" title="All 2 branches covered.">	  if (this.moduleParsers!=null){</span>
-<span class="fc" id="L394">		  Iterator&lt;String&gt; keys = this.moduleParsers.keySet().iterator();</span>
-<span class="fc bfc" id="L395" title="All 2 branches covered.">		  while (keys.hasNext()){</span>
-<span class="fc" id="L396">			  String keyName = keys.next();</span>
-<span class="fc" id="L397">			  RssModuleParser moduleParser = this.moduleParsers.get(keyName);</span>
-<span class="fc" id="L398">			  item.putAdditionalInfo(keyName, moduleParser.parseImage(this.rssType, this.doc));</span>
+<span class="fc bfc" id="L400" title="All 2 branches covered.">	  if (this.moduleParsers!=null){</span>
+<span class="fc" id="L401">		  Iterator&lt;String&gt; keys = this.moduleParsers.keySet().iterator();</span>
+<span class="fc bfc" id="L402" title="All 2 branches covered.">		  while (keys.hasNext()){</span>
+<span class="fc" id="L403">			  String keyName = keys.next();</span>
+<span class="fc" id="L404">			  RssModuleParser moduleParser = this.moduleParsers.get(keyName);</span>
+<span class="fc" id="L405">			  item.putAdditionalInfo(keyName, moduleParser.parseImage(this.rssType, this.doc));</span>
 		  }
 	  }
-<span class="fc" id="L401">  }  </span>
+<span class="fc" id="L408">  }  </span>
   
   private void parseAdditionalItemInfo(RssItemBean item, int index) throws Exception{
-<span class="fc bfc" id="L404" title="All 2 branches covered.">	  if (this.moduleParsers!=null){</span>
-<span class="fc" id="L405">		  Iterator&lt;String&gt; keys = this.moduleParsers.keySet().iterator();</span>
-<span class="fc bfc" id="L406" title="All 2 branches covered.">		  while (keys.hasNext()){</span>
-<span class="fc" id="L407">			  String keyName = keys.next();</span>
-<span class="fc" id="L408">			  RssModuleParser moduleParser = this.moduleParsers.get(keyName);</span>
-<span class="fc" id="L409">			  item.putAdditionalInfo(keyName, moduleParser.parseItem(this.rssType, this.doc, index));</span>
+<span class="fc bfc" id="L411" title="All 2 branches covered.">	  if (this.moduleParsers!=null){</span>
+<span class="fc" id="L412">		  Iterator&lt;String&gt; keys = this.moduleParsers.keySet().iterator();</span>
+<span class="fc bfc" id="L413" title="All 2 branches covered.">		  while (keys.hasNext()){</span>
+<span class="fc" id="L414">			  String keyName = keys.next();</span>
+<span class="fc" id="L415">			  RssModuleParser moduleParser = this.moduleParsers.get(keyName);</span>
+<span class="fc" id="L416">			  item.putAdditionalInfo(keyName, moduleParser.parseItem(this.rssType, this.doc, index));</span>
 		  }
 	  }
-<span class="fc" id="L412">  }</span>
+<span class="fc" id="L419">  }</span>
   
   private void parseFromReader(BufferedReader buffer) throws Exception{
 	    String line;
-<span class="fc" id="L416">	    StringBuffer xml = new StringBuffer();</span>
+<span class="fc" id="L423">	    StringBuffer xml = new StringBuffer();</span>
 	    try {
-<span class="fc bfc" id="L418" title="All 2 branches covered.">	        while ((line = buffer.readLine()) != null) {</span>
-<span class="fc" id="L419">	        	xml.append(line);</span>
+<span class="fc bfc" id="L425" title="All 2 branches covered.">	        while ((line = buffer.readLine()) != null) {</span>
+<span class="fc" id="L426">	        	xml.append(line);</span>
 	        }
 	        
-<span class="pc bpc" id="L422" title="1 of 2 branches missed.">	        if (xml.charAt(0)=='\uFEFF') xml.setCharAt(0, '\n');</span>
+<span class="pc bpc" id="L429" title="1 of 2 branches missed.">	        if (xml.charAt(0)=='\uFEFF') xml.setCharAt(0, '\n');</span>
 	        
-<span class="fc" id="L424">	        doc = Parser.parse(xml.toString());</span>
-<span class="nc" id="L425">	    }catch(Exception e){</span>
-<span class="nc" id="L426">	        doc = new Document();</span>
-<span class="nc" id="L427">	        throw new Exception(&quot;Error reading the file &quot; + filename, e);	        </span>
-<span class="nc" id="L428">	    }finally{</span>
-<span class="pc" id="L429">	    	buffer.close();</span>
-<span class="nc" id="L430">	    }</span>
-<span class="fc" id="L431">	    this.setChannelXPath();</span>
-<span class="fc" id="L432">  }</span>
+<span class="fc" id="L431">	        doc = Parser.parse(xml.toString());</span>
+<span class="nc" id="L432">	    }catch(Exception e){</span>
+<span class="nc" id="L433">	        doc = new Document();</span>
+<span class="nc" id="L434">	        throw new Exception(&quot;Error reading the file &quot; + filename, e);	        </span>
+<span class="nc" id="L435">	    }finally{</span>
+<span class="pc" id="L436">	    	buffer.close();</span>
+<span class="nc" id="L437">	    }</span>
+<span class="fc" id="L438">	    this.setChannelXPath();</span>
+<span class="fc" id="L439">  }</span>
 
   private void parseFromFile() throws Exception{
        try{
-<span class="fc" id="L436">         File xmlFile = new File(filename);</span>
-<span class="fc" id="L437">         doc = Parser.parse( xmlFile );</span>
-<span class="nc" id="L438">       }catch (Exception e){</span>
-<span class="nc" id="L439">         System.out.println(&quot;Error reading the file &quot; + filename);</span>
-<span class="nc" id="L440">         System.out.println(&quot;RssParser:parseFromFile() ERROR: &quot; + e.getMessage() );</span>
-<span class="nc" id="L441">         doc = new Document();</span>
+<span class="fc" id="L443">         File xmlFile = new File(filename);</span>
+<span class="fc" id="L444">         doc = Parser.parse( xmlFile );</span>
+<span class="nc" id="L445">       }catch (Exception e){</span>
+<span class="nc" id="L446">         System.out.println(&quot;Error reading the file &quot; + filename);</span>
+<span class="nc" id="L447">         System.out.println(&quot;RssParser:parseFromFile() ERROR: &quot; + e.getMessage() );</span>
+<span class="nc" id="L448">         doc = new Document();</span>
        }
-<span class="fc" id="L443">       this.setChannelXPath();</span>
-<span class="fc" id="L444">  }</span>
+<span class="fc" id="L450">       this.setChannelXPath();</span>
+<span class="fc" id="L451">  }</span>
 
   private void parseFromURL() throws Exception{
-<span class="fc bfc" id="L447" title="All 2 branches covered.">	if (this.cacheLifeTime==0){</span>
-<span class="fc" id="L448">	    this.parseFromReader(this.getReaderFromUrl(this.filename));</span>
+<span class="fc bfc" id="L454" title="All 2 branches covered.">	if (this.cacheLifeTime==0){</span>
+<span class="fc" id="L455">	    this.parseFromReader(this.getReaderFromUrl(this.filename));</span>
 	}else {
-<span class="fc" id="L450">		this.parseFromCache();</span>
+<span class="fc" id="L457">		this.parseFromCache();</span>
 	}
-<span class="fc" id="L452">  }</span>
+<span class="fc" id="L459">  }</span>
 
   private void parseFromCache() throws Exception{
-<span class="fc" id="L455">	  String encFilename = this.encode(this.filename);	  </span>
-<span class="pc bpc" id="L456" title="1 of 2 branches missed.">	  if (this.cacheExpired()){</span>
-<span class="fc" id="L457">		  this.saveURL(this.filename, this.cacheDir, encFilename);</span>
+<span class="fc" id="L462">	  String encFilename = this.encode(this.filename);	  </span>
+<span class="pc bpc" id="L463" title="1 of 2 branches missed.">	  if (this.cacheExpired()){</span>
+<span class="fc" id="L464">		  this.saveURL(this.filename, this.cacheDir, encFilename);</span>
 	  }
-<span class="fc" id="L459">	  this.filename = this.cacheDir + &quot;/&quot; + encFilename;</span>
-<span class="fc" id="L460">	  this.parseFromFile();</span>
-<span class="fc" id="L461">  }</span>
+<span class="fc" id="L466">	  this.filename = this.cacheDir + &quot;/&quot; + encFilename;</span>
+<span class="fc" id="L467">	  this.parseFromFile();</span>
+<span class="fc" id="L468">  }</span>
 
   private boolean cacheExpired() throws Exception {
-<span class="fc" id="L464">	  boolean res = false;</span>
-<span class="fc" id="L465">	  String filename = this.encode(this.filename);</span>
-<span class="fc" id="L466">	  File file = new File(this.cacheDir + &quot;/&quot; + filename);</span>
-<span class="fc" id="L467">	  boolean exists = file.exists();</span>
-<span class="pc bpc" id="L468" title="1 of 2 branches missed.">	  if (exists){</span>
-<span class="nc" id="L469">		  long actualTime = System.currentTimeMillis();</span>
-<span class="nc" id="L470">		  long fileTime = file.lastModified();</span>
-<span class="nc bnc" id="L471" title="All 2 branches missed.">		  if ((actualTime-fileTime)&gt;this.cacheLifeTime) res = true;</span>
-<span class="fc" id="L472">	  }else res = true;</span>
-<span class="fc" id="L473">	  return res;</span>
+<span class="fc" id="L471">	  boolean res = false;</span>
+<span class="fc" id="L472">	  String filename = this.encode(this.filename);</span>
+<span class="fc" id="L473">	  File file = new File(this.cacheDir + &quot;/&quot; + filename);</span>
+<span class="fc" id="L474">	  boolean exists = file.exists();</span>
+<span class="pc bpc" id="L475" title="1 of 2 branches missed.">	  if (exists){</span>
+<span class="nc" id="L476">		  long actualTime = System.currentTimeMillis();</span>
+<span class="nc" id="L477">		  long fileTime = file.lastModified();</span>
+<span class="nc bnc" id="L478" title="All 2 branches missed.">		  if ((actualTime-fileTime)&gt;this.cacheLifeTime) res = true;</span>
+<span class="fc" id="L479">	  }else res = true;</span>
+<span class="fc" id="L480">	  return res;</span>
   }
 
   private boolean saveURL(String url, String path, String filename) throws IOException{
-<span class="fc" id="L477">     boolean res = false;</span>
-<span class="fc" id="L478">     this.checkPath(path);</span>
-<span class="fc" id="L479">     BufferedReader buffer = getReaderFromUrl(url);</span>
-<span class="pc bpc" id="L480" title="1 of 2 branches missed.">     if (buffer!=null){</span>
+<span class="fc" id="L484">     boolean res = false;</span>
+<span class="fc" id="L485">     this.checkPath(path);</span>
+<span class="fc" id="L486">     BufferedReader buffer = getReaderFromUrl(url);</span>
+<span class="pc bpc" id="L487" title="1 of 2 branches missed.">     if (buffer!=null){</span>
          try{
-<span class="fc" id="L482">          FileOutputStream f = new FileOutputStream(path + &quot;/&quot; + filename);</span>
-<span class="fc" id="L483">          OutputStreamWriter writer = new OutputStreamWriter(f);</span>
+<span class="fc" id="L489">          FileOutputStream f = new FileOutputStream(path + &quot;/&quot; + filename);</span>
+<span class="fc" id="L490">          OutputStreamWriter writer = new OutputStreamWriter(f);</span>
           String line;
-<span class="fc bfc" id="L485" title="All 2 branches covered.">          while ((line = buffer.readLine()) != null) {</span>
-<span class="fc" id="L486">             writer.write(line + &quot;\n&quot;,0,line.length() + 1);</span>
+<span class="fc bfc" id="L492" title="All 2 branches covered.">          while ((line = buffer.readLine()) != null) {</span>
+<span class="fc" id="L493">             writer.write(line + &quot;\n&quot;,0,line.length() + 1);</span>
           }
-<span class="fc" id="L488">          writer.close();</span>
-<span class="fc" id="L489">          res = true;</span>
-<span class="nc" id="L490">        }catch (IOException e){</span>
-<span class="nc" id="L491">          throw new IOException(&quot;Error writing the file &quot; + path + &quot;/&quot; + filename);</span>
+<span class="fc" id="L495">          writer.close();</span>
+<span class="fc" id="L496">          res = true;</span>
+<span class="nc" id="L497">        }catch (IOException e){</span>
+<span class="nc" id="L498">          throw new IOException(&quot;Error writing the file &quot; + path + &quot;/&quot; + filename);</span>
         }
      }
-<span class="fc" id="L494">     return res;</span>
+<span class="fc" id="L501">     return res;</span>
   }
 
   private void checkPath(String dir){
-<span class="fc" id="L498">	  File f = new File(dir);</span>
-<span class="pc bpc" id="L499" title="1 of 2 branches missed.">	  if (!f.exists()) f.mkdirs();</span>
-<span class="fc" id="L500">  }</span>
+<span class="fc" id="L505">	  File f = new File(dir);</span>
+<span class="pc bpc" id="L506" title="1 of 2 branches missed.">	  if (!f.exists()) f.mkdirs();</span>
+<span class="fc" id="L507">  }</span>
 
   private BufferedReader getReaderFromFile(String file) throws IOException {
-<span class="fc" id="L503">	    BufferedReader buffer = null;</span>
+<span class="fc" id="L510">	    BufferedReader buffer = null;</span>
 	    try{
-<span class="fc" id="L505">	      FileInputStream fis = new FileInputStream(file);</span>
-<span class="fc" id="L506">	      InputStreamReader input = new InputStreamReader(fis,this.charset);</span>
-<span class="fc" id="L507">		  buffer = new BufferedReader(input);</span>
-<span class="fc" id="L508">		  return buffer;</span>
+<span class="fc" id="L512">	      FileInputStream fis = new FileInputStream(file);</span>
+<span class="fc" id="L513">	      InputStreamReader input = new InputStreamReader(fis,this.charset);</span>
+<span class="fc" id="L514">		  buffer = new BufferedReader(input);</span>
+<span class="fc" id="L515">		  return buffer;</span>
 		}
-<span class="nc" id="L510">		catch (IOException e){</span>
-<span class="nc" id="L511">		  throw new IOException(&quot;Error obtaining the reader from &quot; + filename);</span>
+<span class="nc" id="L517">		catch (IOException e){</span>
+<span class="nc" id="L518">		  throw new IOException(&quot;Error obtaining the reader from &quot; + filename);</span>
 		}
 
   }
   
   private BufferedReader getReaderFromInputStream(InputStream inputStream) throws IOException {
-<span class="nc" id="L517">	  BufferedReader buffer = null;</span>
-<span class="nc" id="L518">	  InputStreamReader input = new InputStreamReader(inputStream, this.charset);</span>
-<span class="nc" id="L519">	  buffer = new BufferedReader(input);</span>
-<span class="nc" id="L520">	  return buffer;</span>
+<span class="nc" id="L524">	  BufferedReader buffer = null;</span>
+<span class="nc" id="L525">	  InputStreamReader input = new InputStreamReader(inputStream, this.charset);</span>
+<span class="nc" id="L526">	  buffer = new BufferedReader(input);</span>
+<span class="nc" id="L527">	  return buffer;</span>
   }
 
   private BufferedReader getReaderFromUrl(String url) throws IOException{
-<span class="fc" id="L524">    BufferedReader buffer = null;</span>
+<span class="fc" id="L531">    BufferedReader buffer = null;</span>
     try{
-<span class="fc" id="L526"> 	  URL urlConn= new URL(url);</span>
-<span class="fc" id="L527">	  URLConnection conn = urlConn.openConnection();</span>
-<span class="fc" id="L528">	  InputStreamReader input = new InputStreamReader(conn.getInputStream(),this.charset);</span>
-<span class="fc" id="L529">	  buffer = new BufferedReader(input);</span>
-<span class="fc" id="L530">	  return buffer;</span>
+<span class="fc" id="L533"> 	  URL urlConn= new URL(url);</span>
+<span class="fc" id="L534">	  URLConnection conn = urlConn.openConnection();</span>
+<span class="fc" id="L535">	  InputStreamReader input = new InputStreamReader(conn.getInputStream(),this.charset);</span>
+<span class="fc" id="L536">	  buffer = new BufferedReader(input);</span>
+<span class="fc" id="L537">	  return buffer;</span>
 	}
-<span class="nc" id="L532">	catch (IOException e){</span>
-<span class="nc" id="L533">	  throw new IOException(&quot;Error obtaining the reader from &quot; + url);</span>
+<span class="nc" id="L539">	catch (IOException e){</span>
+<span class="nc" id="L540">	  throw new IOException(&quot;Error obtaining the reader from &quot; + url);</span>
 	}
   }
 
   private String getRootXPath() throws Exception {
-<span class="fc" id="L538">	   String xPath = null;</span>
+<span class="fc" id="L545">	   String xPath = null;</span>
 	   try{		 
-<span class="fc" id="L540">	     Enumeration list = doc.xpathSelectElements(&quot;rdf:RDF&quot;);</span>
-<span class="fc bfc" id="L541" title="All 2 branches covered.">	     if (list.hasMoreElements()) xPath = &quot;rdf:RDF&quot;;</span>
+<span class="fc" id="L547">	     Enumeration list = doc.xpathSelectElements(&quot;rdf:RDF&quot;);</span>
+<span class="fc bfc" id="L548" title="All 2 branches covered.">	     if (list.hasMoreElements()) xPath = &quot;rdf:RDF&quot;;</span>
 	       else {
-<span class="fc" id="L543"> 	       	 list = doc.xpathSelectElements(&quot;rss/channel&quot;);</span>
-<span class="fc bfc" id="L544" title="All 2 branches covered.">	       	 if (list.hasMoreElements()) xPath = &quot;rss/channel&quot;;</span>
-<span class="fc" id="L545">	       		else xPath = &quot;&quot;;</span>
+<span class="fc" id="L550"> 	       	 list = doc.xpathSelectElements(&quot;rss/channel&quot;);</span>
+<span class="fc bfc" id="L551" title="All 2 branches covered.">	       	 if (list.hasMoreElements()) xPath = &quot;rss/channel&quot;;</span>
+<span class="fc" id="L552">	       		else xPath = &quot;&quot;;</span>
 	       }
-<span class="nc" id="L547">	   }catch (Exception e){</span>
-<span class="nc" id="L548">	     throw new Exception(&quot;Error obtaining the file XPath root [&quot; + filename + &quot;]&quot;, e);</span>
+<span class="nc" id="L554">	   }catch (Exception e){</span>
+<span class="nc" id="L555">	     throw new Exception(&quot;Error obtaining the file XPath root [&quot; + filename + &quot;]&quot;, e);</span>
 	   }
-<span class="fc" id="L550">	   return xPath;</span>
+<span class="fc" id="L557">	   return xPath;</span>
   }
 
   private void setChannelXPath() throws Exception {
-<span class="fc" id="L554">       xPath = getRootXPath();</span>
-<span class="fc bfc" id="L555" title="All 2 branches covered.">       if (xPath.equals(&quot;rdf:RDF&quot;)) {</span>
-<span class="fc" id="L556">             rssType = TYPE_RDF;</span>
+<span class="fc" id="L561">       xPath = getRootXPath();</span>
+<span class="fc bfc" id="L562" title="All 2 branches covered.">       if (xPath.equals(&quot;rdf:RDF&quot;)) {</span>
+<span class="fc" id="L563">             rssType = TYPE_RDF;</span>
        }
-<span class="fc bfc" id="L558" title="All 2 branches covered.">       else if (xPath.equals(&quot;rss/channel&quot;)){</span>
-<span class="fc" id="L559">             rssType = TYPE_RSS;</span>
+<span class="fc bfc" id="L565" title="All 2 branches covered.">       else if (xPath.equals(&quot;rss/channel&quot;)){</span>
+<span class="fc" id="L566">             rssType = TYPE_RSS;</span>
        }else {
-<span class="fc" id="L561">       		 rssType = TYPE_ATOM;</span>
+<span class="fc" id="L568">       		 rssType = TYPE_ATOM;</span>
        }
-<span class="fc" id="L563">  }</span>
+<span class="fc" id="L570">  }</span>
 
   private String encode(String filename) throws Exception{
-<span class="fc" id="L566">	  String res =  URLEncoder.encode(filename, this.charset) + &quot;.cache&quot;;</span>
-<span class="fc" id="L567">	  return res;</span>
+<span class="fc" id="L573">	  String res =  URLEncoder.encode(filename, this.charset) + &quot;.cache&quot;;</span>
+<span class="fc" id="L574">	  return res;</span>
   }
   
   private RssFeed getRssFeed() throws Exception{
-<span class="fc" id="L571">      RssFeed rss = new RssFeed();</span>
-<span class="fc" id="L572">      rss.setChannel(this.getChannel());</span>
-<span class="fc" id="L573">      rss.setImage(this.getImage());</span>
-<span class="fc" id="L574">      rss.setItems(this.getItems());</span>
-<span class="fc" id="L575">      return rss;	  </span>
+<span class="fc" id="L578">      RssFeed rss = new RssFeed();</span>
+<span class="fc" id="L579">      rss.setChannel(this.getChannel());</span>
+<span class="fc" id="L580">      rss.setImage(this.getImage());</span>
+<span class="fc" id="L581">      rss.setItems(this.getItems());</span>
+<span class="fc" id="L582">      return rss;	  </span>
   }
   
-  private Date getDate(String date, int rssType) throws java.text.ParseException {
-<span class="fc" id="L579">	  Date res = null;</span>
-<span class="fc" id="L580">	  String pattern = null;</span>
-		
-<span class="pc bpc" id="L582" title="1 of 4 branches missed.">	  switch (rssType){</span>
-	  	case TYPE_RDF: {
-<span class="pc bpc" id="L584" title="1 of 2 branches missed.">	  		if (date.indexOf(&quot;+&quot;)&gt;=0)</span>
-<span class="fc" id="L585">	  			pattern = &quot;yyyy-MM-dd'T'HH:mm:ss+HH:mm&quot;;</span>
-<span class="nc" id="L586">	  		else pattern = &quot;yyyy-MM-dd'T'HH:mm:ss-HH:mm&quot;;</span>
-<span class="nc" id="L587">	  		break;</span>
-	  	}
-		case TYPE_RSS: {
-<span class="fc" id="L590">			pattern = &quot;EEE, dd MMM yyyy HH:mm:ss Z&quot;;</span>
-<span class="fc" id="L591">			break;</span>
-		}
-		case TYPE_ATOM: {
-<span class="fc" id="L594">			pattern = &quot;yyyy-MM-dd'T'HH:mm:ss&quot;;</span>
-			break;				
-		}
-	  }
-	  
-	  try {
-<span class="fc" id="L600">		  SimpleDateFormat sd = new SimpleDateFormat(pattern, Locale.ENGLISH);</span>
-<span class="fc" id="L601">		  res = sd.parse(date);</span>
-<span class="nc" id="L602">	  } catch (java.text.ParseException e) {</span>
-<span class="nc" id="L603">		  System.out.println(&quot;Error parsing date: &quot; + date + &quot; [Type: &quot; + rssType + &quot;] --&quot; + e.toString());</span>
-		  //throw e;
-	  }	  
-	  
-<span class="fc" id="L607">	  return res;</span>
+  private Date getDate(String date, int rssType) throws Exception {
+<span class="fc" id="L586">	  return this.dateParser.getDate(date, rssType);</span>
   }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.5.6.201201232323</span>TestParser (02-sep-2012 22:10:57)</div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.5.6.201201232323</span>TestParser (17-oct-2012 0:01:27)</div></body></html>
