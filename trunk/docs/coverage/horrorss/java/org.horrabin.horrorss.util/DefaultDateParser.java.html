@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>DefaultDateParser.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">TestParser (17-oct-2012 22:08:35)</a> &gt; <a href="../../index.html" class="el_group">horrorss</a> &gt; <a href="../index.html" class="el_bundle">java</a> &gt; <a href="index.html" class="el_package">org.horrabin.horrorss.util</a> &gt; <span class="el_source">DefaultDateParser.java</span></div><h1>DefaultDateParser.java</h1><pre class="source lang-java linenums">/**
+ * DefaultDateParser.java 
+ *
+ * HORRORss Package, Version 2.2.0
+ * Simple RSS parser
+ *
+ * October 16, 2012
+ *
+ * Copyright (C) 2012 Fernando Fornieles
+ * e-mail: nandofm@gmail.com
+ *
+ * This file is part of HORRORss
+ *
+ * HORRORss is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * HORRORss is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+ */
+package org.horrabin.horrorss.util;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import org.horrabin.horrorss.RssParser;
+
+<span class="fc" id="L35">public class DefaultDateParser implements DateParser {</span>
+
+	public Date getDate(String date, int rssType) throws Exception {
+<span class="fc" id="L38">		  Date res = null;</span>
+<span class="fc" id="L39">		  String pattern = null;</span>
+			
+<span class="pc bpc" id="L41" title="1 of 4 branches missed.">		  switch (rssType){</span>
+		  	case RssParser.TYPE_RDF: {
+<span class="pc bpc" id="L43" title="1 of 2 branches missed.">		  		if (date.indexOf(&quot;+&quot;)&gt;=0)</span>
+<span class="fc" id="L44">		  			pattern = &quot;yyyy-MM-dd'T'HH:mm:ss+HH:mm&quot;;</span>
+<span class="nc" id="L45">		  		else pattern = &quot;yyyy-MM-dd'T'HH:mm:ss-HH:mm&quot;;</span>
+<span class="nc" id="L46">		  		break;</span>
+		  	}
+			case RssParser.TYPE_RSS: {
+<span class="fc" id="L49">				pattern = &quot;EEE, dd MMM yyyy HH:mm:ss Z&quot;;</span>
+<span class="fc" id="L50">				break;</span>
+			}
+			case RssParser.TYPE_ATOM: {
+<span class="fc" id="L53">				pattern = &quot;yyyy-MM-dd'T'HH:mm:ss&quot;;</span>
+				break;				
+			}
+		  }
+		  
+		  try {
+<span class="fc" id="L59">			  SimpleDateFormat sd = new SimpleDateFormat(pattern, Locale.ENGLISH);</span>
+<span class="fc" id="L60">			  res = sd.parse(date);</span>
+<span class="nc" id="L61">		  } catch (Exception e) {</span>
+<span class="nc" id="L62">			  System.out.println(&quot;Error parsing date: &quot; + date + &quot; [Type: &quot; + rssType + &quot;] --&quot; + e.toString());</span>
+			  //throw e;
+		  }	  
+		  
+<span class="fc" id="L66">		  return res;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.5.6.201201232323</span>TestParser (17-oct-2012 22:08:35)</div></body></html>
