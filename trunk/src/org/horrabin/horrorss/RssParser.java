@@ -1,10 +1,10 @@
 /**
  * RssParser.java
  *
- * HORRORss Package, Version 2.1.0
+ * HORRORss Package, Version 2.2.0
  * Simple RSS parser
  *
- * August 30, 2012
+ * October 16, 2012
  *
  * Copyright (C) 2012 Fernando Fornieles
  * e-mail: nandofm@gmail.com
@@ -46,7 +46,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
+
+import org.horrabin.horrorss.util.DateParser;
+import org.horrabin.horrorss.util.DefaultDateParser;
 
 import com.hp.hpl.sparta.Document;
 import com.hp.hpl.sparta.Parser;
@@ -68,6 +70,7 @@ public class RssParser {
 	private String cacheDir;
 	private long cacheLifeTime = 0;
 	
+	private DateParser dateParser = new DefaultDateParser();
 	private Map<String, RssModuleParser> moduleParsers;
 	  
 
@@ -75,7 +78,7 @@ public class RssParser {
   * Create a new RSS parser.
   */
   public RssParser(){
-       this.filename = "";
+      this.filename = "";
   }
 
  /**
@@ -84,6 +87,10 @@ public class RssParser {
   */
   public RssParser(String filename){
        this.filename = filename;
+  }
+  
+  public void setDateParser(DateParser dateParser){
+	  this.dateParser = dateParser;
   }
 
   /**
@@ -104,11 +111,11 @@ public class RssParser {
    * @throws Exception
    */
   public RssFeed load() throws Exception {
-       if ((this.filename.startsWith("http://")) || 
+      if ((this.filename.startsWith("http://")) || 
     	   (this.filename.startsWith("https://"))) this.parseFromURL();
          else this.parseFromReader(this.getReaderFromFile(this.filename));
        
-       return this.getRssFeed();
+      return this.getRssFeed();
   }
 
   /**
@@ -575,35 +582,7 @@ public class RssParser {
       return rss;	  
   }
   
-  private Date getDate(String date, int rssType) throws java.text.ParseException {
-	  Date res = null;
-	  String pattern = null;
-		
-	  switch (rssType){
-	  	case TYPE_RDF: {
-	  		if (date.indexOf("+")>=0)
-	  			pattern = "yyyy-MM-dd'T'HH:mm:ss+HH:mm";
-	  		else pattern = "yyyy-MM-dd'T'HH:mm:ss-HH:mm";
-	  		break;
-	  	}
-		case TYPE_RSS: {
-			pattern = "EEE, dd MMM yyyy HH:mm:ss Z";
-			break;
-		}
-		case TYPE_ATOM: {
-			pattern = "yyyy-MM-dd'T'HH:mm:ss";
-			break;				
-		}
-	  }
-	  
-	  try {
-		  SimpleDateFormat sd = new SimpleDateFormat(pattern, Locale.ENGLISH);
-		  res = sd.parse(date);
-	  } catch (java.text.ParseException e) {
-		  System.out.println("Error parsing date: " + date + " [Type: " + rssType + "] --" + e.toString());
-		  //throw e;
-	  }	  
-	  
-	  return res;
+  private Date getDate(String date, int rssType) throws Exception {
+	  return this.dateParser.getDate(date, rssType);
   }
 }
