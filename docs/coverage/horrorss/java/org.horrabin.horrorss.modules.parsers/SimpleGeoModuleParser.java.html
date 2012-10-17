@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>SimpleGeoModuleParser.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">TestParser (17-oct-2012 0:01:27)</a> &gt; <a href="../../index.html" class="el_group">horrorss</a> &gt; <a href="../index.html" class="el_bundle">java</a> &gt; <a href="index.html" class="el_package">org.horrabin.horrorss.modules.parsers</a> &gt; <span class="el_source">SimpleGeoModuleParser.java</span></div><h1>SimpleGeoModuleParser.java</h1><pre class="source lang-java linenums">/**
+ * SimpleGeoModuleParser.java 
+ *
+ * HORRORss Package, Version 2.1.0
+ * Simple RSS parser
+ *
+ * August 30, 2012
+ *
+ * Copyright (C) 2012 Fernando Fornieles
+ * e-mail: nandofm@gmail.com
+ *
+ * This file is part of HORRORss
+ *
+ * HORRORss is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * HORRORss is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+ */
+
+package org.horrabin.horrorss.modules.parsers;
+
+import org.horrabin.horrorss.RssModuleParser;
+import org.horrabin.horrorss.modules.objects.SimpleGeoRssItemBean;
+
+import com.hp.hpl.sparta.Document;
+
+<span class="fc" id="L35">public class SimpleGeoModuleParser implements RssModuleParser {</span>
+
+	@Override
+	public Object parseChannel(int rssType, Document doc) {
+		// TODO Auto-generated method stub
+<span class="fc" id="L40">		return null;</span>
+	}
+
+	@Override
+	public Object parseImage(int rssType, Document doc) {
+		// TODO Auto-generated method stub
+<span class="fc" id="L46">		return null;</span>
+	}
+
+	@Override
+	public Object parseItem(int rssType, Document doc, int index) throws Exception {
+		// TODO Auto-generated method stub
+<span class="fc" id="L52">		SimpleGeoRssItemBean geo = new SimpleGeoRssItemBean();</span>
+		
+		try {
+<span class="fc" id="L55">			geo.setLatitude(new Double(doc.xpathSelectString(&quot;rss/channel/item[&quot; + index + &quot;]/geo:lat/text()&quot;)));</span>
+<span class="fc" id="L56">			geo.setLongitude(new Double(doc.xpathSelectString(&quot;rss/channel/item[&quot; + index + &quot;]/geo:long/text()&quot;)));</span>
+<span class="nc" id="L57">		}catch(Exception e){</span>
+<span class="nc" id="L58">			throw new Exception(&quot;Error GeoRSS Module item at index &quot; + index, e);</span>
+		}
+<span class="fc" id="L60">		return geo;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.5.6.201201232323</span>TestParser (17-oct-2012 0:01:27)</div></body></html>
