@@ -1,5 +1,9 @@
 =Change Log=
 
+== HORRORss - V 2.2.0 ==
+  * Added the possibility to create custom date parsers
+<br>
+
 == HORRORss - V 2.1.0 ==
   * Solved a bug getting the element link from Atom files
   * Added the possibility to create custom parsers
