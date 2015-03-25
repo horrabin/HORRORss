@@ -13,4 +13,4 @@
 <h2>Dependencies</h2>
 It requires <a href='http://sparta-xml.sourceforge.net/'>Sparta-XML</a>, a light-weight XML parser based on <a href='http://en.wikipedia.org/wiki/Xpath'>XPath</a>.<br>
 <br>
-Visit the <a href='http://code.google.com/p/horrorss/wiki/Introduction?tm=6'>Wiki</a> of the project for more information
+Visit the [Wiki](https://github.com/horrabin/horrorss/wiki) of the project for more information
