@@ -1,0 +1,98 @@
+# Advanced Features #
+With <font color='#336699'>HORRO</font><font color='#ff9900'>Rss</font>**you are only able to get the most commonly used elements from RSS files (title, link, ...). If you need other elements you have to implement the RssModuleParser interface and add it to the parser.**
+
+## Creating a custom parser ##
+First, create an object mapping the elements you need to get.
+```
+public class SimpleGeoRssItemBean { 
+  private double latitude; 
+  private double longitude; 
+
+  public double getLatitude() { 
+    return latitude; 
+  } 
+
+  public void setLatitude(double latitude) { 
+    this.latitude = latitude; 
+  } 
+
+  public double getLongitude() { 
+    return longitude; 
+  } 
+
+  public void setLongitude(double longitude) { 
+    this.longitude = longitude; 
+  } 
+}
+```
+
+Second, implement the interface of RssModuleParser. See the Sparta-XML documentation on how to get elements from XML files using XPath expressions.
+
+```
+public class SimpleGeoModuleParser implements RssModuleParser { 
+
+  // Use this method to get values from the channel element 
+  public Object parseChannel(int rssType, Document doc) { 
+    return null; 
+  } 
+
+  // Use this method to get values from the image element 
+  public Object parseImage(int rssType, Document doc) { 
+    return null; 
+  } 
+
+  // Use this method to get values from each item 
+  public Object parseItem(int rssType, Document doc, int index) throws Exception { 
+    SimpleGeoRssItemBean geo = new SimpleGeoRssItemBean(); 
+    try { 
+      String latitude = doc.xpathSelectString("rss/channel/item[" + index + "]/geo:lat/text()"); 
+      String longitude = doc.xpathSelectString("rss/channel/item[" + index + "]/geo:long/text()"); 
+      geo.setLatitude(new Double(latitude)); 
+      geo.setLongitude(new Double(longitude)); 
+    }catch(Exception e){ 
+      throw new Exception("Error GeoRSS Module item at index " + index, e); 
+    } 
+
+    return geo; 
+  } 
+}
+```
+
+And finally add your parser and get your values
+
+```
+  RssParser rss = new RssParser("/foo/bar/my_rss_file.xml"); 
+  rss.addRssModuleParser("geoRss", new SimpleGeoModuleParser()); 
+  
+  try{ 
+    RssFeed obj = rss.load(); 
+    channel = obj.getChannel(); 
+    List<RssItemBean> items = obj.getItems(); 
+    for (int i=0; i<items.size(); i++){ 
+      RssItemBean item = items.get(i); 
+      SimpleGeoRssItemBean geo = (SimpleGeoRssItemBean)item.getAdditionalInfo("geoRss"); 
+      System.out.println("Title: " + item.getTitle()); 
+      System.out.println("Lat. : " + geo.getLatitude()); 
+      System.out.println("Long.: " + geo.getLongitude()); 
+    } 
+  }catch(Exception e){ 
+    // Something to do if an exception occurs 
+  }
+```
+
+## Querying the Document object ##
+You can also get elements from an RSS file launching XPath expressions directly to the Document object.
+
+```
+RssParser rss = new RssParser("/foo/bar/my_rss_file.xml"); 
+try { 
+  //Loads the RSS file 
+  rss.load(); 
+  //Obtain the com.hp.hpl.sparta.Document object 
+  Document doc = rss.getDocument(); 
+  //Gets the latitude from the fifth item 
+  String latitude = doc.xpathSelectString("rss/channel/item[5]/geo:lat/text()"); 
+}catch(Exception e){ 
+  e.printStackTrace(); 
+}
+```

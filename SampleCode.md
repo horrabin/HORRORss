@@ -1,0 +1,33 @@
+# Sample Code #
+
+The use of <font color='#336699'>HORRO</font><font color='#ff9900'>Rss</font>**in your project is as easy as you can see below. You only need to create a new**RssParser**passing the file path or the URL where the content is.
+```
+RssParser rss = new RssParser();
+
+try{
+	RssFeed feed = rss.load("http://rss.slashdot.org/Slashdot/slashdot");
+	
+	// Gets the channel information of the feed and 
+	// display its title
+	RssChannelBean channel = feed.getChannel();
+	System.out.println("Feed Title: " + channel.getTitle());
+	
+	// Gets the image of the feed and display the image URL
+	RssImageBean image = feed.getImage();
+	System.out.println("Feed Image: " + image.getUrl());
+	
+	// Gets and iterate the items of the feed 
+	List<RssItemBean> items = feed.getItems();
+	for (int i=0; i<items.size(); i++){
+             RssItemBean item = items.get(i); 
+             System.out.println("Title: " + item.getTitle());
+             System.out.println("Link : " + item.getLink());
+             System.out.println("Desc.: " + item.getDescription());				
+	}
+	
+}catch(Exception e){
+	// Something to do if an exception occurs
+}
+```**
+
+That's all!
