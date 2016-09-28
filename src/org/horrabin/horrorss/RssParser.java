@@ -46,6 +46,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.horrabin.horrorss.util.DateParser;
 import org.horrabin.horrorss.util.DefaultDateParser;
@@ -67,6 +69,7 @@ public class RssParser {
 	private String xPath;
 	private int rssType;
 	private String charset = "utf8";
+	private boolean initCharset = false;
 	private String cacheDir;
 	private long cacheLifeTime = 0;
 	
@@ -177,6 +180,7 @@ public class RssParser {
    */
   public void setCharset(String charset){
 	  this.charset = charset;
+	  initCharset = true;
   }
 
   /**
@@ -532,6 +536,11 @@ public class RssParser {
     try{
  	  URL urlConn= new URL(url);
 	  URLConnection conn = urlConn.openConnection();
+	  if(!initCharset){
+		  String encoding = getContentTypeEncoding(conn.getContentType());
+		  if(encoding != null)
+			  this.charset = encoding;
+	  }
 	  InputStreamReader input = new InputStreamReader(conn.getInputStream(),this.charset);
 	  buffer = new BufferedReader(input);
 	  return buffer;
@@ -539,6 +548,28 @@ public class RssParser {
 	catch (IOException e){
 	  throw new IOException("Error obtaining the reader from " + url);
 	}
+  }
+
+  private static final Pattern CHARSET_PATTERN = Pattern.compile("charset=([.[^; ]]*)");
+
+  private static String getContentTypeEncoding(String httpContentType) {
+      String encoding = null;
+      if (httpContentType!=null) {
+          int i = httpContentType.indexOf(";");
+          if (i>-1) {
+              String postMime = httpContentType.substring(i+1);
+              Matcher m = CHARSET_PATTERN.matcher(postMime);
+              encoding = (m.find()) ? m.group(1) : null;
+              encoding = (encoding!=null) ? encoding.toUpperCase() : null;
+          }
+          if (encoding != null &&
+                  ((encoding.startsWith("\"") && encoding.endsWith("\"")) ||
+                   (encoding.startsWith("'") && encoding.endsWith("'"))
+                  )) {
+              encoding = encoding.substring(1, encoding.length() - 1);
+          }
+      }
+      return encoding;
   }
 
   private String getRootXPath() throws Exception {

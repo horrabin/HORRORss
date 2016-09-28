@@ -33,6 +33,7 @@ import java.util.Locale;
 import org.horrabin.horrorss.RssParser;
 
 public class DefaultDateParser implements DateParser {
+	  SimpleDateFormat sd = null;
 
 	public Date getDate(String date, int rssType) throws Exception {
 		  Date res = null;
@@ -56,11 +57,16 @@ public class DefaultDateParser implements DateParser {
 		  }
 		  
 		  try {
-			  SimpleDateFormat sd = new SimpleDateFormat(pattern, Locale.ENGLISH);
+			  if(sd == null)
+				  sd = new SimpleDateFormat(pattern, Locale.ENGLISH);
 			  res = sd.parse(date);
 		  } catch (Exception e) {
-			  System.out.println("Error parsing date: " + date + " [Type: " + rssType + "] --" + e.toString());
-			  //throw e;
+			  try {
+				  sd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
+				  res = sd.parse(date);
+			} catch (Exception e2) {
+				  System.out.println("Error parsing date: " + date + " [Type: " + rssType + "] --" + e2.toString());
+			}
 		  }	  
 		  
 		  return res;
