@@ -26,6 +26,7 @@
  */
 package org.horrabin.horrorss.util;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -33,37 +34,144 @@ import java.util.Locale;
 import org.horrabin.horrorss.RssParser;
 
 public class DefaultDateParser implements DateParser {
+	DateFormat sd = null;
 
 	public Date getDate(String date, int rssType) throws Exception {
-		  Date res = null;
-		  String pattern = null;
-			
-		  switch (rssType){
-		  	case RssParser.TYPE_RDF: {
-		  		if (date.indexOf("+")>=0)
-		  			pattern = "yyyy-MM-dd'T'HH:mm:ss+HH:mm";
-		  		else pattern = "yyyy-MM-dd'T'HH:mm:ss-HH:mm";
-		  		break;
-		  	}
-			case RssParser.TYPE_RSS: {
-				pattern = "EEE, dd MMM yyyy HH:mm:ss Z";
-				break;
+		Date res = null;
+		String pattern = null;
+
+		switch (rssType) {
+		case RssParser.TYPE_RDF: {
+			if (date.indexOf("+") >= 0)
+				pattern = "yyyy-MM-dd'T'HH:mm:ss+HH:mm";
+			else
+				pattern = "yyyy-MM-dd'T'HH:mm:ss-HH:mm";
+			break;
+		}
+		case RssParser.TYPE_RSS: {
+			pattern = "EEE, dd MMM yyyy HH:mm:ss Z";
+			break;
+		}
+		case RssParser.TYPE_ATOM: {
+			pattern = "yyyy-MM-dd'T'HH:mm:ss";
+			break;
+		}
+		}
+
+		boolean success = false;
+		try {
+			if (sd == null)
+				sd = new SimpleDateFormat(pattern, Locale.ENGLISH);
+			res = sd.parse(date);
+			success = true;
+		} catch (Exception e) {
+		}
+
+		if(!success){
+			try {
+				pattern = "yyyy-MM-dd'T'HH:mm:ss+HH:mm";
+				sd = new SimpleDateFormat(pattern);
+				res = sd.parse(date);
+				success = true;
+			} catch (Exception e) {
 			}
-			case RssParser.TYPE_ATOM: {
+		}
+		if(!success){
+			try {
+				pattern = "yyyy-MM-dd'T'HH:mm:ss-HH:mm";
+				sd = new SimpleDateFormat(pattern);
+				res = sd.parse(date);
+				success = true;
+			} catch (Exception e) {
+			}
+		}
+		if(!success){
+			try {
+				sd = DateFormat.getDateInstance(DateFormat.SHORT, Locale.US);
+				res = sd.parse(date);
+				success = true;
+			} catch (Exception e) {
+			}
+		}
+		if(!success){
+			try {
+				sd = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.US);
+				res = sd.parse(date);
+				success = true;
+			} catch (Exception e) {
+			}
+		}
+		if(!success){
+			try {
+				sd = DateFormat.getDateInstance(DateFormat.LONG, Locale.US);
+				res = sd.parse(date);
+				success = true;
+			} catch (Exception e) {
+			}
+		}
+		if(!success){
+			try {
+				sd = DateFormat.getDateInstance(DateFormat.FULL);
+				res = sd.parse(date);
+				success = true;
+			} catch (Exception e) {
+			}
+		}
+		if(!success){
+			try {
+				pattern = "EEE, dd MMM yyyy HH:mm:ss";
+				sd = new SimpleDateFormat(pattern, Locale.ENGLISH);
+				res = sd.parse(date);
+				success = true;
+			} catch (Exception e) {
+			}
+		}
+		if(!success){
+			try {
 				pattern = "yyyy-MM-dd'T'HH:mm:ss";
-				break;				
+				sd = new SimpleDateFormat(pattern);
+				res = sd.parse(date);
+				success = true;
+			} catch (Exception e) {
 			}
-		  }
-		  
-		  try {
-			  SimpleDateFormat sd = new SimpleDateFormat(pattern, Locale.ENGLISH);
-			  res = sd.parse(date);
-		  } catch (Exception e) {
-			  System.out.println("Error parsing date: " + date + " [Type: " + rssType + "] --" + e.toString());
-			  //throw e;
-		  }	  
-		  
-		  return res;
+		}
+		if(!success){
+			try {
+				pattern = "yyyy-MM-dd'T'HH:mm:ss.Z";
+				sd = new SimpleDateFormat(pattern, Locale.ENGLISH);
+				res = sd.parse(date);
+				success = true;
+			} catch (Exception e) {
+			}
+		}
+		if(!success){
+			try {
+				pattern = "yyyy-MM-dd HH:mm:ss";
+				sd = new SimpleDateFormat(pattern);
+				res = sd.parse(date);
+				success = true;
+			} catch (Exception e) {
+			}
+		}
+		if(!success){
+			try {
+				pattern = "yyyy-MM-dd";
+				sd = new SimpleDateFormat(pattern);
+				res = sd.parse(date);
+				success = true;
+			} catch (Exception e) {
+			}
+		}
+		if(!success){
+			try {
+				sd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				res = sd.parse(date);
+			} catch (Exception e2) {
+				System.out.println("Error parsing date: " + date + " [Type: " + rssType + "] --" + e2.toString());
+			}
+		}
+
+		return res;
 	}
 
 }
