@@ -25,7 +25,7 @@ public class TestParser extends TestCase {
 		this.fileParse(filename, null);
 	}
 
-	public void fileParse(String filename, String charset){
+	public void fileParse(String filename, String charset) {
 		RssParser rss = new RssParser(filename);
 		if (charset!=null) rss.setCharset(charset);
 		try {
@@ -33,19 +33,20 @@ public class TestParser extends TestCase {
 			this.channel = obj.getChannel(); //Gets the channel element
 			this.items = obj.getItems(); //Gets a List of RssItemBean
 			this.image = obj.getImage(); //Gets the image element
-		}catch(Exception e){
+        }
+        catch(Exception e){
 			e.printStackTrace();
 		}				
 	}
 	
-	public void testSimpleGeoModuleParser(){
+	public void testSimpleGeoModuleParser() {
 		RssParser rss = new RssParser("java/test/data/georss.xml");
 		rss.addRssModuleParser("geoRss", new SimpleGeoModuleParser());
 		RssItemBean item;
 		RssChannelBean channel;
 		SimpleGeoRssItemBean geo;
 		
-		try{
+		try {
 			RssFeed obj = rss.load();
 			channel = obj.getChannel();
 			List<RssItemBean> items = obj.getItems();
@@ -63,12 +64,13 @@ public class TestParser extends TestCase {
 			assertEquals("M 5.2, southern Mid-Atlantic Ridge", item.getTitle());
 			assertEquals(-33.1277, geo.getLatitude());
 			assertEquals(-15.8708, geo.getLongitude());			
-		}catch(Exception e){
+        }
+        catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public void testDocumentXpathQuery(){
+	public void testDocumentXpathQuery() {
 		RssParser rss = new RssParser("java/test/data/georss.xml");
 		String result = "";
 		
@@ -76,14 +78,15 @@ public class TestParser extends TestCase {
 			rss.load();
 			Document doc = rss.getDocument();
 			result = doc.xpathSelectString("rss/channel/item[21]/geo:lat/text()");
-		}catch(Exception e){
+        }
+        catch(Exception e) {
 			e.printStackTrace();
 		}
 		
 		assertEquals("-33.1277", result);
 	}
 	
-	public void testCache(){
+	public void testCache() {
 		RssParser rss = new RssParser();
 		rss.enableCache("java/test/data/", 1000);
 		
@@ -94,12 +97,13 @@ public class TestParser extends TestCase {
 			rss.load("https://horrorss.googlecode.com/svn/trunk/src/test/data/rss-utf8.xml");
 			assertEquals(true, file.exists());
 			file.delete();
-		}catch(Exception e){
+        }
+        catch(Exception e) {
 			System.out.println("ERROR testing the cache system");
 		}
 	}
 
-	public void testUTF8FileParse(){
+	public void testUTF8FileParse() {
 		this.fileParse("java/test/data/rss-utf8.xml", "utf-8");
 		assertEquals(21,this.items.size());
 
@@ -111,7 +115,7 @@ public class TestParser extends TestCase {
 		assertEquals("Sun Jul 27 13:50:00 CEST 2008", item.getPubDate().toString());	
 	}
 
-	public void testUTF8URLParse(){
+	public void testUTF8URLParse() {
 		this.fileParse("https://horrorss.googlecode.com/svn/trunk/src/test/data/rss-utf8.xml", "utf-8");
 		assertEquals(21,this.items.size());
 
@@ -123,7 +127,7 @@ public class TestParser extends TestCase {
 		assertEquals("Sun Jul 27 13:50:00 CEST 2008", item.getPubDate().toString());
 	}
 
-	public void testISO88591FileParse(){
+	public void testISO88591FileParse() {
 		this.fileParse("java/test/data/rss-iso-8859-1.xml", "iso-8859-1");
 		assertEquals(21,this.items.size());
 
@@ -135,7 +139,7 @@ public class TestParser extends TestCase {
 		assertEquals("Sun Jul 27 13:50:00 CEST 2008", item.getPubDate().toString());		
 	}
 
-	public void testISO88591URLParse(){
+	public void testISO88591URLParse() {
 		this.fileParse("http://horrorss.googlecode.com/svn/trunk/src/test/data/rss-iso-8859-1.xml", "iso-8859-1");
 		assertEquals(21,this.items.size());
 
@@ -147,7 +151,7 @@ public class TestParser extends TestCase {
 		assertEquals("Sun Jul 27 13:50:00 CEST 2008", item.getPubDate().toString());		
 	}
 
-	public void testAtomParse(){
+	public void testAtomParse() {
 		this.fileParse("java/test/data/rss-atom.xml");
 		assertEquals(21,this.items.size());
 
@@ -165,7 +169,7 @@ public class TestParser extends TestCase {
 		assertEquals("", this.image.getUrl());
 	}
 	
-	public void testRSSParse(){
+	public void testRSSParse() {
 		this.fileParse("java/test/data/rss20.xml");
 		assertEquals(12,this.items.size());
 
@@ -183,7 +187,7 @@ public class TestParser extends TestCase {
 		assertEquals("http://www.jrmora.com/jr_bocata.jpg", this.image.getUrl());
 	}	
 
-	public void testRDFParse(){
+	public void testRDFParse() {
 		this.fileParse("java/test/data/rss-rdf.xml");
 		assertEquals(10,this.items.size());
 
@@ -201,7 +205,7 @@ public class TestParser extends TestCase {
 		assertEquals("http://barrapunto.com/images/topics/topicbarrapunto.png", this.image.getUrl());
 	}
 
-	public void testFileParse(){
+	public void testFileParse() {
 		this.fileParse("java/test/data/rss-utf8.xml");
 		assertEquals(21,this.items.size());
 
@@ -212,7 +216,7 @@ public class TestParser extends TestCase {
 		assertEquals("Y con este sencillo acto...", item.getTitle());
 	}
 			
-	public void testURLParse(){
+	public void testURLParse() {
 		this.fileParse("http://horrorss.googlecode.com/svn/trunk/src/test/data/rss-utf8.xml");		
 		
 		assertEquals(21,this.items.size());
