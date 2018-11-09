@@ -54,7 +54,8 @@ public class SimpleGeoModuleParser implements RssModuleParser {
 		try {
 			geo.setLatitude(new Double(doc.xpathSelectString("rss/channel/item[" + index + "]/geo:lat/text()")));
 			geo.setLongitude(new Double(doc.xpathSelectString("rss/channel/item[" + index + "]/geo:long/text()")));
-		}catch(Exception e){
+        }
+        catch(Exception e) {
 			throw new Exception("Error GeoRSS Module item at index " + index, e);
 		}
 		return geo;
