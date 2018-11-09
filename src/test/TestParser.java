@@ -34,7 +34,7 @@ public class TestParser extends TestCase {
 			this.items = obj.getItems(); //Gets a List of RssItemBean
 			this.image = obj.getImage(); //Gets the image element
         }
-        catch(Exception e){
+        catch (Exception e) {
 			e.printStackTrace();
 		}				
 	}
@@ -65,7 +65,7 @@ public class TestParser extends TestCase {
 			assertEquals(-33.1277, geo.getLatitude());
 			assertEquals(-15.8708, geo.getLongitude());			
         }
-        catch(Exception e) {
+        catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -79,7 +79,7 @@ public class TestParser extends TestCase {
 			Document doc = rss.getDocument();
 			result = doc.xpathSelectString("rss/channel/item[21]/geo:lat/text()");
         }
-        catch(Exception e) {
+        catch (Exception e) {
 			e.printStackTrace();
 		}
 		
@@ -98,7 +98,7 @@ public class TestParser extends TestCase {
 			assertEquals(true, file.exists());
 			file.delete();
         }
-        catch(Exception e) {
+        catch (Exception e) {
 			System.out.println("ERROR testing the cache system");
 		}
 	}

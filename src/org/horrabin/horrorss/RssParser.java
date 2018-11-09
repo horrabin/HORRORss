@@ -63,7 +63,7 @@ public class RssParser {
 	public static final int TYPE_ATOM = 2;
 	
 	private Document doc;
-	private String filename;
+	private String filenameOrUrl;
 	private String xPath;
 	private int rssType;
 	private String charset = "utf8";
@@ -78,15 +78,15 @@ public class RssParser {
 	 * Create a new RSS parser.
 	*/
 	public RssParser() {
-		this.filename = "";
+		this.filenameOrUrl = "";
 	}
 
 	/**
 	 * Create a new RSS file parser.
-	* @param filename String it can be a filename or an URL
+	* @param filenameOrUrl String it can be a filenameOrUrl or an URL
 	*/
-	public RssParser(String filename) {
-		this.filename = filename;
+	public RssParser(String filenameOrUrl) {
+		this.filenameOrUrl = filenameOrUrl;
 	}
 	
 	public void setDateParser(DateParser dateParser) {
@@ -113,11 +113,11 @@ public class RssParser {
 	 * @throws Exception
 	 */
 	public RssFeed load() throws Exception {
-		if ((this.filename.startsWith("http://")) || (this.filename.startsWith("https://"))) {
+		if ((this.filenameOrUrlOrUrl.startsWith("http://")) || (this.filenameOrUrl.startsWith("https://"))) {
 			this.parseFromURL();
 		} 
 		else {
-			this.parseFromReader(this.getReaderFromFile(this.filename));
+			this.parseFromReader(this.getReaderFromFile(this.filenameOrUrl));
 		}
 		
 		return this.getRssFeed();
@@ -134,7 +134,7 @@ public class RssParser {
 			doc = Parser.parse(xml);
 		} catch(Exception e) {
 			doc = new Document();
-			throw new Exception("Error reading the file " + filename, e);	        
+			throw new Exception("Error reading the file " + filenameOrUrl, e);	        
 		}
 		this.setChannelXPath();
 		
@@ -143,12 +143,12 @@ public class RssParser {
 	
 	/**
 	 * Parses an RSS source and load its content into an RssFeed object
-	 * @param filename It can be a filename or an URL
+	 * @param filenameOrUrl It can be a filenameOrUrl or an URL
 	 * @return RSS mapped into an RssFeed object
 	 * @throws Exception
 	 */
-	public RssFeed load(String filename) throws Exception {
-		this.filename = filename;
+	public RssFeed load(String filenameOrUrl) throws Exception {
+		this.filenameOrUrl = filenameOrUrl;
 		this.load();
 		return this.getRssFeed();
 	}   
@@ -225,7 +225,7 @@ public class RssParser {
 			}
 			this.parseAdditionalChannelInfo(res);
 		} catch (Exception e) {
-			throw new Exception("Error obteniendo elemento canal de " + filename, e);
+			throw new Exception("Error obteniendo elemento canal de " + filenameOrUrl, e);
 		}
 		return res;
 	}
@@ -252,7 +252,7 @@ public class RssParser {
 			}
 			this.parseAdditionalChannelInfo(res);
 		} catch (Exception e) {
-			throw new Exception("Error reading element channel from " + filename, e);
+			throw new Exception("Error reading element channel from " + filenameOrUrl, e);
 		}
 		return res;
 	}
@@ -287,7 +287,7 @@ public class RssParser {
 			
 			this.parseAdditionalImageInfo(res);
 		} catch (Exception e) {
-			throw new Exception("Error obteniendo elemento imagen de " + filename, e);
+			throw new Exception("Error obteniendo elemento imagen de " + filenameOrUrl, e);
 		}
 		return res;
 	}
@@ -313,7 +313,7 @@ public class RssParser {
 			}
 		}
 		catch (Exception e) {
-			throw new Exception("Error el Vector de elementos entry de " + filename, e);
+			throw new Exception("Error el Vector de elementos entry de " + filenameOrUrl, e);
 		}
 		return res;
 	}
@@ -330,7 +330,7 @@ public class RssParser {
 			}
 		}
 		catch (Exception e) {
-			throw new Exception("Error el Vector de elementos item de " + filename, e);
+			throw new Exception("Error el Vector de elementos item de " + filenameOrUrl, e);
 		}
 		return res;
 	}
@@ -368,7 +368,7 @@ public class RssParser {
 			this.parseAdditionalItemInfo(res, index);
 		}
 		catch (Exception e) {
-			throw new Exception("Error obtaining the entry at position " + index + " of " + filename, e);
+			throw new Exception("Error obtaining the entry at position " + index + " of " + filenameOrUrl, e);
 		}
 		return res;
 	}
@@ -396,7 +396,7 @@ public class RssParser {
 			this.parseAdditionalItemInfo(res, index);
 		}
 		catch (Exception e) {
-			throw new Exception("Error obtaining the entry at position " + index + " of " + filename, e);
+			throw new Exception("Error obtaining the entry at position " + index + " of " + filenameOrUrl, e);
 		}
 		return res;
 	}
@@ -448,7 +448,7 @@ public class RssParser {
 			} 
 			catch(Exception e) {
 				doc = new Document();
-				throw new Exception("Error reading the file " + filename, e);	        
+				throw new Exception("Error reading the file " + filenameOrUrl, e);	        
 			} finally {
 				buffer.close();
 			}
@@ -457,11 +457,11 @@ public class RssParser {
 
 	private void parseFromFile() throws Exception {
 		try {
-			File xmlFile = new File(filename);
+			File xmlFile = new File(filenameOrUrl);
 			doc = Parser.parse(xmlFile);
 		} 
 		catch (Exception e) {
-			System.out.println("Error reading the file " + filename);
+			System.out.println("Error reading the file " + filenameOrUrl);
 			System.out.println("RssParser:parseFromFile() ERROR: " + e.getMessage() );
 			doc = new Document();
 		}
@@ -470,7 +470,7 @@ public class RssParser {
 
 	private void parseFromURL() throws Exception {
 		if (this.cacheLifeTime==0) {
-			this.parseFromReader(this.getReaderFromUrl(this.filename));
+			this.parseFromReader(this.getReaderFromUrl(this.filenameOrUrl));
 		}
 		else {
 			this.parseFromCache();
@@ -478,18 +478,18 @@ public class RssParser {
 	}
 
 	private void parseFromCache() throws Exception {
-		String encFilename = this.encode(this.filename);	  
+		String encfilenameOrUrl = this.encode(this.filenameOrUrl);	  
 		if (this.cacheExpired()) {
-			this.saveURL(this.filename, this.cacheDir, encFilename);
+			this.saveURL(this.filenameOrUrl, this.cacheDir, encfilenameOrUrl);
 		}
-		this.filename = this.cacheDir + "/" + encFilename;
+		this.filenameOrUrl = this.cacheDir + "/" + encfilenameOrUrl;
 		this.parseFromFile();
 	}
 
 	private boolean cacheExpired() throws Exception {
 		boolean res = false;
-		String filename = this.encode(this.filename);
-		File file = new File(this.cacheDir + "/" + filename);
+		String filenameOrUrl = this.encode(this.filenameOrUrl);
+		File file = new File(this.cacheDir + "/" + filenameOrUrl);
 		boolean exists = file.exists();
 		if (exists) {
 			long actualTime = System.currentTimeMillis();
@@ -502,13 +502,13 @@ public class RssParser {
 		return res;
 	}
 
-	private boolean saveURL(String url, String path, String filename) throws IOException {
+	private boolean saveURL(String url, String path, String filenameOrUrl) throws IOException {
 		boolean res = false;
 		this.checkPath(path);
 		BufferedReader buffer = getReaderFromUrl(url);
 		if (buffer!=null) {
 			try {
-				FileOutputStream f = new FileOutputStream(path + "/" + filename);
+				FileOutputStream f = new FileOutputStream(path + "/" + filenameOrUrl);
 				OutputStreamWriter writer = new OutputStreamWriter(f);
 				String line;
 				while ((line = buffer.readLine()) != null) {
@@ -518,7 +518,7 @@ public class RssParser {
 				res = true;
 			}
 			catch (IOException e) {
-				throw new IOException("Error writing the file " + path + "/" + filename);
+				throw new IOException("Error writing the file " + path + "/" + filenameOrUrl);
 			}
 		}
 		return res;
@@ -540,7 +540,7 @@ public class RssParser {
 				return buffer;
 			}
 			catch (IOException e) {
-				throw new IOException("Error obtaining the reader from " + filename);
+				throw new IOException("Error obtaining the reader from " + filenameOrUrl);
 			}
 
 	}
@@ -584,7 +584,7 @@ public class RssParser {
 			}
 		}
 		catch (Exception e) {
-			throw new Exception("Error obtaining the file XPath root [" + filename + "]", e);
+			throw new Exception("Error obtaining the file XPath root [" + filenameOrUrl + "]", e);
 		}
 		return xPath;
 	}
@@ -602,8 +602,8 @@ public class RssParser {
 		}
 	}
 
-	private String encode(String filename) throws Exception {
-		String res =  URLEncoder.encode(filename, this.charset) + ".cache";
+	private String encode(String filenameOrUrl) throws Exception {
+		String res =  URLEncoder.encode(filenameOrUrl, this.charset) + ".cache";
 		return res;
 	}
 	
